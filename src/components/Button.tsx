@@ -1,5 +1,5 @@
 import React, { JSX } from 'react';
-import clsx from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 type ButtonProps = {
   children: React.ReactNode;
@@ -12,13 +12,13 @@ export default function Button({
   onClick,
   variant = 'primary',
 }: ButtonProps): JSX.Element {
-  const classes = clsx(
-    'px-4 py-2 rounded transition cursor-pointer font-medium',
-    {
-      'bg-blue-600 text-white hover:bg-blue-700': variant === 'primary',
-      'bg-gray-300 text-black hover:bg-gray-400': variant === 'secondary',
-    },
-  );
+  const baseClasses = 'px-4 py-2 rounded transition cursor-pointer font-medium';
+  const variantClasses =
+    variant === 'primary'
+      ? 'bg-blue-600 text-white hover:bg-blue-700'
+      : 'bg-gray-300 text-black hover:bg-gray-400';
+
+  const classes = twMerge(baseClasses, variantClasses);
 
   return (
     <button className={classes} onClick={onClick}>
