@@ -1,29 +1,45 @@
-import { useRouter } from 'next/navigation';
+'use client';
+
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Button from './Button';
+import { useTranslations } from 'next-intl';
 
 export default function Header() {
+  const t = useTranslations('Header');
   const router = useRouter();
+  const pathname = usePathname();
 
-  const handleNavigate = (path: string) => {
-    router.push(path);
+  const segments = pathname.split('/');
+  const currentLang = segments[1] || 'en';
+
+  const toggleLanguage = () => {
+    const newLang = currentLang === 'en' ? 'ru' : 'en';
+    segments[1] = newLang;
+    router.push(segments.join('/'));
   };
+
+  const handleNavigate = (path: string) => router.push(path);
 
   return (
     <header className="sticky top-0 flex justify-between items-center p-4 bg-gray-200 text-black">
       <div>
-        <Link href="/">[Logo]</Link>
+        <Link href={`/${currentLang}`}>{t('logo')}</Link>
       </div>
       <div className="flex gap-3">
-        <Button variant="secondary">EN</Button>
-        <Button onClick={() => handleNavigate('/authentication')}>
-          Sign In
+        <Button variant="secondary" onClick={toggleLanguage}>
+          {currentLang.toUpperCase()}
+        </Button>
+        <Button
+          onClick={() => handleNavigate(`/${currentLang}/authentication`)}
+        >
+          {t('signin')}
         </Button>
         <Button
           variant="secondary"
-          onClick={() => handleNavigate('/registration')}
+          onClick={() => handleNavigate(`/${currentLang}/registration`)}
         >
-          Sign Up
+          {t('signup')}
         </Button>
       </div>
     </header>
