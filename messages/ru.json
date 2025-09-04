@@ -1,0 +1,33 @@
+{
+  "Header": {
+    "logo": "лого",
+    "signin": "Войти",
+    "signup": "Зарегистрироваться"
+  },
+  "Footer": {
+    "logo": "Лого курса"
+  },
+  "HomePage": {
+    "title": "Добро пожаловать!",
+    "signin": "Войти",
+    "signup": "Зарегистрироваться",
+    "restclient": "Rest клиент",
+    "variables": "Переменные",
+    "history": "История поиска"
+  },
+  "RestClient": {
+    "title": "Rest клиент"
+  },
+  "Variables": {
+    "title": "Переменные"
+  },
+  "History": {
+    "title": "История"
+  },
+  "Signup": {
+    "title": "Зарегистрироваться"
+  },
+  "Signin": {
+    "title": "Войти"
+  }
+}

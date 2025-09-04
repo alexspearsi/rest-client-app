@@ -1,0 +1,33 @@
+{
+  "Header": {
+    "logo": "logo",
+    "signin": "Sign In",
+    "signup": "Sign Up"
+  },
+  "Footer": {
+    "logo": "Course logo"
+  },
+  "HomePage": {
+    "title": "Welcome!",
+    "signin": "Sign In",
+    "signup": "Sign Up",
+    "restclient": "Rest client",
+    "variables": "Variables",
+    "history": "History"
+  },
+  "RestClient": {
+    "title": "Rest client"
+  },
+  "Variables": {
+    "title": "Variables"
+  },
+  "History": {
+    "title": "History"
+  },
+  "Signup": {
+    "title": "Sign Up"
+  },
+  "Signin": {
+    "title": "Sign In"
+  }
+}
