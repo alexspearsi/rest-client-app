@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import Button from './Button';
+import Button from '@/components/Button';
 import { useTranslations } from 'next-intl';
 
 export default function Header() {
