@@ -22,7 +22,7 @@ export default function Header() {
   const handleNavigate = (path: string) => router.push(path);
 
   return (
-    <header className="sticky top-0 flex justify-between items-center p-4 bg-gray-200 text-black">
+    <header className="sticky top-0 flex items-center justify-between bg-gray-200 p-4 text-black">
       <div>
         <Link href={`/${currentLang}`}>{t('logo')}</Link>
       </div>

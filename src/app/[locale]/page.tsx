@@ -13,7 +13,7 @@ export default function Page() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen gap-6 text-black p-8">
+    <div className="flex h-screen flex-col items-center justify-center gap-6 p-8 text-black">
       <h1 className="text-3xl font-bold">{t('title')}</h1>
       <div className="flex gap-4">
         <Button
@@ -29,7 +29,7 @@ export default function Page() {
           {t('signup')}
         </Button>
       </div>
-      <div className="flex gap-4 mt-30">
+      <div className="mt-30 flex gap-4">
         <Button
           variant="secondary"
           onClick={() => handleNavigate('/rest-client')}
