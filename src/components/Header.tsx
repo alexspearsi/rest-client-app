@@ -9,6 +9,8 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from './ui/navigation-menu';
+import { LanguageToggler } from './language-toggler';
+import { ThemeToggler } from './theme-toggler';
 
 export default function Header() {
   const t = useTranslations('Header');
@@ -33,6 +35,12 @@ export default function Header() {
             <NavigationMenuLink asChild>
               <Link href={`/${currentLang}/registration`}>{t('signup')}</Link>
             </NavigationMenuLink>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <LanguageToggler />
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <ThemeToggler />
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
