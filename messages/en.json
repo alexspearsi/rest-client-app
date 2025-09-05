@@ -16,7 +16,11 @@
     "history": "History"
   },
   "RestClient": {
-    "title": "Rest client"
+    "title": "Rest client",
+    "headers": "Headers",
+    "send": "Send",
+    "name": "name",
+    "value": "value"
   },
   "Variables": {
     "title": "Variables"

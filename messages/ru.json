@@ -16,7 +16,11 @@
     "history": "История поиска"
   },
   "RestClient": {
-    "title": "Rest клиент"
+    "title": "Rest клиент",
+    "headers": "Заголовки",
+    "send": "Отправить",
+    "name": "имя",
+    "value": "значение"
   },
   "Variables": {
     "title": "Переменные"
