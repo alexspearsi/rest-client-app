@@ -1,0 +1,20 @@
+import { useTranslations } from 'next-intl';
+import { Button } from './ui/button';
+
+const year = new Date().getFullYear();
+
+export default function Footer() {
+  const t = useTranslations('Footer');
+
+  return (
+    <footer className="bg-background flex items-center justify-between gap-4 border-t-2 p-4 text-sm font-semibold">
+      <Button asChild size="none" variant="link">
+        <a href="https://github.com/" target="_blank" rel="noopener noreferrer">
+          Github
+        </a>
+      </Button>
+      <span>{year}</span>
+      <div>{t('logo')}</div>
+    </footer>
+  );
+}
