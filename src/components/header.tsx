@@ -1,6 +1,3 @@
-'use client';
-
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import {
@@ -14,29 +11,23 @@ import { ThemeToggler } from './theme-toggler';
 
 export default function Header() {
   const t = useTranslations('Header');
-  const pathname = usePathname();
-
-  const segments = pathname.split('/');
-  const currentLang = segments[1] || 'en';
 
   return (
     <header className="sticky top-0 flex items-center justify-between border-b-2 p-4">
       <div>
-        <Link href={`/${currentLang}`}>{t('logo')}</Link>
+        <Link href="/">{t('logo')}</Link>
       </div>
       <div className="flex items-center justify-center gap-1">
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
-                <Link href={`/${currentLang}/authentication`}>
-                  {t('signin')}
-                </Link>
+                <Link href="/authentication">{t('signin')}</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
-                <Link href={`/${currentLang}/registration`}>{t('signup')}</Link>
+                <Link href="/registration">{t('signup')}</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>

@@ -11,21 +11,21 @@ export default function Page() {
       <Heading size="h1">{t('title')}</Heading>
       <div className="flex gap-4">
         <Button variant="default" asChild>
-          <Link href={`/authentication`}>{t('signin')}</Link>
+          <Link href="/authentication">{t('signin')}</Link>
         </Button>
         <Button variant="secondary" asChild>
-          <Link href={`/registration`}>{t('signup')}</Link>
+          <Link href="/registration">{t('signup')}</Link>
         </Button>
       </div>
       <div className="mt-30 flex gap-4">
         <Button variant="secondary" asChild>
-          <Link href={`/rest-client`}>{t('restclient')}</Link>
+          <Link href="/rest-client">{t('restclient')}</Link>
         </Button>
         <Button variant="secondary" asChild>
-          <Link href={`/variables`}>{t('variables')}</Link>
+          <Link href="/variables">{t('variables')}</Link>
         </Button>
         <Button variant="secondary" asChild>
-          <Link href={`/history`}>{t('history')}</Link>
+          <Link href="/history">{t('history')}</Link>
         </Button>
       </div>
     </div>

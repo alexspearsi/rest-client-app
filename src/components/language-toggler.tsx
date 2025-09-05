@@ -10,16 +10,14 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Globe } from 'lucide-react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from '@/i18n/navigation';
 
 export function LanguageToggler() {
   const router = useRouter();
   const pathname = usePathname();
 
   const toggleLanguage = (locale: string) => {
-    const segments = pathname.split('/');
-    segments[1] = locale;
-    router.push(segments.join('/'));
+    router.replace(pathname, { locale });
   };
 
   return (

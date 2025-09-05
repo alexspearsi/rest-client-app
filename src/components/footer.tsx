@@ -9,7 +9,9 @@ export default function Footer() {
   return (
     <footer className="bg-background flex items-center justify-between gap-4 border-t-2 p-4 text-sm font-semibold">
       <Button asChild size="none" variant="link">
-        <a href="https://github.com/">Github</a>
+        <a href="https://github.com/" target="_blank" rel="noopener noreferrer">
+          Github
+        </a>
       </Button>
       <span>{year}</span>
       <div>{t('logo')}</div>
