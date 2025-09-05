@@ -1,6 +1,8 @@
 import { useTranslations } from 'next-intl';
 import { Button } from './ui/button';
 
+const year = new Date().getFullYear();
+
 export default function Footer() {
   const t = useTranslations('Footer');
 
@@ -9,7 +11,7 @@ export default function Footer() {
       <Button asChild size="none" variant="link">
         <a href="https://github.com/">Github</a>
       </Button>
-      <span>{new Date().getFullYear()}</span>
+      <span>{year}</span>
       <div>{t('logo')}</div>
     </footer>
   );
