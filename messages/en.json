@@ -33,5 +33,10 @@
   },
   "Signin": {
     "title": "Sign In"
+  },
+  "Theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
   }
 }

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { test, expect } from 'vitest';
 import { NextIntlClientProvider } from 'next-intl';
 import enMessages from '@messages/en.json';
-import Footer from '@/components/Footer';
+import Footer from '@/components/footer';
 
 test('Footer renders', () => {
   render(
