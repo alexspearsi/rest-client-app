@@ -24,26 +24,28 @@ export default function Header() {
       <div>
         <Link href={`/${currentLang}`}>{t('logo')}</Link>
       </div>
-      <NavigationMenu>
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuLink asChild>
-              <Link href={`/${currentLang}/authentication`}>{t('signin')}</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink asChild>
-              <Link href={`/${currentLang}/registration`}>{t('signup')}</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <LanguageToggler />
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <ThemeToggler />
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
+      <div className="flex items-center justify-center gap-1">
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link href={`/${currentLang}/authentication`}>
+                  {t('signin')}
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link href={`/${currentLang}/registration`}>{t('signup')}</Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+
+        <LanguageToggler />
+
+        <ThemeToggler />
+      </div>
     </header>
   );
 }
