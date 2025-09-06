@@ -4,6 +4,8 @@ import { useRef, type FormEvent, type JSX } from 'react';
 import MethodSelector from './method-selector/method-selector';
 import { HeadersItems } from '../rest-client';
 import { useTranslations } from 'next-intl';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 type RequestEditorProps = {
   headerItems: HeadersItems[];
@@ -48,14 +50,21 @@ export default function RequestEditor(props: RequestEditorProps): JSX.Element {
   return (
     <div>
       <form
+        className="flex items-center gap-2"
         ref={formReference}
         action=""
         onSubmit={handleSubmit}
         name="request-form"
       >
         <MethodSelector />
-        <input type="text" name="url" />
-        <button type="submit">{t('send')}</button>
+        <Input
+          type="text"
+          placeholder="Enter url"
+          name="url"
+          pattern="^https?:\/\/(?:w{3}\.)?\w{1,}\.\w{1,6}\b(?:\S*)$"
+          required
+        />
+        <Button type="submit">{t('send')}</Button>
       </form>
     </div>
   );

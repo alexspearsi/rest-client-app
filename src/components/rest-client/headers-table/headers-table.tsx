@@ -4,6 +4,9 @@ import { type JSX } from 'react';
 import { useTranslations } from 'next-intl';
 import HeadersItem from './headers-item/headers-item';
 import type { HeadersItems } from '../rest-client';
+import { Heading } from '@/components/ui/typography';
+import { Button } from '@/components/ui/button';
+import { Plus } from 'lucide-react';
 
 type HeadersTableProps = {
   headerItems: HeadersItems[];
@@ -29,8 +32,8 @@ export default function HeadersTable(props: HeadersTableProps): JSX.Element {
   }
 
   return (
-    <div>
-      <h2 className="text-2xl">{t('headers')}</h2>
+    <div className="flex flex-col gap-2">
+      <Heading size="h4">{t('headers')}</Heading>
       {headerItems.map((item) => (
         <HeadersItem
           key={item.id}
@@ -39,9 +42,9 @@ export default function HeadersTable(props: HeadersTableProps): JSX.Element {
           updateHeader={updateHeader}
         />
       ))}
-      <button type="button" onClick={handleClick}>
-        Add +1
-      </button>
+      <Button type="button" onClick={handleClick} size={'icon'}>
+        <Plus />
+      </Button>
     </div>
   );
 }

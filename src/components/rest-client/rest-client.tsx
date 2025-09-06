@@ -34,7 +34,7 @@ export default function RestClient(): JSX.Element {
   }
 
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       <RequestEditor headerItems={headersItems} />
       <HeadersTable
         headerItems={headersItems}

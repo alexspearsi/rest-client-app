@@ -4,6 +4,10 @@ import type { ChangeEvent, JSX } from 'react';
 import { useState } from 'react';
 import { HeadersItems } from '../../rest-client';
 import { useTranslations } from 'next-intl';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Trash2 } from 'lucide-react';
 
 type HeaderItemProps = {
   id: string;
@@ -19,8 +23,7 @@ export default function HeadersItem(props: HeaderItemProps): JSX.Element {
 
   const t = useTranslations('RestClient');
 
-  function handleCheckbox(event: ChangeEvent<HTMLInputElement>): void {
-    const checked = event.target.checked;
+  function handleCheckbox(checked: boolean): void {
     setIsChecked(checked);
 
     const item = {
@@ -56,14 +59,14 @@ export default function HeadersItem(props: HeaderItemProps): JSX.Element {
   }
 
   return (
-    <div>
-      <input
-        onChange={handleCheckbox}
-        type="checkbox"
+    <div className="flex items-center space-x-2">
+      <Checkbox
+        className="h-6 w-6"
+        onCheckedChange={handleCheckbox}
         name="header-checkbox"
         checked={isChecked}
       />
-      <input
+      <Input
         onChange={handleValueChange}
         onBlur={handleFocus}
         type="text"
@@ -71,7 +74,7 @@ export default function HeadersItem(props: HeaderItemProps): JSX.Element {
         placeholder={t('name')}
         value={value.name}
       />
-      <input
+      <Input
         onChange={handleValueChange}
         onBlur={handleFocus}
         type="text"
@@ -79,9 +82,14 @@ export default function HeadersItem(props: HeaderItemProps): JSX.Element {
         placeholder={t('value')}
         value={value.value}
       />
-      <button type="button" onClick={() => removeHeader(id)}>
-        Del
-      </button>
+      <Button
+        type="button"
+        onClick={() => removeHeader(id)}
+        variant="ghost"
+        size="icon"
+      >
+        <Trash2 />
+      </Button>
     </div>
   );
 }
