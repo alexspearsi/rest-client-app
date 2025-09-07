@@ -2,21 +2,22 @@
 
 import type { ChangeEvent, JSX } from 'react';
 import { useState } from 'react';
-import { HeadersItems } from '../../rest-client';
 import { useTranslations } from 'next-intl';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Trash2 } from 'lucide-react';
+import { useHeadersStore } from '@/stores/headers-store';
 
 type HeaderItemProps = {
   id: string;
-  removeHeader: (id: string) => void;
-  updateHeader: (headerItem: HeadersItems) => void;
 };
 
 export default function HeadersItem(props: HeaderItemProps): JSX.Element {
-  const { id, removeHeader, updateHeader } = props;
+  const { id } = props;
+
+  const updateHeader = useHeadersStore((state) => state.updateHeader);
+  const removeHeader = useHeadersStore((state) => state.removeHeader);
 
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [value, setValue] = useState({ name: '', value: '' });

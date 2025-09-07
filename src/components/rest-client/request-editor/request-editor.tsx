@@ -2,23 +2,19 @@
 
 import { useRef, type FormEvent, type JSX } from 'react';
 import MethodSelector from './method-selector/method-selector';
-import { HeadersItems } from '../rest-client';
 import { useTranslations } from 'next-intl';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { createParams } from '@/utils/create-params';
-
-type RequestEditorProps = {
-  headerItems: HeadersItems[];
-};
+import { useHeadersStore } from '@/stores/headers-store';
 
 type RequestFormData = {
   method: string;
   url: string;
 };
 
-export default function RequestEditor(props: RequestEditorProps): JSX.Element {
-  const { headerItems } = props;
+export default function RequestEditor(): JSX.Element {
+  const headerItems = useHeadersStore((state) => state.headers);
 
   const formReference = useRef<HTMLFormElement>(null);
 
