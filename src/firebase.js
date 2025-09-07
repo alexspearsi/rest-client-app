@@ -1,9 +1,11 @@
 import { initializeApp } from "firebase/app";
+
 import {
   GoogleAuthProvider,
   getAuth,
   signInWithPopup,
   signInWithEmailAndPassword,
+  signOut
 } from "firebase/auth";
 
 import {
@@ -44,6 +46,8 @@ const signInWithGoogle = async () => {
         email: user.email,
       });
     }
+
+    console.log('you are logged in via google');
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -53,6 +57,7 @@ const signInWithGoogle = async () => {
 const logInWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
+    console.log('%c you are logged in via email', 'color: green; font-weight: bold; font-size: 20px');
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -69,16 +74,8 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       authProvider: "local",
       email,
     });
-  } catch (err) {
-    console.error(err);
-    alert(err.message);
-  }
-};
 
-const sendPasswordReset = async (email) => {
-  try {
-    await sendPasswordResetEmail(auth, email);
-    alert("Password reset link sent!");
+    console.log('you are signed up successfully');
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -87,6 +84,7 @@ const sendPasswordReset = async (email) => {
 
 const logout = () => {
   signOut(auth);
+  console.log('%c you are logged out', 'color: green; font-weight: bold; font-size: 20px');
 };
 
 export {
@@ -95,6 +93,8 @@ export {
   signInWithGoogle,
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
-  sendPasswordReset,
   logout,
+  signOut,
 };
+
+

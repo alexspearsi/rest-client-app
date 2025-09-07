@@ -2,7 +2,8 @@
   "Header": {
     "logo": "лого",
     "signin": "Войти",
-    "signup": "Зарегистрироваться"
+    "signup": "Зарегистрироваться",
+    "logout": "Выйти"
   },
   "Footer": {
     "logo": "Лого курса"
@@ -28,7 +29,13 @@
     "title": "Зарегистрироваться"
   },
   "Signin": {
-    "title": "Войти"
+    "title": "Войти",
+    "login": "Войти",
+    "loginViaGoogle": "Войти через Google",
+    "emailPlaceholder": "Электронная почта",
+    "passwordPlaceholder": "Пароль",
+    "noAccount": "Нет аккаунта?",
+    "registerNow": "Зарегистрируйтесь сейчас."
   },
   "Theme": {
     "light": "Светлая",

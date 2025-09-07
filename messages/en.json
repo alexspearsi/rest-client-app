@@ -2,7 +2,8 @@
   "Header": {
     "logo": "logo",
     "signin": "Sign In",
-    "signup": "Sign Up"
+    "signup": "Sign Up",
+    "logout": "Log out"
   },
   "Footer": {
     "logo": "Course logo"
@@ -28,7 +29,13 @@
     "title": "Sign Up"
   },
   "Signin": {
-    "title": "Sign In"
+    "title": "Sign In",
+    "login": "Login",
+    "loginViaGoogle": "Login with Google",
+    "emailPlaceholder": "E-mail Address",
+    "passwordPlaceholder": "Password",
+    "noAccount": "Don't have an account?",
+    "registerNow": "Register now."
   },
   "Theme": {
     "light": "Light",

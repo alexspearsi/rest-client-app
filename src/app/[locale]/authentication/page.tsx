@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { Loader } from '@/components/loader';
 
 export default function Page() {
   const t = useTranslations('Signin');
@@ -23,17 +24,24 @@ export default function Page() {
   const router = useRouter();
 
   useEffect(() => {
-    if (loading) {
-      return;
-    }
-    if (error) {
-      console.log('Error during login');
-      return;
-    }
-    if (user) {
+    if (!loading && user) {
       router.push('/');
     }
-  }, [user, loading, error, router]);
+  }, [user, loading, router]);
+
+  if (loading || user) {
+    return <Loader />;
+  }
+
+  console.log(error);
+
+  function handleLogIn() {
+    if (email && password) {
+      logInWithEmailAndPassword(email, password);
+    } else {
+      console.log('%c Enter your credentials', 'color: red');
+    }
+  }
 
   return (
     <div className="flex h-[75vh] flex-col items-center justify-center gap-6">
@@ -43,21 +51,21 @@ export default function Page() {
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
+          placeholder={t('emailPlaceholder')}
         />
         <Input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
+          placeholder={t('passwordPlaceholder')}
         />
-        <Button onClick={() => logInWithEmailAndPassword(email, password)}>
-          Login
-        </Button>
-        <Button onClick={signInWithGoogle}>Login with Google</Button>
+        <Button onClick={handleLogIn}>{t('login')}</Button>
+        <Button onClick={signInWithGoogle}>{t('loginViaGoogle')}</Button>
         <div>
-          Don&apos;t have an account? <Link href="/register">Register</Link>{' '}
-          now.
+          {t('noAccount')}{' '}
+          <Link href="/registration" className="text-blue-600 hover:underline">
+            {t('registerNow')}
+          </Link>
         </div>
       </div>
     </div>
