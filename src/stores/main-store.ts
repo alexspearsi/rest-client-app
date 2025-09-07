@@ -11,3 +11,5 @@ export const useMainStore = create<MainStore>((set) => ({
   toggle: () => set((state) => ({ someState: !state.someState })),
   setState: (value) => set({ someState: value }),
 }));
+
+// ПРОВЕРКА ДЕПЛОЯ РАЗ ДВА ТРИ
