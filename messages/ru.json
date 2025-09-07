@@ -26,7 +26,14 @@
     "title": "История"
   },
   "Signup": {
-    "title": "Зарегистрироваться"
+    "title": "Зарегистрироваться",
+    "namePlaceholder": "Полное имя",
+    "emailPlaceholder": "Электронная почта",
+    "passwordPlaceholder": "Пароль",
+    "register": "Зарегистрироваться",
+    "registerViaGoogle": "Зарегистрироваться через Google",
+    "haveAccount": "Уже есть аккаунт?",
+    "loginNow": "Войти сейчас."
   },
   "Signin": {
     "title": "Войти",

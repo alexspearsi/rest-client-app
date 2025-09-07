@@ -26,7 +26,14 @@
     "title": "History"
   },
   "Signup": {
-    "title": "Sign Up"
+    "title": "Sign Up",
+    "namePlaceholder": "Full Name",
+    "emailPlaceholder": "E-mail Address",
+    "passwordPlaceholder": "Password",
+    "register": "Register",
+    "registerViaGoogle": "Register with Google",
+    "haveAccount": "Already have an account?",
+    "loginNow": "Login now."
   },
   "Signin": {
     "title": "Sign In",
