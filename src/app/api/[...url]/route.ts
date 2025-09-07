@@ -1,10 +1,11 @@
 'use server';
 
+import { createHeaders } from '@/utils/create-headers';
 import { NextRequest } from 'next/server';
 
 export async function GET(request: NextRequest) {
-  // const searchParams = request.nextUrl.searchParams;
-  // const query = searchParams.get('query');
+  const searchParams = request.nextUrl.searchParams;
+  const headersObject = createHeaders(searchParams);
 
   const [method, url] = request.nextUrl.pathname
     .replace('/api/', '')
@@ -18,13 +19,13 @@ export async function GET(request: NextRequest) {
   const data = await response.json();
 
   return new Response(JSON.stringify(data), {
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', ...headersObject },
   });
 }
 
 export async function POST(request: NextRequest) {
-  // const searchParams = request.nextUrl.searchParams;
-  // const query = searchParams.get('query');
+  const searchParams = request.nextUrl.searchParams;
+  const headersObject = createHeaders(searchParams);
 
   const [method, url] = request.nextUrl.pathname
     .replace('/api/', '')
@@ -38,6 +39,6 @@ export async function POST(request: NextRequest) {
   const data = await response.json();
 
   return new Response(JSON.stringify(data), {
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', ...headersObject },
   });
 }

@@ -6,6 +6,7 @@ import { HeadersItems } from '../rest-client';
 import { useTranslations } from 'next-intl';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { createParams } from '@/utils/create-params';
 
 type RequestEditorProps = {
   headerItems: HeadersItems[];
@@ -18,7 +19,7 @@ type RequestFormData = {
 
 export default function RequestEditor(props: RequestEditorProps): JSX.Element {
   const { headerItems } = props;
-  console.log(headerItems);
+
   const formReference = useRef<HTMLFormElement>(null);
 
   const t = useTranslations('RestClient');
@@ -32,17 +33,19 @@ export default function RequestEditor(props: RequestEditorProps): JSX.Element {
 
       const base64Url = btoa(encodeURIComponent(data.url));
 
-      // const base64Body = btoa(
-      //   encodeURIComponent(JSON.stringify({ test: 123 })),
-      // );
-      // const filtredHeaders = headerItems.filter((item) => !item.checked);
+      const base64Body = btoa(
+        encodeURIComponent(JSON.stringify({ test: 123 })),
+      );
 
-      // const queries = new URLSearchParams(headerItems)
+      const queries = createParams(headerItems);
 
-      const response = await fetch(`/api/${data.method}/${base64Url}`, {
-        method: data.method,
-      });
-      const responseData = await response.json();
+      const response = await fetch(
+        `/api/${data.method}/${base64Url}/${base64Body}?${queries.toString()}`,
+        {
+          method: data.method,
+        },
+      );
+      const responseData: unknown = await response.json();
       console.log(responseData);
     }
   }
@@ -61,8 +64,8 @@ export default function RequestEditor(props: RequestEditorProps): JSX.Element {
           type="text"
           placeholder="Enter url"
           name="url"
-          pattern="^https?:\/\/(?:w{3}\.)?\w{1,}\.\w{1,6}\b(?:\S*)$"
-          required
+          // pattern="^https?:\/\/(?:w{3}\.)?\w{1,}\.\w{1,6}\b(?:\S*)$"
+          // required
         />
         <Button type="submit">{t('send')}</Button>
       </form>
