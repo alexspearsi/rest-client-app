@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { Loader } from '@/components/loader';
 
 export default function Page() {
   const t = useTranslations('Signin');
@@ -24,9 +25,17 @@ export default function Page() {
 
   useEffect(() => {
     if (!loading && user) {
-      router.push('/');
+      router.replace('/');
     }
   }, [user, loading, router]);
+
+  if (loading || user) {
+    return (
+      <div className="flex h-[75vh] flex-col items-center justify-center gap-6">
+        <Loader />
+      </div>
+    );
+  }
 
   function handleLogIn() {
     if (email && password) {

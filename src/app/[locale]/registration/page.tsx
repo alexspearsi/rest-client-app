@@ -13,6 +13,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Loader } from '@/components/loader';
 
 export default function Page() {
   const t = useTranslations('Signup');
@@ -24,6 +25,20 @@ export default function Page() {
   const [user, loading, error] = useAuthState(auth);
   const router = useRouter();
 
+  useEffect(() => {
+    if (!loading && user) {
+      router.replace('/');
+    }
+  }, [user, loading, router]);
+
+  if (loading || user) {
+    return (
+      <div className="flex h-[75vh] flex-col items-center justify-center gap-6">
+        <Loader />
+      </div>
+    );
+  }
+
   function handleSignUp() {
     if (name && email && password) {
       registerWithEmailAndPassword(name, email, password);
@@ -31,12 +46,6 @@ export default function Page() {
       console.log(error, '%c Fill all fields', 'color: red');
     }
   }
-
-  useEffect(() => {
-    if (!loading && user) {
-      router.push('/');
-    }
-  }, [user, loading, router]);
 
   return (
     <div className="flex h-[75vh] flex-col items-center justify-center gap-6">

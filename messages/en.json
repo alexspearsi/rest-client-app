@@ -9,7 +9,7 @@
     "logo": "Course logo"
   },
   "HomePage": {
-    "title": "Welcome!",
+    "title": "Welcome",
     "signin": "Sign In",
     "signup": "Sign Up",
     "restclient": "REST client",

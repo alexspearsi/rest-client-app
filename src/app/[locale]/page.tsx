@@ -14,31 +14,35 @@ export default function Page() {
 
   return (
     <div className="flex h-[75vh] flex-col items-center justify-center gap-6">
-      <Heading size="h2">{t('title')}</Heading>
-
       {loading ? (
         <Loader />
       ) : user ? (
-        <div className="flex gap-4">
-          <Button variant="secondary" asChild>
-            <Link href="/rest-client">{t('restclient')}</Link>
-          </Button>
-          <Button variant="secondary" asChild>
-            <Link href="/variables">{t('variables')}</Link>
-          </Button>
-          <Button variant="secondary" asChild>
-            <Link href="/history">{t('history')}</Link>
-          </Button>
-        </div>
+        <>
+          <Heading size="h2">{`${t('title')}, ${user?.displayName}!`}</Heading>
+          <div className="flex gap-4">
+            <Button variant="secondary" asChild>
+              <Link href="/rest-client">{t('restclient')}</Link>
+            </Button>
+            <Button variant="secondary" asChild>
+              <Link href="/variables">{t('variables')}</Link>
+            </Button>
+            <Button variant="secondary" asChild>
+              <Link href="/history">{t('history')}</Link>
+            </Button>
+          </div>
+        </>
       ) : (
-        <div className="flex gap-4">
-          <Button variant="default" asChild>
-            <Link href="/authentication">{t('signin')}</Link>
-          </Button>
-          <Button variant="secondary" asChild>
-            <Link href="/registration">{t('signup')}</Link>
-          </Button>
-        </div>
+        <>
+          <Heading size="h2">{t('title')!}</Heading>
+          <div className="flex gap-4">
+            <Button variant="default" asChild>
+              <Link href="/authentication">{t('signin')}</Link>
+            </Button>
+            <Button variant="secondary" asChild>
+              <Link href="/registration">{t('signup')}</Link>
+            </Button>
+          </div>
+        </>
       )}
     </div>
   );
