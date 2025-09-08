@@ -13,14 +13,13 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Loader } from '@/components/loader';
 
 export default function Page() {
   const t = useTranslations('Signin');
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const router = useRouter();
 
   useEffect(() => {
@@ -28,12 +27,6 @@ export default function Page() {
       router.push('/');
     }
   }, [user, loading, router]);
-
-  if (loading || user) {
-    return <Loader />;
-  }
-
-  console.log(error);
 
   function handleLogIn() {
     if (email && password) {

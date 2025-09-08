@@ -12,7 +12,7 @@
     "title": "Welcome!",
     "signin": "Sign In",
     "signup": "Sign Up",
-    "restclient": "Rest client",
+    "restclient": "REST client",
     "variables": "Variables",
     "history": "History"
   },
@@ -33,7 +33,7 @@
     "register": "Register",
     "registerViaGoogle": "Register with Google",
     "haveAccount": "Already have an account?",
-    "loginNow": "Login now."
+    "loginNow": "Sign in."
   },
   "Signin": {
     "title": "Sign In",
@@ -42,7 +42,7 @@
     "emailPlaceholder": "E-mail Address",
     "passwordPlaceholder": "Password",
     "noAccount": "Don't have an account?",
-    "registerNow": "Register now."
+    "registerNow": "Sign up now."
   },
   "Theme": {
     "light": "Light",

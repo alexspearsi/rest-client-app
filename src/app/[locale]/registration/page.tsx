@@ -10,7 +10,6 @@ import {
   registerWithEmailAndPassword,
   signInWithGoogle,
 } from '../../../firebase';
-import { Loader } from '@/components/loader';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -38,10 +37,6 @@ export default function Page() {
       router.push('/');
     }
   }, [user, loading, router]);
-
-  if (loading || user) {
-    return <Loader />;
-  }
 
   return (
     <div className="flex h-[75vh] flex-col items-center justify-center gap-6">
