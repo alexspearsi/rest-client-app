@@ -7,6 +7,10 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { createParams } from '@/utils/create-params';
 import { useHeadersStore } from '@/stores/headers-store';
+import { useBodyStore } from '@/stores/body-store';
+import { bodyToBase64 } from '@/utils/body-to-base64';
+import { useResponseStore } from '@/stores/response-store';
+import { setResponseData } from '@/utils/set-response-data';
 
 type RequestFormData = {
   method: string;
@@ -15,6 +19,8 @@ type RequestFormData = {
 
 export default function RequestEditor(): JSX.Element {
   const headerItems = useHeadersStore((state) => state.headers);
+  const bodyData = useBodyStore((state) => state.body);
+  const updateResponse = useResponseStore((state) => state.updateResponse);
 
   const formReference = useRef<HTMLFormElement>(null);
 
@@ -29,27 +35,45 @@ export default function RequestEditor(): JSX.Element {
 
       const base64Url = btoa(encodeURIComponent(data.url));
 
-      const base64Body = btoa(
-        encodeURIComponent(JSON.stringify({ test: 123 })),
-      );
+      const base64Body = bodyToBase64(bodyData);
 
-      const queries = createParams(headerItems);
+      const queries = createParams(headerItems, base64Body[1]).toString();
 
-      const response = await fetch(
-        `/api/${data.method}/${base64Url}/${base64Body}?${queries.toString()}`,
-        {
-          method: data.method,
-        },
-      );
-      const responseData: unknown = await response.json();
-      console.log(responseData);
+      try {
+        const start = Date.now();
+
+        const response = await fetch(
+          `/api/${data.method}/${base64Url}${base64Body[0] ?? ''}${queries.length > 0 ? '?' + queries : ''}`,
+          {
+            method: data.method,
+          },
+        );
+
+        const responseData: unknown = await response.json();
+
+        if (!response.ok) {
+          const responseData: unknown = await response.text();
+          const end = Date.now();
+          const time = end - start;
+          console.log(responseData);
+          updateResponse(setResponseData(response, responseData, time));
+          return;
+        }
+
+        const end = Date.now();
+        const time = end - start;
+        updateResponse(setResponseData(response, responseData, time));
+        console.log(responseData);
+      } catch (error) {
+        console.warn(error);
+      }
     }
   }
 
   return (
     <div>
       <form
-        className="flex items-center gap-2"
+        className="flex items-center"
         ref={formReference}
         action=""
         onSubmit={handleSubmit}
@@ -57,13 +81,20 @@ export default function RequestEditor(): JSX.Element {
       >
         <MethodSelector />
         <Input
+          className="w-full rounded-none border-r-0 border-l-0"
           type="text"
-          placeholder="Enter url"
+          placeholder={t('url')}
           name="url"
           // pattern="^https?:\/\/(?:w{3}\.)?\w{1,}\.\w{1,6}\b(?:\S*)$"
-          // required
+          required
         />
-        <Button type="submit">{t('send')}</Button>
+        <Button
+          className="w-24 rounded-none rounded-r-lg"
+          type="submit"
+          title={t('sendTitle')}
+        >
+          {t('send')}
+        </Button>
       </form>
     </div>
   );

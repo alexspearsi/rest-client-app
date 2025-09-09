@@ -8,19 +8,25 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Trash2 } from 'lucide-react';
 import { useHeadersStore } from '@/stores/headers-store';
+import { HeadersItems } from '../../rest-client';
 
 type HeaderItemProps = {
-  id: string;
+  headerItemData: HeadersItems;
 };
 
 export default function HeadersItem(props: HeaderItemProps): JSX.Element {
-  const { id } = props;
+  const { headerItemData } = props;
 
   const updateHeader = useHeadersStore((state) => state.updateHeader);
   const removeHeader = useHeadersStore((state) => state.removeHeader);
 
-  const [isChecked, setIsChecked] = useState<boolean>(false);
-  const [value, setValue] = useState({ name: '', value: '' });
+  const [isChecked, setIsChecked] = useState<boolean>(
+    headerItemData.checked || false,
+  );
+  const [value, setValue] = useState({
+    name: headerItemData.name || '',
+    value: headerItemData.value || '',
+  });
 
   const t = useTranslations('RestClient');
 
@@ -28,7 +34,7 @@ export default function HeadersItem(props: HeaderItemProps): JSX.Element {
     setIsChecked(checked);
 
     const item = {
-      id,
+      id: headerItemData.id,
       name: value.name,
       value: value.value,
       checked,
@@ -50,7 +56,7 @@ export default function HeadersItem(props: HeaderItemProps): JSX.Element {
 
   function handleFocus() {
     const item = {
-      id,
+      id: headerItemData.id,
       name: value.name,
       value: value.value,
       checked: isChecked,
@@ -72,7 +78,7 @@ export default function HeadersItem(props: HeaderItemProps): JSX.Element {
         onBlur={handleFocus}
         type="text"
         name="header-name"
-        placeholder={t('name')}
+        placeholder={t('header')}
         value={value.name}
       />
       <Input
@@ -85,7 +91,7 @@ export default function HeadersItem(props: HeaderItemProps): JSX.Element {
       />
       <Button
         type="button"
-        onClick={() => removeHeader(id)}
+        onClick={() => removeHeader(headerItemData.id)}
         variant="ghost"
         size="icon"
       >

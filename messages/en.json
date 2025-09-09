@@ -18,8 +18,10 @@
   "RestClient": {
     "title": "Rest client",
     "headers": "Headers",
+    "url": "Enter url",
     "send": "Send",
-    "name": "name",
+    "sendTitle": "Send request",
+    "header": "header",
     "value": "value"
   },
   "Variables": {
