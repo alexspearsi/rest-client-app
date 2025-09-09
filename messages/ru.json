@@ -3,7 +3,8 @@
     "logo": "лого",
     "signin": "Войти",
     "signup": "Зарегистрироваться",
-    "logout": "Выйти"
+    "logout": "Выйти",
+    "mainPage": "Главная"
   },
   "Footer": {
     "logo": "Лого курса"
@@ -31,14 +32,12 @@
     "emailPlaceholder": "Электронная почта",
     "passwordPlaceholder": "Пароль",
     "register": "Зарегистрироваться",
-    "registerViaGoogle": "Зарегистрироваться через Google",
     "haveAccount": "Уже есть аккаунт?",
     "loginNow": "Войти сейчас."
   },
   "Signin": {
     "title": "Войти",
     "login": "Войти",
-    "loginViaGoogle": "Войти через Google",
     "emailPlaceholder": "Электронная почта",
     "passwordPlaceholder": "Пароль",
     "noAccount": "Нет аккаунта?",

@@ -3,7 +3,8 @@
     "logo": "logo",
     "signin": "Sign In",
     "signup": "Sign Up",
-    "logout": "Log out"
+    "logout": "Log out",
+    "mainPage": "Main page"
   },
   "Footer": {
     "logo": "Course logo"
@@ -31,14 +32,12 @@
     "emailPlaceholder": "E-mail Address",
     "passwordPlaceholder": "Password",
     "register": "Register",
-    "registerViaGoogle": "Register with Google",
     "haveAccount": "Already have an account?",
     "loginNow": "Sign in."
   },
   "Signin": {
     "title": "Sign In",
     "login": "Login",
-    "loginViaGoogle": "Login with Google",
     "emailPlaceholder": "E-mail Address",
     "passwordPlaceholder": "Password",
     "noAccount": "Don't have an account?",

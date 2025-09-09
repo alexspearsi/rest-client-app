@@ -28,13 +28,20 @@ export default function Header() {
           <NavigationMenu>
             <NavigationMenuList>
               {user ? (
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild>
-                    <button className="cursor-pointer" onClick={logout}>
-                      {t('logout')}
-                    </button>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
+                <>
+                  <NavigationMenuItem>
+                    <NavigationMenuLink asChild>
+                      <button className="cursor-pointer" onClick={logout}>
+                        {t('logout')}
+                      </button>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                  <NavigationMenuItem>
+                    <NavigationMenuLink asChild>
+                      <Link href="/">{t('mainPage')}</Link>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                </>
               ) : (
                 <>
                   <NavigationMenuItem>

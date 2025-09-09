@@ -5,11 +5,7 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import {
-  auth,
-  registerWithEmailAndPassword,
-  signInWithGoogle,
-} from '../../../firebase';
+import { auth, registerWithEmailAndPassword } from '../../../firebase';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -32,16 +28,13 @@ export default function Page() {
   }, [user, loading, router]);
 
   if (loading || user) {
-    return (
-      <div className="flex h-[75vh] flex-col items-center justify-center gap-6">
-        <Loader />
-      </div>
-    );
+    return <Loader />;
   }
 
-  function handleSignUp() {
+  async function handleSignUp() {
     if (name && email && password) {
-      registerWithEmailAndPassword(name, email, password);
+      await registerWithEmailAndPassword(name, email, password);
+      router.replace('/');
     } else {
       console.log(error, '%c Fill all fields', 'color: red');
     }
@@ -70,7 +63,6 @@ export default function Page() {
           placeholder={t('passwordPlaceholder')}
         />
         <Button onClick={handleSignUp}>{t('register')}</Button>
-        <Button onClick={signInWithGoogle}>{t('registerViaGoogle')}</Button>
         <div>
           {t('haveAccount')}{' '}
           <Link

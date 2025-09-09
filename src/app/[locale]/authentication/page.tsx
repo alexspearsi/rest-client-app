@@ -3,11 +3,7 @@
 import { Heading } from '@/components/ui/typography';
 import { useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react';
-import {
-  auth,
-  logInWithEmailAndPassword,
-  signInWithGoogle,
-} from '../../../firebase';
+import { auth, logInWithEmailAndPassword } from '../../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -30,11 +26,7 @@ export default function Page() {
   }, [user, loading, router]);
 
   if (loading || user) {
-    return (
-      <div className="flex h-[75vh] flex-col items-center justify-center gap-6">
-        <Loader />
-      </div>
-    );
+    return <Loader />;
   }
 
   function handleLogIn() {
@@ -62,7 +54,6 @@ export default function Page() {
           placeholder={t('passwordPlaceholder')}
         />
         <Button onClick={handleLogIn}>{t('login')}</Button>
-        <Button onClick={signInWithGoogle}>{t('loginViaGoogle')}</Button>
         <div>
           {t('noAccount')}{' '}
           <Link href="/registration" className="text-blue-600 hover:underline">

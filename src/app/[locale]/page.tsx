@@ -12,9 +12,11 @@ export default function Page() {
   const t = useTranslations('HomePage');
   const [user, loading] = useAuthState(auth);
 
+  const isLoadingUser = loading || (user && !user.displayName);
+
   return (
     <div className="flex h-[75vh] flex-col items-center justify-center gap-6">
-      {loading ? (
+      {isLoadingUser ? (
         <Loader />
       ) : user ? (
         <>
