@@ -4,7 +4,7 @@ import { Loader } from '@/components/loader';
 import { Heading } from '@/components/ui/typography';
 import { auth } from '@/firebase';
 import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/navigation';
 import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 

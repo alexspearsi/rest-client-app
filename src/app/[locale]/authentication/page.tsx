@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react';
 import { auth, logInWithEmailAndPassword } from '../../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n/navigation';
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
