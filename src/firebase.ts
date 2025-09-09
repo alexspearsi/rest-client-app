@@ -61,8 +61,8 @@ const registerWithEmailAndPassword = async (
   }
 };
 
-const logout = () => {
-  signOut(auth);
+const logout = async () => {
+  await signOut(auth);
   console.log(
     '%c you are logged out',
     'color: green; font-weight: bold; font-size: 20px',
