@@ -2,13 +2,12 @@
 
 import { Heading } from '@/components/ui/typography';
 import { useTranslations } from 'next-intl';
-import { useRouter } from '@/i18n/navigation';
+import { Link, useRouter } from '@/i18n/navigation';
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, registerWithEmailAndPassword } from '../../../firebase';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 import { Loader } from '@/components/loader';
 
 export default function Page() {

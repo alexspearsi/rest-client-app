@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import {
   NavigationMenu,
@@ -11,6 +10,7 @@ import { auth, logout } from '@/firebase';
 import { LanguageToggler } from './language-toggler';
 import { ThemeToggler } from './theme-toggler';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link } from '@/i18n/navigation';
 
 export default function Header() {
   const t = useTranslations('Header');

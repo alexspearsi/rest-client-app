@@ -2,11 +2,11 @@
 
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 import { Heading } from '@/components/ui/typography';
 import { auth } from '@/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Loader } from '@/components/loader';
+import { Link } from '@/i18n/navigation';
 
 export default function Page() {
   const t = useTranslations('HomePage');
