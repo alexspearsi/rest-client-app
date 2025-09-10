@@ -41,14 +41,8 @@ export async function POST(request: NextRequest) {
     headers: { ...headersObject },
     body: decodedBody || null,
   });
-  const data: unknown = await response.json();
 
-  if (!response.ok) {
-    const data: unknown = await response.text();
-    return new Response(JSON.stringify(data), {
-      headers: { 'Content-Type': 'text/html; charset=utf-8', ...headersObject },
-    });
-  }
+  const data: unknown = await response.json();
 
   return new Response(JSON.stringify(data), {
     headers: { 'Content-Type': 'application/json', ...headersObject },
@@ -72,14 +66,8 @@ export async function PUT(request: NextRequest) {
     headers: { ...headersObject },
     body: decodedBody || null,
   });
-  const data: unknown = await response.json();
 
-  if (!response.ok) {
-    const data: unknown = await response.text();
-    return new Response(JSON.stringify(data), {
-      headers: { 'Content-Type': 'text/html; charset=utf-8', ...headersObject },
-    });
-  }
+  const data: unknown = await response.json();
 
   return new Response(JSON.stringify(data), {
     headers: { 'Content-Type': 'application/json', ...headersObject },
@@ -103,14 +91,8 @@ export async function PATCH(request: NextRequest) {
     headers: { ...headersObject },
     body: decodedBody || null,
   });
-  const data: unknown = await response.json();
 
-  if (!response.ok) {
-    const data: unknown = await response.text();
-    return new Response(JSON.stringify(data), {
-      headers: { 'Content-Type': 'text/html; charset=utf-8', ...headersObject },
-    });
-  }
+  const data: unknown = await response.json();
 
   return new Response(JSON.stringify(data), {
     headers: { 'Content-Type': 'application/json', ...headersObject },
@@ -131,6 +113,7 @@ export async function DELETE(request: NextRequest) {
     headers: { ...headersObject },
     method: method,
   });
+
   const data: unknown = await response.json();
 
   return new Response(JSON.stringify(data), {

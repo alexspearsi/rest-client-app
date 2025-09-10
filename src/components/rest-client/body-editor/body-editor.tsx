@@ -26,10 +26,11 @@ export type HeadersItems = {
 // className="flex w-full max-w-3xl flex-col gap-2"
 export default function BodyEditor(): JSX.Element {
   const bodyData = useBodyStore((state) => state.body);
+  const selectedData = useBodyStore((state) => state.selectedData);
+  const updateSelectedData = useBodyStore((state) => state.updateSelectedData);
 
   const [value, setValue] = useState(bodyData);
   const [isError, setError] = useState(false);
-  const [selectedValue, setSelectedValue] = useState('json');
 
   const updateBody = useBodyStore((state) => state.updateBody);
 
@@ -49,11 +50,11 @@ export default function BodyEditor(): JSX.Element {
   }
 
   function handleSelectedValueChange(val: string) {
-    setSelectedValue(val);
+    updateSelectedData(val);
   }
 
   function handleBlur(): void {
-    if (selectedValue !== 'json') {
+    if (selectedData !== 'json') {
       updateBody(value);
       return;
     }
@@ -73,7 +74,7 @@ export default function BodyEditor(): JSX.Element {
     <div>
       <Select
         name="method"
-        value={selectedValue}
+        value={selectedData}
         onValueChange={handleSelectedValueChange}
       >
         <SelectTrigger className="w-[100px]">
@@ -91,14 +92,14 @@ export default function BodyEditor(): JSX.Element {
       <CodeMirror
         value={value}
         height="250px"
-        {...(selectedValue !== 'text' ? { extensions: [json()] } : undefined)}
+        {...(selectedData !== 'text' ? { extensions: [json()] } : undefined)}
         theme={vscodeDark}
         onChange={handleValueChange}
-        onBlur={handleBlur}
+        onBlurCapture={handleBlur}
       />
 
       <div className="h-[36px]">
-        {selectedValue !== 'text' && (
+        {selectedData !== 'text' && (
           <div className="flex items-center">
             {isError && (
               <span className="text-destructive text-sm">

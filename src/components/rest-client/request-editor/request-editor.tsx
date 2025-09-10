@@ -49,16 +49,16 @@ export default function RequestEditor(): JSX.Element {
           },
         );
 
-        const responseData: unknown = await response.json();
-
         if (!response.ok) {
           const responseData: unknown = await response.text();
           const end = Date.now();
           const time = end - start;
-          console.log(responseData);
           updateResponse(setResponseData(response, responseData, time));
+          console.log(responseData);
           return;
         }
+
+        const responseData: unknown = await response.json();
 
         const end = Date.now();
         const time = end - start;

@@ -35,10 +35,6 @@ export default function RestClient(): JSX.Element {
             <Tab />
           </TabsContent>
         ))}
-
-        <TabsContent value="password">
-          <BodyEditor />
-        </TabsContent>
       </Tabs>
     </div>
   );

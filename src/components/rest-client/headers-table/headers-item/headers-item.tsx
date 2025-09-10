@@ -75,7 +75,7 @@ export default function HeadersItem(props: HeaderItemProps): JSX.Element {
       />
       <Input
         onChange={handleValueChange}
-        onBlur={handleFocus}
+        onBlurCapture={handleFocus}
         type="text"
         name="header-name"
         placeholder={t('header')}
@@ -83,7 +83,7 @@ export default function HeadersItem(props: HeaderItemProps): JSX.Element {
       />
       <Input
         onChange={handleValueChange}
-        onBlur={handleFocus}
+        onBlurCapture={handleFocus}
         type="text"
         name="header-value"
         placeholder={t('value')}
