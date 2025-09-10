@@ -9,15 +9,17 @@ import { auth, registerWithEmailAndPassword } from '../../../firebase';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Loader } from '@/components/loader';
+import { toast } from 'sonner';
 
 export default function Page() {
   const t = useTranslations('Signup');
+  const tt = useTranslations('Notification');
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const router = useRouter();
 
   useEffect(() => {
@@ -31,11 +33,17 @@ export default function Page() {
   }
 
   async function handleSignUp() {
-    if (name && email && password) {
+    if (!name || !email || !password) {
+      toast.error(tt('fillAllFields'));
+      return;
+    }
+
+    try {
       await registerWithEmailAndPassword(name, email, password);
+      toast.success(tt('signupSuccess'));
       router.replace('/');
-    } else {
-      console.log(error, '%c Fill all fields', 'color: red');
+    } catch {
+      toast.error(tt('signupFailed'));
     }
   }
 

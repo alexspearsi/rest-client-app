@@ -24,50 +24,36 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-const logInWithEmailAndPassword = async (email: string, password: string) => {
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-    console.log(
-      '%c you are logged in via email',
-      'color: green; font-weight: bold; font-size: 20px',
-    );
-  } catch (err) {
-    console.error(err);
-  }
-};
+async function logInWithEmailAndPassword(email: string, password: string) {
+  const response = await signInWithEmailAndPassword(auth, email, password);
 
-const registerWithEmailAndPassword = async (
+  return response;
+}
+
+async function registerWithEmailAndPassword(
   name: string,
   email: string,
   password: string,
-) => {
-  try {
-    const res = await createUserWithEmailAndPassword(auth, email, password);
-    const user = res.user;
+) {
+  const response = await createUserWithEmailAndPassword(auth, email, password);
+  const user = response.user;
 
-    await updateProfile(user, { displayName: name });
-    await user.reload();
+  await updateProfile(user, { displayName: name });
 
-    await addDoc(collection(db, 'users'), {
-      uid: user.uid,
-      name,
-      authProvider: 'local',
-      email,
-    });
+  await addDoc(collection(db, 'users'), {
+    uid: user.uid,
+    name,
+    authProvider: 'local',
+    email,
+  });
 
-    return auth.currentUser;
-  } catch (err) {
-    console.error(err);
-  }
-};
+  return user;
+}
 
-const logout = async () => {
-  await signOut(auth);
-  console.log(
-    '%c you are logged out',
-    'color: green; font-weight: bold; font-size: 20px',
-  );
-};
+async function logout() {
+  const response = await signOut(auth);
+  return response;
+}
 
 export {
   auth,

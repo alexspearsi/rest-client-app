@@ -35,7 +35,7 @@ export default function Page() {
         </>
       ) : (
         <>
-          <Heading size="h2">{t('title')!}</Heading>
+          <Heading size="h2">{`${t('title')}!`}</Heading>
           <div className="flex gap-4">
             <Button variant="default" asChild>
               <Link href="/authentication">{t('signin')}</Link>

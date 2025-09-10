@@ -9,9 +9,11 @@ import { Link, useRouter } from '@/i18n/navigation';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Loader } from '@/components/loader';
+import { toast } from 'sonner';
 
 export default function Page() {
   const t = useTranslations('Signin');
+  const tt = useTranslations('Notification');
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,11 +30,17 @@ export default function Page() {
     return <Loader />;
   }
 
-  function handleLogIn() {
-    if (email && password) {
-      logInWithEmailAndPassword(email, password);
-    } else {
-      console.log('%c Enter your credentials', 'color: red');
+  async function handleLogIn() {
+    if (!email || !password) {
+      toast.error(tt('fillEmailPassword'));
+      return;
+    }
+
+    try {
+      await logInWithEmailAndPassword(email, password);
+      toast.success(tt('loginSuccess'));
+    } catch {
+      toast.error(tt('loginFailed'));
     }
   }
 

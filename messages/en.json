@@ -47,5 +47,15 @@
     "light": "Light",
     "dark": "Dark",
     "system": "System"
+  },
+  "Notification": {
+    "loginSuccess": "You have successfully signed in",
+    "loginFailed": "Failed to sign in. Please check your email and password",
+    "signupSuccess": "You have successfully signed up",
+    "signupFailed": "Failed to sign up. Please try again",
+    "logoutSuccess": "You have successfully logged out",
+    "logoutFailed": "Failed to log out. Please try again",
+    "fillAllFields": "Please fill in all fields",
+    "fillEmailPassword": "Please fill in both email and password"
   }
 }
