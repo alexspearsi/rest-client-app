@@ -2,16 +2,18 @@
   "Header": {
     "logo": "лого",
     "signin": "Войти",
-    "signup": "Зарегистрироваться"
+    "signup": "Зарегистрироваться",
+    "logout": "Выйти",
+    "mainPage": "Главная"
   },
   "Footer": {
     "logo": "Лого курса"
   },
   "HomePage": {
-    "title": "Добро пожаловать!",
+    "title": "Добро пожаловать",
     "signin": "Войти",
     "signup": "Зарегистрироваться",
-    "restclient": "Rest клиент",
+    "restclient": "REST клиент",
     "variables": "Переменные",
     "history": "История поиска"
   },
@@ -25,14 +27,37 @@
     "title": "История"
   },
   "Signup": {
-    "title": "Зарегистрироваться"
+    "title": "Зарегистрироваться",
+    "namePlaceholder": "Полное имя",
+    "emailPlaceholder": "Электронная почта",
+    "passwordPlaceholder": "Пароль",
+    "register": "Зарегистрироваться",
+    "haveAccount": "Уже есть аккаунт?",
+    "loginNow": "Войти сейчас."
   },
   "Signin": {
-    "title": "Войти"
+    "title": "Войти",
+    "login": "Войти",
+    "emailPlaceholder": "Электронная почта",
+    "passwordPlaceholder": "Пароль",
+    "noAccount": "Нет аккаунта?",
+    "registerNow": "Зарегистрируйтесь сейчас."
   },
   "Theme": {
     "light": "Светлая",
     "dark": "Темная",
     "system": "Системная"
+  },
+  "Notification": {
+    "loginSuccess": "Вы успешно вошли",
+    "loginFailed": "Не удалось войти. Проверьте email и пароль",
+    "signupSuccess": "Вы успешно зарегистрированы",
+    "signupFailed": "Не удалось зарегистрироваться. Попробуйте снова",
+    "logoutSuccess": "Вы успешно вышли",
+    "logoutFailed": "Не удалось выйти. Попробуйте снова",
+    "fillAllFields": "Пожалуйста, заполните все поля",
+    "fillEmailPassword": "Пожалуйста, заполните email и пароль",
+    "creatingAcount": "Создание аккаунта...",
+    "loggingIn": "Авторизация..."
   }
 }
