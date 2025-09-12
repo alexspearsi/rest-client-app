@@ -3,7 +3,7 @@
 import { Heading } from '@/components/ui/typography';
 import { useTranslations } from 'next-intl';
 import { Link, useRouter } from '@/i18n/navigation';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, registerWithEmailAndPassword } from '../../../firebase';
 import { Input } from '@/components/ui/input';
@@ -28,23 +28,25 @@ export default function Page() {
     }
   }, [user, loading, router]);
 
-  if (loading || user) {
-    return <Loader />;
-  }
-
-  async function handleSignUp() {
+  const handleSignUp = useCallback(async () => {
     if (!name || !email || !password) {
       toast.error(tt('fillAllFields'));
       return;
     }
 
+    const id = toast.loading(tt('creatingAcount'));
+
     try {
       await registerWithEmailAndPassword(name, email, password);
-      toast.success(tt('signupSuccess'));
+      toast.success(tt('signupSuccess'), { id });
       router.replace('/');
     } catch {
-      toast.error(tt('signupFailed'));
+      toast.error(tt('signupFailed'), { id });
     }
+  }, [name, email, password, tt, router]);
+
+  if (loading) {
+    return <Loader />;
   }
 
   return (

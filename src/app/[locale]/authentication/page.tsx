@@ -2,7 +2,7 @@
 
 import { Heading } from '@/components/ui/typography';
 import { useTranslations } from 'next-intl';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { auth, logInWithEmailAndPassword } from '../../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useRouter } from '@/i18n/navigation';
@@ -26,22 +26,24 @@ export default function Page() {
     }
   }, [user, loading, router]);
 
-  if (loading || user) {
-    return <Loader />;
-  }
-
-  async function handleLogIn() {
+  const handleLogIn = useCallback(async () => {
     if (!email || !password) {
       toast.error(tt('fillEmailPassword'));
       return;
     }
 
+    const id = toast.loading(tt('loggingIn'));
+
     try {
       await logInWithEmailAndPassword(email, password);
-      toast.success(tt('loginSuccess'));
+      toast.success(tt('loginSuccess'), { id });
     } catch {
-      toast.error(tt('loginFailed'));
+      toast.error(tt('loginFailed'), { id });
     }
+  }, [email, password, tt]);
+
+  if (loading) {
+    return <Loader />;
   }
 
   return (

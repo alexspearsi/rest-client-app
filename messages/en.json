@@ -56,6 +56,8 @@
     "logoutSuccess": "You have successfully logged out",
     "logoutFailed": "Failed to log out. Please try again",
     "fillAllFields": "Please fill in all fields",
-    "fillEmailPassword": "Please fill in both email and password"
+    "fillEmailPassword": "Please fill in both email and password",
+    "creatingAcount": "Account creation...",
+    "loggingIn": "Authentication..."
   }
 }
