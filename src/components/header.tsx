@@ -48,10 +48,9 @@ export default function Header() {
                       </button>
                     </NavigationMenuLink>
                   </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <NavigationMenuLink asChild />
+                  <NavigationMenuLink asChild>
                     <Link href="/">{t('mainPage')}</Link>
-                  </NavigationMenuItem>
+                  </NavigationMenuLink>
                 </>
               ) : (
                 <>
