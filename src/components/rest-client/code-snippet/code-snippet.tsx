@@ -59,7 +59,7 @@ export default function CodeSnippet(): JSX.Element {
   }
 
   return (
-    <div className="min-h-[322px]">
+    <div className="flex min-h-[338px] w-full max-w-3xl flex-col gap-2">
       <Select
         onValueChange={handleValueChange}
         name="method"

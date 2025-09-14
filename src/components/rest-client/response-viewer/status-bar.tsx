@@ -18,7 +18,7 @@ export default function StatusBar(props: StatusBarProps): JSX.Element {
   const timeColor = pickTimeColor(responseData.time);
 
   return (
-    <div className="flex gap-2">
+    <div className="flex min-h-[36px] items-center gap-4 px-2">
       <div>
         <span>Status: </span>
         <span className={statusColor.length > 0 ? statusColor : ''}>

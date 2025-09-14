@@ -23,7 +23,7 @@ export type HeadersItems = {
   value: string;
   checked: boolean;
 };
-// className="flex w-full max-w-3xl flex-col gap-2"
+
 export default function BodyEditor(): JSX.Element {
   const bodyData = useBodyStore((state) => state.body);
   const selectedData = useBodyStore((state) => state.selectedData);
@@ -69,7 +69,7 @@ export default function BodyEditor(): JSX.Element {
   }
 
   return (
-    <div>
+    <div className="flex w-full max-w-3xl flex-col gap-2">
       <Select
         name="method"
         value={selectedData}

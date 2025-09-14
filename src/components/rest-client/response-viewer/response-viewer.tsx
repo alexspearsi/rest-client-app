@@ -11,7 +11,7 @@ export default function ResponseViewer(): JSX.Element {
   const responseData = useResponseStore((state) => state.responseData);
 
   return (
-    <div className="min-h-[322px]">
+    <div className="flex min-h-[338px] w-full max-w-3xl flex-col gap-2">
       <StatusBar responseData={responseData} />
 
       <CodeMirror

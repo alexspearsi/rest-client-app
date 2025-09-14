@@ -87,6 +87,7 @@ export default function RequestEditor(): JSX.Element {
         name="request-form"
       >
         <MethodSelector />
+
         <Input
           className="w-full rounded-none border-r-0 border-l-0"
           type="text"
@@ -97,6 +98,7 @@ export default function RequestEditor(): JSX.Element {
           onChange={handleValueChange}
           required
         />
+
         <Button
           className="w-24 rounded-none rounded-r-lg"
           type="submit"

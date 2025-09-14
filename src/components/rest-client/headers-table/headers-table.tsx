@@ -23,7 +23,7 @@ export default function HeadersTable(): JSX.Element {
   }
 
   return (
-    <div className="flex min-h-[322px] flex-col gap-2">
+    <div className="flex min-h-[338px] w-full max-w-3xl flex-col gap-2">
       {headerItems.map((item) => (
         <HeadersItem key={item.id} headerItemData={item} />
       ))}
