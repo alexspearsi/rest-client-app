@@ -6,12 +6,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { useRequestStore } from '@/stores/request-store';
 
 export const methods = ['get', 'post', 'put', 'patch', 'delete'] as const;
 
 export default function MethodSelector(): JSX.Element {
+  const method = useRequestStore((state) => state.method);
+  const updateMethod = useRequestStore((state) => state.updateMethod);
+
+  function handleSelection(val: string) {
+    updateMethod(val);
+  }
+
   return (
-    <Select name="method" defaultValue="get">
+    <Select onValueChange={handleSelection} name="method" value={method}>
       <SelectTrigger className="w-[180px] rounded-none rounded-l-lg">
         <SelectValue />
       </SelectTrigger>

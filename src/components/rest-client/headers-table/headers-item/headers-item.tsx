@@ -1,7 +1,6 @@
 'use client';
 
 import type { ChangeEvent, JSX } from 'react';
-import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -20,23 +19,11 @@ export default function HeadersItem(props: HeaderItemProps): JSX.Element {
   const updateHeader = useHeadersStore((state) => state.updateHeader);
   const removeHeader = useHeadersStore((state) => state.removeHeader);
 
-  const [isChecked, setIsChecked] = useState<boolean>(
-    headerItemData.checked || false,
-  );
-  const [value, setValue] = useState({
-    name: headerItemData.name || '',
-    value: headerItemData.value || '',
-  });
-
   const t = useTranslations('RestClient');
 
   function handleCheckbox(checked: boolean): void {
-    setIsChecked(checked);
-
     const item = {
-      id: headerItemData.id,
-      name: value.name,
-      value: value.value,
+      ...headerItemData,
       checked,
     };
 
@@ -47,19 +34,9 @@ export default function HeadersItem(props: HeaderItemProps): JSX.Element {
     const targetName = event.target.name.replace('header-', '');
     const targetValue = event.target.value;
 
-    const object = {
-      [targetName]: targetValue,
-    };
-
-    setValue({ ...value, ...object });
-  }
-
-  function handleFocus() {
     const item = {
-      id: headerItemData.id,
-      name: value.name,
-      value: value.value,
-      checked: isChecked,
+      ...headerItemData,
+      [targetName]: targetValue,
     };
 
     updateHeader(item);
@@ -71,23 +48,21 @@ export default function HeadersItem(props: HeaderItemProps): JSX.Element {
         className="h-6 w-6"
         onCheckedChange={handleCheckbox}
         name="header-checkbox"
-        checked={isChecked}
+        checked={headerItemData.checked}
       />
       <Input
         onChange={handleValueChange}
-        onBlurCapture={handleFocus}
         type="text"
         name="header-name"
         placeholder={t('header')}
-        value={value.name}
+        value={headerItemData.name}
       />
       <Input
         onChange={handleValueChange}
-        onBlurCapture={handleFocus}
         type="text"
         name="header-value"
         placeholder={t('value')}
-        value={value.value}
+        value={headerItemData.value}
       />
       <Button
         type="button"

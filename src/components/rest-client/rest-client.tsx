@@ -6,9 +6,10 @@ import HeadersTable from './headers-table/headers-table';
 import BodyEditor from './body-editor/body-editor';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import ResponseViewer from './response-viewer/response-viewer';
+import CodeSnippet from './code-snippet/code-snippet';
 
-const tabs = ['headers', 'body', 'response'] as const;
-const components = [HeadersTable, BodyEditor, ResponseViewer];
+const tabs = ['headers', 'body', 'response', 'code snippet'] as const;
+const components = [HeadersTable, BodyEditor, ResponseViewer, CodeSnippet];
 
 export type HeadersItems = {
   id: string;

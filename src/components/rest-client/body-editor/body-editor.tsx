@@ -29,19 +29,34 @@ export default function BodyEditor(): JSX.Element {
   const selectedData = useBodyStore((state) => state.selectedData);
   const updateSelectedData = useBodyStore((state) => state.updateSelectedData);
 
-  const [value, setValue] = useState(bodyData);
   const [isError, setError] = useState(false);
 
   const updateBody = useBodyStore((state) => state.updateBody);
 
-  const handleValueChange = useCallback((val: string) => {
-    setValue(val);
-  }, []);
+  const handleValueChange = useCallback(
+    (val: string) => {
+      if (selectedData !== 'json') {
+        updateBody(val);
+        return;
+      }
+
+      try {
+        JSON.parse(val);
+        updateBody(val);
+        setError(false);
+      } catch (error) {
+        setError(true);
+        updateBody(val);
+        console.warn(error);
+      }
+    },
+    [selectedData, updateBody],
+  );
 
   function handlePrettiness(): void {
     try {
-      const parse = JSON.parse(value);
-      setValue(JSON.stringify(parse, null, 2));
+      const parse = JSON.parse(bodyData);
+      updateBody(JSON.stringify(parse, null, 2));
       setError(false);
     } catch (error) {
       setError(true);
@@ -51,23 +66,6 @@ export default function BodyEditor(): JSX.Element {
 
   function handleSelectedValueChange(val: string) {
     updateSelectedData(val);
-  }
-
-  function handleBlur(): void {
-    if (selectedData !== 'json') {
-      updateBody(value);
-      return;
-    }
-
-    try {
-      const parse = JSON.parse(value);
-      updateBody(JSON.stringify(parse, null, 2));
-      setError(false);
-    } catch (error) {
-      setError(true);
-      updateBody(value);
-      console.warn(error);
-    }
   }
 
   return (
@@ -90,12 +88,11 @@ export default function BodyEditor(): JSX.Element {
       </Select>
 
       <CodeMirror
-        value={value}
+        value={bodyData}
         height="250px"
         {...(selectedData !== 'text' ? { extensions: [json()] } : undefined)}
         theme={vscodeDark}
         onChange={handleValueChange}
-        onBlurCapture={handleBlur}
       />
 
       <div className="h-[36px]">

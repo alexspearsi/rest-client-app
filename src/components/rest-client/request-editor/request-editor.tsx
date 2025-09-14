@@ -1,6 +1,7 @@
 'use client';
 
-import { useRef, type FormEvent, type JSX } from 'react';
+import type { ChangeEvent, FormEvent, JSX } from 'react';
+import { useRef } from 'react';
 import MethodSelector from './method-selector/method-selector';
 import { useTranslations } from 'next-intl';
 import { Input } from '@/components/ui/input';
@@ -11,16 +12,22 @@ import { useBodyStore } from '@/stores/body-store';
 import { bodyToBase64 } from '@/utils/body-to-base64';
 import { useResponseStore } from '@/stores/response-store';
 import { setResponseData } from '@/utils/set-response-data';
-
-type RequestFormData = {
-  method: string;
-  url: string;
-};
+import { RequestItems, useRequestStore } from '@/stores/request-store';
 
 export default function RequestEditor(): JSX.Element {
   const headerItems = useHeadersStore((state) => state.headers);
   const bodyData = useBodyStore((state) => state.body);
+
   const updateResponse = useResponseStore((state) => state.updateResponse);
+
+  const requestUrl = useRequestStore((state) => state.url);
+  const updateUrl = useRequestStore((state) => state.updateUrl);
+
+  function handleValueChange(event: ChangeEvent<HTMLInputElement>): void {
+    const targetValue = event.target.value;
+
+    updateUrl(targetValue);
+  }
 
   const formReference = useRef<HTMLFormElement>(null);
 
@@ -31,7 +38,7 @@ export default function RequestEditor(): JSX.Element {
 
     if (formReference.current instanceof HTMLFormElement) {
       const formData = new FormData(formReference.current);
-      const data = Object.fromEntries(formData) as unknown as RequestFormData;
+      const data = Object.fromEntries(formData) as unknown as RequestItems;
 
       const base64Url = btoa(encodeURIComponent(data.url));
 
@@ -86,6 +93,8 @@ export default function RequestEditor(): JSX.Element {
           placeholder={t('url')}
           name="url"
           // pattern="^https?:\/\/(?:w{3}\.)?\w{1,}\.\w{1,6}\b(?:\S*)$"
+          value={requestUrl}
+          onChange={handleValueChange}
           required
         />
         <Button
