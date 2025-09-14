@@ -2,11 +2,12 @@ import type { RequestData } from '@/components/rest-client/code-snippet/code-sni
 import { createHeadersFromArray } from '../create-headers';
 import { ifJson } from '../ifJson';
 
-export function curl(data: RequestData) {
+export function curl(data: RequestData, type = 'json') {
   const headers = createHeadersFromArray(data.headers);
 
   return `curl  -X ${data.method.toUpperCase()} \\
   '${data.url}' \\
+   --header 'Content-Type: ${type === 'json' ? 'application/json' : 'text/plain'}' \\
   ${addCurlHeaders(headers)}
   --data-raw '${ifJson(data.body)}'`;
 }

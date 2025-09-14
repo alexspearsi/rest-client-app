@@ -2,7 +2,7 @@ import type { RequestData } from '@/components/rest-client/code-snippet/code-sni
 import { createHeadersFromArray } from '../create-headers';
 import { ifJson } from '../ifJson';
 
-export function pythonHttpx(data: RequestData) {
+export function pythonHttpx(data: RequestData, type = 'json') {
   const headers = createHeadersFromArray(data.headers);
 
   return `import httpx
@@ -14,7 +14,7 @@ reqUrl = "${data.url}"
 
 headersList = ${ifJson(headers)}
 
-${'payload = json.dumps(' + ifJson(data.body) + ')'}
+${type === 'json' ? 'payload = json.dumps(' + ifJson(data.body) + ')' : 'payload = ' + JSON.stringify(data.body)}
 
 data = client.${data.method}(reqUrl,${data.body && 'data=payload,'} headers=headersList)
 

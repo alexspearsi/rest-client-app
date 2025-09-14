@@ -1,14 +1,14 @@
 import type { RequestData } from '@/components/rest-client/code-snippet/code-snippet';
 import { createHeadersFromArray } from '../create-headers';
 
-export function go(data: RequestData) {
+export function go(data: RequestData, type = 'json') {
   const headers = createHeadersFromArray(data.headers);
 
   return `package main
 
 import (
 	"fmt"
-	${data.body && 'strings'}
+	${data.body && '"strings"'}
 	"net/http"
 	"io"
 )
@@ -21,6 +21,7 @@ func main() {
 
 	req, _ := http.NewRequest("${data.method.toUpperCase()}", url, ${data.body ? 'payload' : 'nil'})
 
+	req.Header.Add("Content-Type", "${type === 'json' ? 'application/json' : 'text/plain'}")
 	${addGoLangHeaders(headers)}
 
 	res, _ := http.DefaultClient.Do(req)

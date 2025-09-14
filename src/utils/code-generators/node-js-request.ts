@@ -2,7 +2,7 @@ import type { RequestData } from '@/components/rest-client/code-snippet/code-sni
 import { createHeadersFromArray } from '../create-headers';
 import { ifJson } from '../ifJson';
 
-export function nodejsRequest(data: RequestData) {
+export function nodejsRequest(data: RequestData, type = 'json') {
   const headers = createHeadersFromArray(data.headers);
 
   return `const request = require('request');
@@ -12,7 +12,7 @@ const options = {
   url: '${data.url}',
   headers: ${ifJson(headers)},
   ${data.body && 'body: ' + ifJson(data.body)},
-  ${data.body && 'json: true'}
+  ${type === 'json' && data.body ? 'json: true' : ''}
 };
 
 request(options, function (error, response, body) {

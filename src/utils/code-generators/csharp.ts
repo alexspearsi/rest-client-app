@@ -1,13 +1,14 @@
 import type { RequestData } from '@/components/rest-client/code-snippet/code-snippet';
 import { createHeadersFromArray } from '../create-headers';
 
-export function csharp(data: RequestData) {
+export function csharp(data: RequestData, type = 'json') {
   const headers = createHeadersFromArray(data.headers);
 
   return `var client = new RestClient("${data.url}");
 var request = new RestRequest("", Method.${data.method[0].toUpperCase() + data.method.slice(1)});
+request.AddHeader("Content-Type", "${type === 'json' ? 'application/json' : 'text/plain'}");
 ${addCSharpHeaders(headers)}
-${data.body && 'request.AddParameter("application/json",' + JSON.stringify(data.body) + ', ParameterType.RequestBody);'}
+${data.body && 'request.AddParameter(' + (type === 'json' ? '"application/json"' : '"text/plain"') + ', ' + JSON.stringify(data.body) + ', ParameterType.RequestBody);'}
 var response = client.Execute(request);`;
 }
 

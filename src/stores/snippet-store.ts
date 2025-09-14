@@ -3,8 +3,10 @@ import { create } from 'zustand';
 import { snippets } from '@/utils/code-generators/snippets';
 
 export type SnippetStoreTypes = {
-  currentSnippet: (data: RequestData) => string;
-  setCurrentSnippet: (item: (data: RequestData) => string) => void;
+  currentSnippet: (data: RequestData, type: string) => string;
+  setCurrentSnippet: (
+    item: (data: RequestData, type: string) => string,
+  ) => void;
 };
 
 export const useSnippetStore = create<SnippetStoreTypes>((set) => ({

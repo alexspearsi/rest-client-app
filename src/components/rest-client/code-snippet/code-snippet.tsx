@@ -36,6 +36,7 @@ export default function CodeSnippet(): JSX.Element {
   const method = useRequestStore((state) => state.method);
   const headerItems = useHeadersStore((state) => state.headers);
   const bodyData = useBodyStore((state) => state.body);
+  const selectedData = useBodyStore((state) => state.selectedData);
   const currentSnippet = useSnippetStore((state) => state.currentSnippet);
   const setCurrentSnippet = useSnippetStore((state) => state.setCurrentSnippet);
 
@@ -77,7 +78,7 @@ export default function CodeSnippet(): JSX.Element {
       </Select>
 
       <CodeMirror
-        value={currentSnippet(requestData)}
+        value={currentSnippet(requestData, selectedData)}
         height="250px"
         extensions={[currentLanguage()]}
         theme={vscodeDark}

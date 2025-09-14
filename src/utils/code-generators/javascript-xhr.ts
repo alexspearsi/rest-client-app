@@ -2,7 +2,7 @@ import type { RequestData } from '@/components/rest-client/code-snippet/code-sni
 import { createHeadersFromArray } from '../create-headers';
 import { ifJson } from '../ifJson';
 
-export function javascriptXHR(data: RequestData) {
+export function javascriptXHR(data: RequestData, type = 'json') {
   const headers = createHeadersFromArray(data.headers);
 
   return `const xhr = new XMLHttpRequest();
@@ -16,7 +16,8 @@ xhr.addEventListener("readystatechange", () => {
   }
 });
 
-xhr.open("${data.method.toUpperCase()}", "${data.url})";
+xhr.open("${data.method.toUpperCase()}", "${data.url}");
+${data.body && "xhr.setRequestHeader('Content-Type'," + (type === 'json' ? "'application/json'" : "'text/plain'") + ');'}
 ${addXHRHeaders(headers)}
 
 
