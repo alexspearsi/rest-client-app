@@ -2,16 +2,18 @@
   "Header": {
     "logo": "logo",
     "signin": "Sign In",
-    "signup": "Sign Up"
+    "signup": "Sign Up",
+    "logout": "Log out",
+    "mainPage": "Main page"
   },
   "Footer": {
     "logo": "Course logo"
   },
   "HomePage": {
-    "title": "Welcome!",
+    "title": "Welcome",
     "signin": "Sign In",
     "signup": "Sign Up",
-    "restclient": "Rest client",
+    "restclient": "REST client",
     "variables": "Variables",
     "history": "History"
   },
@@ -31,14 +33,37 @@
     "title": "History"
   },
   "Signup": {
-    "title": "Sign Up"
+    "title": "Sign Up",
+    "namePlaceholder": "Full Name",
+    "emailPlaceholder": "E-mail Address",
+    "passwordPlaceholder": "Password",
+    "register": "Register",
+    "haveAccount": "Already have an account?",
+    "loginNow": "Sign in."
   },
   "Signin": {
-    "title": "Sign In"
+    "title": "Sign In",
+    "login": "Login",
+    "emailPlaceholder": "E-mail Address",
+    "passwordPlaceholder": "Password",
+    "noAccount": "Don't have an account?",
+    "registerNow": "Sign up now."
   },
   "Theme": {
     "light": "Light",
     "dark": "Dark",
     "system": "System"
+  },
+  "Notification": {
+    "loginSuccess": "You have successfully signed in",
+    "loginFailed": "Failed to sign in. Please check your email and password",
+    "signupSuccess": "You have successfully signed up",
+    "signupFailed": "Failed to sign up. Please try again",
+    "logoutSuccess": "You have successfully logged out",
+    "logoutFailed": "Failed to log out. Please try again",
+    "fillAllFields": "Please fill in all fields",
+    "fillEmailPassword": "Please fill in both email and password",
+    "creatingAcount": "Account creation...",
+    "loggingIn": "Authentication..."
   }
 }

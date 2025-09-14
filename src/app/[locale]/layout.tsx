@@ -33,7 +33,17 @@ export default async function RootLayout({ children, params }: Props) {
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />
-            <Toaster richColors />
+            <Toaster
+              richColors
+              duration={1500}
+              position="top-left"
+              toastOptions={{
+                style: {
+                  maxWidth: '300px',
+                  width: 'auto',
+                },
+              }}
+            />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
