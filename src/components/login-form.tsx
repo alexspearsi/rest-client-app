@@ -6,7 +6,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { Lock, Mail } from 'lucide-react';
-import { LoginSchema, useLoginSchema } from '@/lib/auth-schemas';
 import { logInWithEmailAndPassword } from '@/firebase';
 import { Button } from './ui/button';
 import {
@@ -19,6 +18,7 @@ import {
 } from './ui/form';
 import { Input } from './ui/input';
 import ShowHideButton from './ui/show-hide-button';
+import { LoginSchema, useLoginSchema } from '@/lib/schemas/use-login-schema';
 
 export default function LoginForm() {
   const t = useTranslations('LoginForm');

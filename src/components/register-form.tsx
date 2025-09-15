@@ -7,7 +7,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { Lock, Mail, User } from 'lucide-react';
-import { useRegisterSchema, RegisterSchema } from '@/lib/auth-schemas';
 import { registerWithEmailAndPassword } from '@/firebase';
 import { Button } from './ui/button';
 import {
@@ -20,6 +19,10 @@ import {
 } from './ui/form';
 import { Input } from './ui/input';
 import ShowHideButton from './ui/show-hide-button';
+import {
+  RegisterSchema,
+  useRegisterSchema,
+} from '@/lib/schemas/use-register-schema';
 
 export default function RegisterForm() {
   const t = useTranslations('SignupForm');

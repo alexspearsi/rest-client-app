@@ -1,5 +1,5 @@
-import { useTranslations } from 'next-intl';
 import z from 'zod';
+import { useTranslations } from 'next-intl';
 
 const EMAIL_REGEX =
   /^(?!\.)(?!.*\.\.)([a-z0-9_'+\-\.]*)[a-z0-9_'+\-]@([a-z0-9][a-z0-9\-]*\.)+[a-z]{2,}$/i;
@@ -23,13 +23,4 @@ export function useLoginSchema() {
   });
 }
 
-export function useRegisterSchema() {
-  const t = useTranslations('SignupValidation');
-
-  return useLoginSchema().extend({
-    name: z.string().min(1, t('nameRequired')),
-  });
-}
-
 export type LoginSchema = z.infer<ReturnType<typeof useLoginSchema>>;
-export type RegisterSchema = z.infer<ReturnType<typeof useRegisterSchema>>;
