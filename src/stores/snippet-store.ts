@@ -2,11 +2,14 @@ import { RequestData } from '@/components/rest-client/code-snippet/code-snippet'
 import { create } from 'zustand';
 import { snippets } from '@/utils/code-generators/snippets';
 
+type CurrentSnippetType = {
+  name: string;
+  fn: (data: RequestData, type?: string) => string;
+};
+
 export type SnippetStoreTypes = {
-  currentSnippet: (data: RequestData, type: string) => string;
-  setCurrentSnippet: (
-    item: (data: RequestData, type: string) => string,
-  ) => void;
+  currentSnippet: CurrentSnippetType;
+  setCurrentSnippet: (item: CurrentSnippetType) => void;
 };
 
 export const useSnippetStore = create<SnippetStoreTypes>((set) => ({

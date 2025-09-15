@@ -11,6 +11,8 @@ import { vscodeDark } from '@uiw/codemirror-theme-vscode';
 import { useRequestStore } from '@/stores/request-store';
 import { useHeadersStore } from '@/stores/headers-store';
 import { useBodyStore } from '@/stores/body-store';
+import { useSnippetStore } from '@/stores/snippet-store';
+import { snippets } from '@/utils/code-generators/snippets';
 import { HeadersItems } from '../rest-client';
 import {
   Select,
@@ -19,8 +21,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { snippets } from '@/utils/code-generators/snippets';
-import { useSnippetStore } from '@/stores/snippet-store';
 
 const languages = [csharp, go, java, javascript, python];
 
@@ -60,25 +60,27 @@ export default function CodeSnippet(): JSX.Element {
 
   return (
     <div className="flex min-h-[338px] w-full max-w-3xl flex-col gap-2">
-      <Select
-        onValueChange={handleValueChange}
-        name="method"
-        value={currentSnippet.name}
-      >
-        <SelectTrigger className="w-[180px]">
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent>
-          {snippets.map((item) => (
-            <SelectItem key={item.name} value={item.name}>
-              {item.name.replace(/[A-Z]/, (x) => '-' + x).toUpperCase()}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+      {snippets.length > 0 && (
+        <Select
+          onValueChange={handleValueChange}
+          name="method"
+          value={currentSnippet.name}
+        >
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Choose Snippet..." />
+          </SelectTrigger>
+          <SelectContent>
+            {snippets.map((item) => (
+              <SelectItem key={item.name} value={item.name}>
+                {item.name.replace(/[A-Z]/, (x) => '-' + x).toUpperCase()}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      )}
 
       <CodeMirror
-        value={currentSnippet(requestData, selectedData)}
+        value={currentSnippet.fn(requestData, selectedData)}
         height="250px"
         extensions={[currentLanguage()]}
         theme={vscodeDark}

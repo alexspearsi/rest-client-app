@@ -8,12 +8,12 @@ import { csharp } from './csharp';
 import { go } from './go';
 
 export const snippets = [
-  csharp,
-  curl,
-  go,
-  javaOkHttp,
-  javascriptFetch,
-  javascriptXHR,
-  nodejsRequest,
-  pythonHttpx,
+  { name: 'csharp', fn: csharp },
+  { name: 'curl', fn: curl },
+  { name: 'go', fn: go },
+  { name: 'javaOkHttp', fn: javaOkHttp },
+  { name: 'javascriptFetch', fn: javascriptFetch },
+  { name: 'javascriptXHR', fn: javascriptXHR },
+  { name: 'nodejsRequest', fn: nodejsRequest },
+  { name: 'pythonHttpx', fn: pythonHttpx },
 ];
