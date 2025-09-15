@@ -8,7 +8,15 @@ import {
   updateProfile,
 } from 'firebase/auth';
 
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  getDocs,
+} from 'firebase/firestore';
+import { ResponseStoreType } from './stores/response-store';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY!,
@@ -55,6 +63,28 @@ async function logout() {
   return response;
 }
 
+async function saveUserRequest(userId: string, request: ResponseStoreType) {
+  const db = getFirestore();
+
+  try {
+    const requestCollectionFromDB = collection(db, `users/${userId}/requests`);
+    await addDoc(requestCollectionFromDB, request);
+    console.log('Request is saved succesfully');
+  } catch (e) {
+    console.error("There's an error with saving the request", e);
+  }
+}
+
+async function getUserRequests(userId: string): Promise<ResponseStoreType[]> {
+  const db = getFirestore();
+  const requestsCollectionRef = collection(db, `users/${userId}/requests`);
+  const q = query(requestsCollectionRef, orderBy('timestamp', 'desc'));
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map(
+    (doc) => ({ id: doc.id, ...doc.data() }) as unknown as ResponseStoreType,
+  );
+}
+
 export {
   auth,
   db,
@@ -62,4 +92,6 @@ export {
   registerWithEmailAndPassword,
   logout,
   signOut,
+  saveUserRequest,
+  getUserRequests,
 };

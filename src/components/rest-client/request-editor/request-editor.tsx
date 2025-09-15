@@ -11,11 +11,17 @@ import { useHeadersStore } from '@/stores/headers-store';
 import { useBodyStore } from '@/stores/body-store';
 import { bodyToBase64 } from '@/utils/body-to-base64';
 import { useResponseStore } from '@/stores/response-store';
-import { setResponseData } from '@/utils/set-response-data';
 import { RequestItems, useRequestStore } from '@/stores/request-store';
+import { auth, saveUserRequest } from '@/firebase';
+import submitData from '@/components/api/submit-data';
+import { cloneItWithoutKeys } from '@/utils/clone-it-without-keys';
 
 export default function RequestEditor(): JSX.Element {
+  const formReference = useRef<HTMLFormElement>(null);
+  const t = useTranslations('RestClient');
+
   const headerItems = useHeadersStore((state) => state.headers);
+
   const bodyData = useBodyStore((state) => state.body);
 
   const updateResponse = useResponseStore((state) => state.updateResponse);
@@ -24,14 +30,8 @@ export default function RequestEditor(): JSX.Element {
   const updateUrl = useRequestStore((state) => state.updateUrl);
 
   function handleValueChange(event: ChangeEvent<HTMLInputElement>): void {
-    const targetValue = event.target.value;
-
-    updateUrl(targetValue);
+    updateUrl(event.target.value);
   }
-
-  const formReference = useRef<HTMLFormElement>(null);
-
-  const t = useTranslations('RestClient');
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -46,34 +46,24 @@ export default function RequestEditor(): JSX.Element {
 
       const queries = createParams(headerItems, base64Body[1]).toString();
 
-      try {
-        const start = Date.now();
+      const result = await submitData({
+        data,
+        base64Url,
+        base64Body,
+        queries,
+        bodyData,
+      });
 
-        const response = await fetch(
-          `/api/${data.method}/${base64Url}${base64Body[0] ?? ''}${queries.length > 0 ? '?' + queries : ''}`,
-          {
-            method: data.method,
-          },
-        );
+      if (result instanceof Error || !result) return;
 
-        if (!response.ok) {
-          const responseData: unknown = await response.text();
-          const end = Date.now();
-          const time = end - start;
-          updateResponse(setResponseData(response, responseData, time));
-          console.log(responseData);
-          return;
-        }
+      updateResponse(result);
 
-        const responseData: unknown = await response.json();
+      const clone = cloneItWithoutKeys(result, ['statusText', 'data']);
 
-        const end = Date.now();
-        const time = end - start;
-        updateResponse(setResponseData(response, responseData, time));
-        console.log(responseData);
-      } catch (error) {
-        console.warn(error);
-      }
+      await saveUserRequest(auth.currentUser?.uid ?? '', clone);
+
+      console.log(result);
+      return;
     }
   }
 

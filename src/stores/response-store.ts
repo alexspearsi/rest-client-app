@@ -8,18 +8,28 @@ export type ResponseStoreTypes = {
 export type ResponseStoreType = {
   statusCode: number;
   statusText: string;
-  size: number;
-  time: number;
+  method: string;
+  resSize: number;
+  reqSize: number;
+  duration: number;
+  timestamp: Date;
   data: unknown;
+  error: string | null;
+  url: string;
 };
 
 export const useResponseStore = create<ResponseStoreTypes>((set) => ({
   responseData: {
     statusCode: 0,
     statusText: '',
-    size: 0,
-    time: 0,
+    method: '',
+    resSize: 0,
+    reqSize: 0,
+    duration: 0,
+    timestamp: new Date(),
     data: '',
+    error: null,
+    url: '',
   },
   updateResponse: (item): void => {
     set((state) => ({ responseData: { ...state.responseData, ...item } }));
