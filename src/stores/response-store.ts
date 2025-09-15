@@ -12,7 +12,7 @@ export type ResponseStoreType = {
   resSize: number;
   reqSize: number;
   duration: number;
-  timestamp: Date;
+  timestamp: number;
   data: unknown;
   error: string | null;
   url: string;
@@ -26,7 +26,7 @@ export const useResponseStore = create<ResponseStoreTypes>((set) => ({
     resSize: 0,
     reqSize: 0,
     duration: 0,
-    timestamp: new Date(),
+    timestamp: 0,
     data: '',
     error: null,
     url: '',

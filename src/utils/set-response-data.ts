@@ -5,7 +5,7 @@ export function setResponseData(
   response: Response,
   responseData: unknown,
   time: number,
-  timestamp: Date,
+  timestamp: number,
   data: RequestItems,
   bodyData: string,
 ) {

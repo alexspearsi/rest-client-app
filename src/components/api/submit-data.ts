@@ -14,7 +14,6 @@ export default async function submitData(props: SubmitDataProps) {
 
   try {
     const start = Date.now();
-    const requestDate = new Date();
 
     const response = await fetch(
       `/api/${data.method}/${base64Url}${base64Body[0] ?? ''}${queries.length > 0 ? '?' + queries : ''}`,
@@ -25,6 +24,7 @@ export default async function submitData(props: SubmitDataProps) {
 
     if (!response.ok) {
       const responseData: unknown = await response.text();
+
       const end = Date.now();
       const time = end - start;
 
@@ -32,7 +32,7 @@ export default async function submitData(props: SubmitDataProps) {
         response,
         responseData,
         time,
-        requestDate,
+        start,
         data,
         bodyData,
       );
@@ -43,14 +43,7 @@ export default async function submitData(props: SubmitDataProps) {
     const end = Date.now();
     const time = end - start;
 
-    return setResponseData(
-      response,
-      responseData,
-      time,
-      requestDate,
-      data,
-      bodyData,
-    );
+    return setResponseData(response, responseData, time, start, data, bodyData);
   } catch (error) {
     if (error instanceof Error) {
       console.warn(error);
