@@ -24,7 +24,10 @@
     "title": "Variables"
   },
   "History": {
-    "title": "History"
+    "title": "History",
+    "emptyHeading": "You haven't executed any requests yet",
+    "emptyDescription": "It's empty here. Try these options:",
+    "emptyLink": "REST Client"
   },
   "Signup": {
     "title": "Sign Up",

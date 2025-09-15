@@ -1,98 +1,105 @@
-import ProtectedRoute from '@/components/protected-route';
-import { Button } from '@/components/ui/button';
+import { cookies } from 'next/headers';
+import { adminAuth, adminDb } from '@/firebaseAdmin';
+import { Link } from '@/i18n/navigation';
+import { toast } from 'sonner';
 import { Heading } from '@/components/ui/typography';
-import { Link } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 
-export type RequestItem = {
-  endpoint: string;
-  method: string;
+type RequestItem = {
   statusCode: number;
+  statusText: string;
+  method: string;
+  resSize: number;
+  reqSize: number;
   duration: number;
-  requestSize: number;
-  responseSize: number;
-  timestamp: number;
-  error?: string | null;
+  timestamp: {
+    _nanoseconds: number;
+    _seconds: number;
+  };
+  data: unknown;
+  error: string | null;
+  url: string;
 };
 
-const requests: RequestItem[] = [
-  {
-    endpoint: 'https://rickandmortyapi.com/api/character/1',
-    method: 'GET',
-    statusCode: 200,
-    duration: 120,
-    requestSize: 350,
-    responseSize: 1024,
-    error: null,
-    timestamp: Date.now(),
-  },
-  {
-    endpoint: 'https://pokeapi.co/api/v2/pokemon/pikachu',
-    method: 'POST',
-    statusCode: 500,
-    duration: 250,
-    requestSize: 780,
-    responseSize: 0,
-    error: 'Internal Server Error',
-    timestamp: Date.now(),
-  },
-];
+export default async function Page() {
+  const token = (await cookies()).get('token')?.value;
 
-export default function Page() {
-  const t = useTranslations('History');
+  if (!token) {
+    return <div className="p-4">Unauthorized</div>;
+  }
 
-  return (
-    <ProtectedRoute>
-      <div className="flex flex-col items-center justify-center gap-6 p-8">
-        <Heading size="h2">{t('title')}</Heading>
-        <Button>Добавить запрос</Button>
+  const decoded = await adminAuth.verifyIdToken(token).catch((err) => {
+    toast.error('Failed to get token', err);
+    return null;
+  });
 
-        {requests.length === 0 ? (
-          <div className="text-center">
-            <h2>Вы ещё не выполняли запросы</h2>
-            <Link href="/rest-client" className="text-blue-500">
-              REST Client
-            </Link>
-          </div>
-        ) : (
-          <HistoryList requests={requests} />
-        )}
+  if (!decoded) {
+    return <div className="p-4">Unauthorized</div>;
+  }
+
+  const { uid } = decoded;
+
+  const snapshot = await adminDb
+    .collection('users')
+    .doc(uid)
+    .collection('requests')
+    .orderBy('timestamp', 'desc')
+    .get();
+
+  const requests: RequestItem[] = snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...(doc.data() as Omit<RequestItem, 'id'>),
+  }));
+
+  console.log(requests);
+
+  if (requests.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center gap-2">
+        <h2>You haven&apos;t executed any requests yet</h2>
+        <p>It&apos;s empty here. Try those options:</p>
+        <Link href="/rest-client" className="text-blue-500">
+          Go to REST client
+        </Link>
       </div>
-    </ProtectedRoute>
-  );
-}
+    );
+  }
 
-export function HistoryList({ requests }: { requests: RequestItem[] }) {
   return (
-    <table className="border text-sm">
-      <thead>
-        <tr>
-          <th className="px-2 py-2">Method</th>
-          <th className="px-2 py-2">Endpoint</th>
-          <th className="px-2 py-2">Status</th>
-          <th className="px-2 py-2">Duration</th>
-          <th className="px-2 py-2">Req Size</th>
-          <th className="px-2 py-2">Res Size</th>
-          <th className="px-2 py-2">Timestamp</th>
-          <th className="px-2 py-2">Error</th>
-        </tr>
-      </thead>
-      <tbody>
-        {requests.map((req, index) => (
-          <tr key={index}>
-            <td className="px-2 py-2">{req.method}</td>
-            <td className="px-2 py-2">{req.endpoint}</td>
-            <td className="px-2 py-2">{req.statusCode}</td>
-            <td className="px-2 py-2">{req.duration} ms</td>
-            <td className="px-2 py-2">{req.requestSize} B</td>
-            <td className="px-2 py-2">{req.responseSize} B</td>
-            <td className="px-2 py-2">
-              {new Date(req.timestamp).toLocaleString()}
-            </td>
-            <td className="px-2 py-2">{req.error || '-'}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="flex h-[75vh] w-full flex-col items-center justify-center gap-6 px-4">
+      <Heading>History</Heading>
+
+      <div className="flex w-full justify-center overflow-x-auto">
+        <table className="min-w-[800px] border text-sm">
+          <thead>
+            <tr>
+              <th className="p-2">Method</th>
+              <th className="p-2">Endpoint</th>
+              <th className="p-2">Status</th>
+              <th className="p-2">Duration</th>
+              <th className="p-2">Req Size</th>
+              <th className="p-2">Res Size</th>
+              <th className="p-2">Timestamp</th>
+              <th className="p-2">Error</th>
+            </tr>
+          </thead>
+          <tbody>
+            {requests.map((req, index) => (
+              <tr key={index}>
+                <td className="p-2">{req.method}</td>
+                <td className="p-2">{req.url}</td>
+                <td className="p-2">{req.statusCode}</td>
+                <td className="p-2">{req.duration} ms</td>
+                <td className="p-2">{req.reqSize} B</td>
+                <td className="p-2">{req.resSize} B</td>
+                <td className="p-2">
+                  {new Date(req.timestamp._seconds * 1000).toLocaleString()}
+                </td>
+                <td className="p-2">{req.error || '-'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 }

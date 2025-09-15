@@ -35,7 +35,17 @@ export default function Page() {
     const id = toast.loading(tt('loggingIn'));
 
     try {
-      await logInWithEmailAndPassword(email, password);
+      const userCredential = await logInWithEmailAndPassword(email, password);
+      const user = userCredential.user;
+
+      const token = await user.getIdToken();
+
+      await fetch('/api/session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token }),
+      });
+
       toast.success(tt('loginSuccess'), { id });
     } catch {
       toast.error(tt('loginFailed'), { id });
