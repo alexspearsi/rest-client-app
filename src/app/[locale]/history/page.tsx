@@ -1,7 +1,6 @@
 import { cookies } from 'next/headers';
 import { adminAuth, adminDb } from '@/firebaseAdmin';
 import { Link } from '@/i18n/navigation';
-import { toast } from 'sonner';
 import { Heading } from '@/components/ui/typography';
 
 type RequestItem = {
@@ -27,8 +26,7 @@ export default async function Page() {
     return <div className="p-4">Unauthorized</div>;
   }
 
-  const decoded = await adminAuth.verifyIdToken(token).catch((err) => {
-    toast.error('Failed to get token', err);
+  const decoded = await adminAuth.verifyIdToken(token).catch(() => {
     return null;
   });
 
