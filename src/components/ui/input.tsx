@@ -15,7 +15,7 @@ function Input({
   ...props
 }: InputProps) {
   return (
-    <div className="relative flex items-center">
+    <div className="relative flex w-full items-center">
       {contentBefore && (
         <div className="absolute top-1/2 left-3 z-10 flex -translate-y-1/2 items-center justify-center">
           {contentBefore}

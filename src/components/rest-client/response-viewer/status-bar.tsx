@@ -4,6 +4,7 @@ import {
   pickStatusColor,
   pickTimeColor,
 } from '@/utils/pick-response-color';
+import { useTranslations } from 'next-intl';
 import type { JSX } from 'react';
 
 type StatusBarProps = {
@@ -13,6 +14,8 @@ type StatusBarProps = {
 export default function StatusBar(props: StatusBarProps): JSX.Element {
   const { responseData } = props;
 
+  const t = useTranslations('RestClient');
+
   const statusColor = pickStatusColor(responseData.statusCode);
   const sizeColor = pickSizeColor(responseData.resSize);
   const timeColor = pickTimeColor(responseData.duration);
@@ -20,21 +23,21 @@ export default function StatusBar(props: StatusBarProps): JSX.Element {
   return (
     <div className="flex min-h-[36px] items-center gap-4 px-2">
       <div>
-        <span>Status: </span>
+        <span>{t('status') + ': '}</span>
         <span className={statusColor.length > 0 ? statusColor : ''}>
           {responseData.statusCode + ' ' + responseData.statusText}
         </span>
       </div>
       <div>
-        <span>Size: </span>
+        <span>{t('size') + ': '}</span>
         <span className={sizeColor.length > 0 ? sizeColor : ''}>
-          {responseData.resSize + ' byte'}
+          {responseData.resSize + ' ' + t('byte')}
         </span>
       </div>
       <div>
-        <span>Time: </span>
+        <span>{t('time') + ': '}</span>
         <span className={timeColor.length > 0 ? timeColor : ''}>
-          {responseData.duration + ' ms'}
+          {responseData.duration + ' ' + t('ms')}
         </span>
       </div>
     </div>

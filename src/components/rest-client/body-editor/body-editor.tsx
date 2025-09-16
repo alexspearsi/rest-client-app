@@ -14,6 +14,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useBodyStore } from '@/stores/body-store';
+import { useTranslations } from 'next-intl';
 
 const bodyEditorVariants = ['json', 'text'] as const;
 
@@ -25,6 +26,7 @@ export type HeadersItems = {
 };
 
 export default function BodyEditor(): JSX.Element {
+  const t = useTranslations('RestClient');
   const bodyData = useBodyStore((state) => state.body);
   const selectedData = useBodyStore((state) => state.selectedData);
   const updateSelectedData = useBodyStore((state) => state.updateSelectedData);
@@ -75,12 +77,12 @@ export default function BodyEditor(): JSX.Element {
         value={selectedData}
         onValueChange={handleSelectedValueChange}
       >
-        <SelectTrigger className="w-[100px]">
+        <SelectTrigger className="w-[100px] uppercase">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
           {bodyEditorVariants.map((item) => (
-            <SelectItem key={item} value={item}>
+            <SelectItem key={item} value={item} className="uppercase">
               {item}
             </SelectItem>
           ))}
@@ -99,9 +101,7 @@ export default function BodyEditor(): JSX.Element {
         {selectedData !== 'text' && (
           <div className="flex items-center">
             {isError && (
-              <span className="text-destructive text-sm">
-                Invalid JSON input
-              </span>
+              <span className="text-destructive text-sm">{t('error')}</span>
             )}
             <Button
               className="ml-auto"
@@ -109,7 +109,7 @@ export default function BodyEditor(): JSX.Element {
               onClick={handlePrettiness}
               variant="ghost"
             >
-              Format
+              {t('format')}
             </Button>
           </div>
         )}

@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import ResponseViewer from './response-viewer/response-viewer';
 import CodeSnippet from './code-snippet/code-snippet';
+import { useTranslations } from 'next-intl';
 
 const tabs = ['headers', 'body', 'response', 'code snippet'] as const;
 const components = [HeadersTable, BodyEditor, ResponseViewer, CodeSnippet];
@@ -20,6 +21,8 @@ export type HeadersItems = {
 };
 
 export default function RestClient(): JSX.Element {
+  const t = useTranslations('RestClient');
+
   return (
     <div className="flex w-full max-w-3xl flex-col gap-5">
       <RequestEditor />
@@ -28,7 +31,7 @@ export default function RestClient(): JSX.Element {
         <TabsList className="flex w-full max-w-3xl justify-center">
           {tabs.map((tab) => (
             <TabsTrigger key={tab} value={tab} className="capitalize">
-              {tab}
+              {t(tab)}
             </TabsTrigger>
           ))}
         </TabsList>
