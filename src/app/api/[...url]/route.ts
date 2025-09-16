@@ -20,7 +20,10 @@ export async function GET(request: NextRequest) {
   const data: unknown = await response.json();
 
   return new Response(JSON.stringify(data), {
-    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      ...headersObject,
+    },
   });
 }
 
@@ -45,7 +48,10 @@ export async function POST(request: NextRequest) {
   const data: unknown = await response.json();
 
   return new Response(JSON.stringify(data), {
-    headers: { 'Content-Type': 'application/json', ...headersObject },
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8',
+      ...headersObject,
+    },
   });
 }
 
@@ -70,7 +76,10 @@ export async function PUT(request: NextRequest) {
   const data: unknown = await response.json();
 
   return new Response(JSON.stringify(data), {
-    headers: { 'Content-Type': 'application/json', ...headersObject },
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8',
+      ...headersObject,
+    },
   });
 }
 
@@ -95,7 +104,10 @@ export async function PATCH(request: NextRequest) {
   const data: unknown = await response.json();
 
   return new Response(JSON.stringify(data), {
-    headers: { 'Content-Type': 'application/json', ...headersObject },
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8',
+      ...headersObject,
+    },
   });
 }
 
@@ -117,6 +129,9 @@ export async function DELETE(request: NextRequest) {
   const data: unknown = await response.json();
 
   return new Response(JSON.stringify(data), {
-    headers: { 'Content-Type': 'application/json', ...headersObject },
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8',
+      ...headersObject,
+    },
   });
 }
