@@ -27,21 +27,44 @@
     "title": "История"
   },
   "Signup": {
-    "title": "Зарегистрироваться",
-    "namePlaceholder": "Полное имя",
-    "emailPlaceholder": "Электронная почта",
-    "passwordPlaceholder": "Пароль",
-    "register": "Зарегистрироваться",
+    "title": "Создать аккаунт",
+    "description": "Присоединяйтесь к REST Client и начните исследовать API",
     "haveAccount": "Уже есть аккаунт?",
-    "loginNow": "Войти сейчас."
+    "loginNow": "Войти"
   },
-  "Signin": {
-    "title": "Войти",
-    "login": "Войти",
-    "emailPlaceholder": "Электронная почта",
-    "passwordPlaceholder": "Пароль",
+  "SignupForm": {
+    "nameLabel": "Полное Имя",
+    "emailLabel": "Адрес электронной почты",
+    "passwordLabel": "Пароль",
+    "namePlaceholder": "Введите ваше полное имя",
+    "emailPlaceholder": "Введите ваш e-mail",
+    "passwordPlaceholder": "Введите ваш пароль",
+    "signup": "Зарегистрироваться"
+  },
+  "Login": {
+    "title": "С возвращением",
+    "description": "Войдите в свой аккаунт REST Client",
     "noAccount": "Нет аккаунта?",
-    "registerNow": "Зарегистрируйтесь сейчас."
+    "registerNow": "Зарегистрируйтесь здесь"
+  },
+  "LoginForm": {
+    "emailLabel": "Адрес электронной почты",
+    "passwordLabel": "Пароль",
+    "emailPlaceholder": "Введите ваш e-mail",
+    "passwordPlaceholder": "Введите ваш пароль",
+    "login": "Войти"
+  },
+  "SignupValidation": {
+    "nameRequired": "Имя обязательно для заполнения"
+  },
+  "LoginValidation": {
+    "emailRequired": "E-mail обязателен для заполнения",
+    "invalidEmail": "Неверный формат e-mail",
+    "passwordRequired": "Пароль обязателен для заполнения",
+    "passwordMinLength": "Пароль должен содержать не менее 8 символов",
+    "mustContainLetter": "Пароль должен содержать хотя бы одну букву",
+    "mustContainDigit": "Пароль должен содержать хотя бы одну цифру",
+    "mustContainSpecial": "Пароль должен содержать хотя бы один специальный символ"
   },
   "Theme": {
     "light": "Светлая",
@@ -57,7 +80,7 @@
     "logoutFailed": "Не удалось выйти. Попробуйте снова",
     "fillAllFields": "Пожалуйста, заполните все поля",
     "fillEmailPassword": "Пожалуйста, заполните email и пароль",
-    "creatingAcount": "Создание аккаунта...",
+    "creatingAccount": "Создание аккаунта...",
     "loggingIn": "Авторизация..."
   }
 }
