@@ -38,7 +38,10 @@ export default async function submitData(props: SubmitDataProps) {
       );
     }
 
-    const responseData: unknown = await response.json();
+    const option =
+      data.method === 'head' || data.method === 'options' ? 'text' : 'json';
+
+    const responseData: unknown = await response[option]();
 
     const end = Date.now();
     const time = end - start;

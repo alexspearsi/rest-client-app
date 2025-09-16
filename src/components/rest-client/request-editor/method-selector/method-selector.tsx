@@ -8,7 +8,15 @@ import {
 } from '@/components/ui/select';
 import { useRequestStore } from '@/stores/request-store';
 
-export const methods = ['get', 'post', 'put', 'patch', 'delete'] as const;
+export const methods = [
+  'get',
+  'post',
+  'put',
+  'patch',
+  'delete',
+  'head',
+  'options',
+] as const;
 
 export default function MethodSelector(): JSX.Element {
   const method = useRequestStore((state) => state.method);
