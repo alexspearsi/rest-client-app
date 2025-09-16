@@ -33,21 +33,44 @@
     "title": "History"
   },
   "Signup": {
-    "title": "Sign Up",
-    "namePlaceholder": "Full Name",
-    "emailPlaceholder": "E-mail Address",
-    "passwordPlaceholder": "Password",
-    "register": "Register",
+    "title": "Create Account",
+    "description": "Join REST Client and start exploring APIs",
     "haveAccount": "Already have an account?",
-    "loginNow": "Sign in."
+    "loginNow": "Sign in"
   },
-  "Signin": {
-    "title": "Sign In",
-    "login": "Login",
-    "emailPlaceholder": "E-mail Address",
-    "passwordPlaceholder": "Password",
+  "SignupForm": {
+    "nameLabel": "Full Name",
+    "emailLabel": "E-mail Address",
+    "passwordLabel": "Password",
+    "namePlaceholder": "Enter your full name",
+    "emailPlaceholder": "Enter your e-mail",
+    "passwordPlaceholder": "Enter your password",
+    "signup": "Sign Up"
+  },
+  "Login": {
+    "title": "Welcome Back",
+    "description": "Sign in to your REST Client account",
     "noAccount": "Don't have an account?",
-    "registerNow": "Sign up now."
+    "registerNow": "Sign up here"
+  },
+  "LoginForm": {
+    "emailLabel": "E-mail Address",
+    "passwordLabel": "Password",
+    "emailPlaceholder": "Enter your e-mail",
+    "passwordPlaceholder": "Enter your password",
+    "login": "Sign In"
+  },
+  "SignupValidation": {
+    "nameRequired": "Name is required"
+  },
+  "LoginValidation": {
+    "emailRequired": "Email is required",
+    "invalidEmail": "Invalid email format",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least 8 characters long",
+    "mustContainLetter": "Password must contain at least one letter",
+    "mustContainDigit": "Password must contain at least one digit",
+    "mustContainSpecial": "Password must contain at least one special character"
   },
   "Theme": {
     "light": "Light",
@@ -63,7 +86,7 @@
     "logoutFailed": "Failed to log out. Please try again",
     "fillAllFields": "Please fill in all fields",
     "fillEmailPassword": "Please fill in both email and password",
-    "creatingAcount": "Account creation...",
+    "creatingAccount": "Account creation...",
     "loggingIn": "Authentication..."
   }
 }
