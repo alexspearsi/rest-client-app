@@ -3,7 +3,10 @@ import { adminAuth, adminDb } from '@/firebaseAdmin';
 import { Link } from '@/i18n/navigation';
 import { Heading } from '@/components/ui/typography';
 
+const MILLISECONDS = 1000;
+
 type RequestItem = {
+  id: string;
   statusCode: number;
   statusText: string;
   method: string;
@@ -52,22 +55,22 @@ export default async function Page() {
 
   if (requests.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center gap-2">
-        <h2>You haven&apos;t executed any requests yet</h2>
-        <p>It&apos;s empty here. Try those options:</p>
+      <div className="flex h-full flex-col items-center justify-center gap-2">
+        <p>You haven&apos;t executed any requests yet</p>
+        <p>It&apos;s empty here. Try:</p>
         <Link href="/rest-client" className="text-blue-500">
-          Go to REST client
+          REST client
         </Link>
       </div>
     );
   }
 
   return (
-    <div className="flex h-[75vh] w-full flex-col items-center justify-center gap-6 px-4">
-      <Heading>History</Heading>
+    <div className="flex h-full flex-col items-center justify-center gap-6 px-4 py-10">
+      <Heading size="h2">History</Heading>
 
-      <div className="flex w-full justify-center overflow-x-auto">
-        <table className="min-w-[800px] border text-sm">
+      <div className="w-full overflow-x-auto">
+        <table className="mx-auto min-w-[800px] border text-sm">
           <thead>
             <tr>
               <th className="p-2">Method</th>
@@ -81,8 +84,8 @@ export default async function Page() {
             </tr>
           </thead>
           <tbody>
-            {requests.map((req, index) => (
-              <tr key={index}>
+            {requests.map((req) => (
+              <tr key={req.id}>
                 <td className="p-2">{req.method}</td>
                 <td className="p-2">{req.url}</td>
                 <td className="p-2">{req.statusCode}</td>
@@ -90,7 +93,9 @@ export default async function Page() {
                 <td className="p-2">{req.reqSize} B</td>
                 <td className="p-2">{req.resSize} B</td>
                 <td className="p-2">
-                  {new Date(req.timestamp._seconds * 1000).toLocaleString()}
+                  {new Date(
+                    req.timestamp._seconds * MILLISECONDS,
+                  ).toLocaleString()}
                 </td>
                 <td className="p-2">{req.error || '-'}</td>
               </tr>
