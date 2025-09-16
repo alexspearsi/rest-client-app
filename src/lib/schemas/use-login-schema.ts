@@ -1,9 +1,6 @@
 import z from 'zod';
 import { useTranslations } from 'next-intl';
 
-const EMAIL_REGEX =
-  /^(?!\.)(?!.*\.\.)([a-z0-9_'+\-\.]*)[a-z0-9_'+\-]@([a-z0-9][a-z0-9\-]*\.)+[a-z]{2,}$/i;
-
 export function useLoginSchema() {
   const t = useTranslations('LoginValidation');
 
@@ -11,7 +8,7 @@ export function useLoginSchema() {
     email: z
       .string()
       .min(1, t('emailRequired'))
-      .regex(EMAIL_REGEX, t('invalidEmail')),
+      .regex(z.regexes.email, t('invalidEmail')),
 
     password: z
       .string()
