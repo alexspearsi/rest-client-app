@@ -21,15 +21,17 @@ export default function Header() {
   const router = useRouter();
 
   async function handleLogout() {
+    const id = toast.loading(tt('loggingOut'));
+
     try {
       await logout();
       await fetch('/api/session/logout', { method: 'POST' });
 
-      router.replace('/');
+      toast.success(tt('logoutSuccess'), { id });
 
-      toast.success(tt('logoutSuccess'));
+      router.replace('/');
     } catch {
-      toast.error(tt('logoutFailed'));
+      toast.error(tt('logoutFailed'), { id });
     }
   }
 

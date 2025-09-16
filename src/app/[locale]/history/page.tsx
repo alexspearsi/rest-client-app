@@ -51,8 +51,6 @@ export default async function Page() {
     ...(doc.data() as Omit<RequestItem, 'id'>),
   }));
 
-  console.log(requests);
-
   if (requests.length === 0) {
     return (
       <div className="flex h-full flex-col items-center justify-center gap-2">

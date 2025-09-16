@@ -84,6 +84,7 @@
     "fillAllFields": "Пожалуйста, заполните все поля",
     "fillEmailPassword": "Пожалуйста, заполните email и пароль",
     "creatingAccount": "Создание аккаунта...",
-    "loggingIn": "Авторизация..."
+    "loggingIn": "Авторизация...",
+    "loggingOut": "Выход из аккаунта..."
   }
 }

@@ -84,6 +84,7 @@
     "fillAllFields": "Please fill in all fields",
     "fillEmailPassword": "Please fill in both email and password",
     "creatingAccount": "Account creation...",
-    "loggingIn": "Authentication..."
+    "loggingIn": "Authentication...",
+    "loggingOut": "Logging out..."
   }
 }
