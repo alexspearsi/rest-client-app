@@ -34,7 +34,9 @@
     "send": "Send",
     "sendTitle": "Send request",
     "header": "header",
-    "value": "value"
+    "value": "value",
+    "copy": "Copy",
+    "copied": "Copied!"
   },
   "Variables": {
     "title": "Variables"

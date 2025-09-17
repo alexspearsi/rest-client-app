@@ -22,8 +22,11 @@ export async function GET(request: NextRequest) {
   return new Response(JSON.stringify(data), {
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
+      ...response.headers,
       ...headersObject,
     },
+    status: response.status,
+    statusText: response.statusText,
   });
 }
 
@@ -50,8 +53,11 @@ export async function POST(request: NextRequest) {
   return new Response(JSON.stringify(data), {
     headers: {
       'Content-Type': 'application/json; charset=UTF-8',
+      ...response.headers,
       ...headersObject,
     },
+    status: response.status,
+    statusText: response.statusText,
   });
 }
 
@@ -78,8 +84,11 @@ export async function PUT(request: NextRequest) {
   return new Response(JSON.stringify(data), {
     headers: {
       'Content-Type': 'application/json; charset=UTF-8',
+      ...response.headers,
       ...headersObject,
     },
+    status: response.status,
+    statusText: response.statusText,
   });
 }
 
@@ -106,8 +115,11 @@ export async function PATCH(request: NextRequest) {
   return new Response(JSON.stringify(data), {
     headers: {
       'Content-Type': 'application/json; charset=UTF-8',
+      ...response.headers,
       ...headersObject,
     },
+    status: response.status,
+    statusText: response.statusText,
   });
 }
 
@@ -131,8 +143,11 @@ export async function DELETE(request: NextRequest) {
   return new Response(JSON.stringify(data), {
     headers: {
       'Content-Type': 'application/json; charset=UTF-8',
+      ...response.headers,
       ...headersObject,
     },
+    status: response.status,
+    statusText: response.statusText,
   });
 }
 
@@ -157,6 +172,8 @@ export async function HEAD(request: NextRequest) {
       ...response.headers,
       ...headersObject,
     },
+    status: response.status,
+    statusText: response.statusText,
   });
 }
 
@@ -187,8 +204,10 @@ export async function OPTIONS(request: NextRequest) {
         response.headers.get('Access-Control-Allow-Origin') || '',
       'Access-Control-Allow-Methods':
         response.headers.get('Access-Control-Allow-Methods') || '',
-
+      ...response.headers,
       ...headersObject,
     },
+    status: response.status,
+    statusText: response.statusText,
   });
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { type JSX } from 'react';
+import { useState } from 'react';
 import RequestEditor from './request-editor/request-editor';
 import HeadersTable from './headers-table/headers-table';
 import BodyEditor from './body-editor/body-editor';
@@ -23,11 +24,17 @@ export type HeadersItems = {
 export default function RestClient(): JSX.Element {
   const t = useTranslations('RestClient');
 
+  const [currentTab, setCurrentTab] = useState<string>(tabs[0]);
+
+  function handleTabChange(val: string): void {
+    setCurrentTab(val);
+  }
+
   return (
     <div className="flex w-full max-w-3xl flex-col gap-5">
-      <RequestEditor />
+      <RequestEditor handleTabChange={handleTabChange} />
 
-      <Tabs defaultValue={tabs[0]}>
+      <Tabs value={currentTab} onValueChange={handleTabChange}>
         <TabsList className="flex w-full max-w-3xl justify-center">
           {tabs.map((tab) => (
             <TabsTrigger key={tab} value={tab} className="capitalize">

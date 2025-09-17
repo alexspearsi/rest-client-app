@@ -108,6 +108,7 @@ export default function BodyEditor(): JSX.Element {
               type="button"
               onClick={handlePrettiness}
               variant="ghost"
+              disabled={isError}
             >
               {t('format')}
             </Button>

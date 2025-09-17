@@ -16,7 +16,13 @@ import { auth, saveUserRequest } from '@/firebase';
 import submitData from '@/components/api/submit-data';
 import { cloneItWithoutKeys } from '@/utils/clone-it-without-keys';
 
-export default function RequestEditor(): JSX.Element {
+type RequestEditorTypes = {
+  handleTabChange: (val: string) => void;
+};
+
+export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
+  const { handleTabChange } = props;
+
   const formReference = useRef<HTMLFormElement>(null);
   const t = useTranslations('RestClient');
 
@@ -53,6 +59,8 @@ export default function RequestEditor(): JSX.Element {
         queries,
         bodyData,
       });
+
+      handleTabChange('response');
 
       if (result instanceof Error || !result) return;
 

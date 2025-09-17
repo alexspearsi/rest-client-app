@@ -21,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { CopyButton } from '../../copy-button';
 
 const languages = [csharp, go, java, javascript, python];
 
@@ -58,33 +59,39 @@ export default function CodeSnippet(): JSX.Element {
     );
   }
 
+  const currentSnippetValue = currentSnippet.fn(requestData, selectedData);
+
   return (
     <div className="flex min-h-[338px] w-full max-w-3xl flex-col gap-2">
       {snippets.length > 0 && (
-        <Select
-          onValueChange={handleValueChange}
-          name="method"
-          value={currentSnippet.name}
-        >
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Choose Snippet..." />
-          </SelectTrigger>
-          <SelectContent>
-            {snippets.map((item) => (
-              <SelectItem key={item.name} value={item.name}>
-                {item.name.replace(/[A-Z]/, (x) => '-' + x).toUpperCase()}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <div className="flex">
+          <Select
+            onValueChange={handleValueChange}
+            name="method"
+            value={currentSnippet.name}
+          >
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Choose Snippet..." />
+            </SelectTrigger>
+            <SelectContent>
+              {snippets.map((item) => (
+                <SelectItem key={item.name} value={item.name}>
+                  {item.name.replace(/[A-Z]/, (x) => '-' + x).toUpperCase()}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+
+          <CopyButton currentValue={currentSnippetValue} delay={1500} />
+        </div>
       )}
 
       <CodeMirror
-        value={currentSnippet.fn(requestData, selectedData)}
+        value={currentSnippetValue}
         height="250px"
         extensions={[currentLanguage()]}
         theme={vscodeDark}
-      />
+      ></CodeMirror>
     </div>
   );
 }

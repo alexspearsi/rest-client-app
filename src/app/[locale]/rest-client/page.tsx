@@ -1,10 +1,10 @@
 import RestClient from '@/components/rest-client/rest-client';
 import ProtectedRoute from '@/components/protected-route';
 import { Heading } from '@/components/ui/typography';
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 
-export default async function Page() {
-  const t = await getTranslations('RestClient');
+export default function Page() {
+  const t = useTranslations('RestClient');
 
   return (
     <ProtectedRoute>
