@@ -36,7 +36,9 @@
     "header": "header",
     "value": "value",
     "copy": "Copy",
-    "copied": "Copied!"
+    "copied": "Copied!",
+    "urlError": "Must be valid Url address",
+    "methodError": "Must be valid HTTP Method"
   },
   "Variables": {
     "title": "Variables"

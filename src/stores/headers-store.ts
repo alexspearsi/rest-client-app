@@ -9,7 +9,11 @@ export type HeadersStoreTypes = {
 };
 
 export const useHeadersStore = create<HeadersStoreTypes>((set) => ({
-  headers: [{ id: crypto.randomUUID(), name: '', value: '', checked: false }],
+  headers: [
+    { id: crypto.randomUUID(), name: '', value: '', checked: false },
+    { id: crypto.randomUUID(), name: '', value: '', checked: false },
+    { id: crypto.randomUUID(), name: '', value: '', checked: false },
+  ],
   addHeader: (item): void => {
     set((state) => ({ headers: [...state.headers, item] }));
   },

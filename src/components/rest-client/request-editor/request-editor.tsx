@@ -15,6 +15,8 @@ import { RequestItems, useRequestStore } from '@/stores/request-store';
 import { auth, saveUserRequest } from '@/firebase';
 import submitData from '@/components/api/submit-data';
 import { cloneItWithoutKeys } from '@/utils/clone-it-without-keys';
+import { useRestFormSchema } from '@/lib/schemas/use-rest-form-schema';
+import { validateForm } from './validate-form';
 
 type RequestEditorTypes = {
   handleTabChange: (val: string) => void;
@@ -24,14 +26,12 @@ export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
   const { handleTabChange } = props;
 
   const formReference = useRef<HTMLFormElement>(null);
+  const restFormSchema = useRestFormSchema();
   const t = useTranslations('RestClient');
 
   const headerItems = useHeadersStore((state) => state.headers);
-
   const bodyData = useBodyStore((state) => state.body);
-
   const updateResponse = useResponseStore((state) => state.updateResponse);
-
   const requestUrl = useRequestStore((state) => state.url);
   const updateUrl = useRequestStore((state) => state.updateUrl);
 
@@ -46,10 +46,11 @@ export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
       const formData = new FormData(formReference.current);
       const data = Object.fromEntries(formData) as unknown as RequestItems;
 
+      const isParsed = validateForm(restFormSchema, data);
+      if (!isParsed) return;
+
       const base64Url = btoa(encodeURIComponent(data.url));
-
       const base64Body = bodyToBase64(bodyData);
-
       const queries = createParams(headerItems, base64Body[1]).toString();
 
       const result = await submitData({
@@ -68,9 +69,11 @@ export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
 
       const clone = cloneItWithoutKeys(result, ['statusText', 'data']);
 
-      await saveUserRequest(auth.currentUser?.uid ?? '', clone);
+      const id = auth.currentUser?.uid;
+      if (id) {
+        await saveUserRequest(id, clone);
+      }
 
-      console.log(result);
       return;
     }
   }
@@ -91,7 +94,6 @@ export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
           type="text"
           placeholder={t('url')}
           name="url"
-          // pattern="^https?:\/\/(?:w{3}\.)?\w{1,}\.\w{1,6}\b(?:\S*)$"
           value={requestUrl}
           onChange={handleValueChange}
           required

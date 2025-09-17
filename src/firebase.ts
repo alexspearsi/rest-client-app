@@ -69,7 +69,6 @@ async function saveUserRequest(userId: string, request: ResponseStoreType) {
   try {
     const requestCollectionFromDB = collection(db, `users/${userId}/requests`);
     await addDoc(requestCollectionFromDB, request);
-    console.log('Request is saved succesfully');
   } catch (e) {
     console.error("There's an error with saving the request", e);
   }

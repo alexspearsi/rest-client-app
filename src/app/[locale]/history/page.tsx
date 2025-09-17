@@ -18,12 +18,11 @@ export default function Page() {
     })();
   }, []);
 
-  console.log('HISTORY', requests);
-
   return (
     <ProtectedRoute>
       <div className="flex h-screen flex-col items-center justify-center gap-6 p-8">
         <Heading size="h2">{t('title')}</Heading>
+        {requests.toString()}
       </div>
     </ProtectedRoute>
   );
