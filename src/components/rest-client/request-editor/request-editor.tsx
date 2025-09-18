@@ -1,0 +1,112 @@
+'use client';
+
+import type { ChangeEvent, FormEvent, JSX } from 'react';
+import { useRef } from 'react';
+import MethodSelector from './method-selector/method-selector';
+import { useTranslations } from 'next-intl';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { createParams } from '@/utils/create-params';
+import { useHeadersStore } from '@/stores/headers-store';
+import { useBodyStore } from '@/stores/body-store';
+import { bodyToBase64 } from '@/utils/body-to-base64';
+import { useResponseStore } from '@/stores/response-store';
+import { RequestItems, useRequestStore } from '@/stores/request-store';
+import { auth, saveUserRequest } from '@/firebase';
+import submitData from '@/components/api/submit-data';
+import { cloneItWithoutKeys } from '@/utils/clone-it-without-keys';
+import { useRestFormSchema } from '@/lib/schemas/use-rest-form-schema';
+import { validateForm } from './validate-form';
+
+type RequestEditorTypes = {
+  handleTabChange: (val: string) => void;
+};
+
+export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
+  const { handleTabChange } = props;
+
+  const formReference = useRef<HTMLFormElement>(null);
+  const restFormSchema = useRestFormSchema();
+  const t = useTranslations('RestClient');
+
+  const headerItems = useHeadersStore((state) => state.headers);
+  const bodyData = useBodyStore((state) => state.body);
+  const updateResponse = useResponseStore((state) => state.updateResponse);
+  const requestUrl = useRequestStore((state) => state.url);
+  const updateUrl = useRequestStore((state) => state.updateUrl);
+
+  function handleValueChange(event: ChangeEvent<HTMLInputElement>): void {
+    updateUrl(event.target.value);
+  }
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (formReference.current instanceof HTMLFormElement) {
+      const formData = new FormData(formReference.current);
+      const data = Object.fromEntries(formData) as unknown as RequestItems;
+
+      const isParsed = validateForm(restFormSchema, data);
+      if (!isParsed) return;
+
+      const base64Url = btoa(encodeURIComponent(data.url));
+      const base64Body = bodyToBase64(bodyData);
+      const queries = createParams(headerItems, base64Body[1]).toString();
+
+      const result = await submitData({
+        data,
+        base64Url,
+        base64Body,
+        queries,
+        bodyData,
+      });
+
+      handleTabChange('response');
+
+      if (result instanceof Error || !result) return;
+
+      updateResponse(result);
+
+      const clone = cloneItWithoutKeys(result, ['statusText', 'data']);
+
+      const id = auth.currentUser?.uid;
+      if (id) {
+        await saveUserRequest(id, clone);
+      }
+
+      return;
+    }
+  }
+
+  return (
+    <div>
+      <form
+        className="flex items-center"
+        ref={formReference}
+        action=""
+        onSubmit={handleSubmit}
+        name="request-form"
+      >
+        <MethodSelector />
+
+        <Input
+          className="w-full rounded-none border-r-0 border-l-0"
+          type="text"
+          placeholder={t('url')}
+          name="url"
+          value={requestUrl}
+          onChange={handleValueChange}
+          required
+        />
+
+        <Button
+          className="w-24 rounded-none rounded-r-lg"
+          type="submit"
+          title={t('sendTitle')}
+        >
+          {t('send')}
+        </Button>
+      </form>
+    </div>
+  );
+}
