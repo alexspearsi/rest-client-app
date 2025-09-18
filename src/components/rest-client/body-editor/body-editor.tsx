@@ -46,10 +46,9 @@ export default function BodyEditor(): JSX.Element {
         JSON.parse(val);
         updateBody(val);
         setError(false);
-      } catch (error) {
+      } catch {
         setError(true);
         updateBody(val);
-        console.warn(error);
       }
     },
     [selectedData, updateBody],
@@ -60,9 +59,8 @@ export default function BodyEditor(): JSX.Element {
       const parse = JSON.parse(bodyData);
       updateBody(JSON.stringify(parse, null, 2));
       setError(false);
-    } catch (error) {
+    } catch {
       setError(true);
-      console.warn(error);
     }
   }
 

@@ -49,7 +49,6 @@ export default async function submitData(props: SubmitDataProps) {
     return setResponseData(response, responseData, time, start, data, bodyData);
   } catch (error) {
     if (error instanceof Error) {
-      console.warn(error);
       return error;
     }
   }

@@ -17,12 +17,14 @@ export async function GET(request: NextRequest) {
     headers: { ...headersObject },
     method: method,
   });
-  const data: unknown = await response.json();
 
-  return new Response(JSON.stringify(data), {
+  const option = !response.ok ? 'text' : 'json';
+  const data: unknown = await response[option]();
+
+  return new Response(response.ok ? JSON.stringify(data) : null, {
     headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-      ...response.headers,
+      'Content-type': `${response.ok ? 'application/json' : 'text/html'}; charset=UTF-8`,
+
       ...headersObject,
     },
     status: response.status,
@@ -40,7 +42,7 @@ export async function POST(request: NextRequest) {
 
   const decodedUrl = decodeURIComponent(atob(url));
 
-  const decodedBody = decodeURIComponent(atob(body));
+  const decodedBody = decodeURIComponent(atob(body ?? ''));
 
   const response = await fetch(decodedUrl, {
     method: method,
@@ -48,11 +50,12 @@ export async function POST(request: NextRequest) {
     body: decodedBody || null,
   });
 
-  const data: unknown = await response.json();
+  const option = !response.ok ? 'text' : 'json';
+  const data: unknown = await response[option]();
 
-  return new Response(JSON.stringify(data), {
+  return new Response(response.ok ? JSON.stringify(data) : null, {
     headers: {
-      'Content-Type': 'application/json; charset=UTF-8',
+      'Content-type': `${response.ok ? 'application/json' : 'text/html'}; charset=UTF-8`,
       ...response.headers,
       ...headersObject,
     },
@@ -71,7 +74,7 @@ export async function PUT(request: NextRequest) {
 
   const decodedUrl = decodeURIComponent(atob(url));
 
-  const decodedBody = decodeURIComponent(atob(body));
+  const decodedBody = decodeURIComponent(atob(body ?? ''));
 
   const response = await fetch(decodedUrl, {
     method: method,
@@ -79,11 +82,12 @@ export async function PUT(request: NextRequest) {
     body: decodedBody || null,
   });
 
-  const data: unknown = await response.json();
+  const option = !response.ok ? 'text' : 'json';
+  const data: unknown = await response[option]();
 
-  return new Response(JSON.stringify(data), {
+  return new Response(response.ok ? JSON.stringify(data) : null, {
     headers: {
-      'Content-Type': 'application/json; charset=UTF-8',
+      'Content-type': `${response.ok ? 'application/json' : 'text/html'}; charset=UTF-8`,
       ...response.headers,
       ...headersObject,
     },
@@ -102,7 +106,7 @@ export async function PATCH(request: NextRequest) {
 
   const decodedUrl = decodeURIComponent(atob(url));
 
-  const decodedBody = decodeURIComponent(atob(body));
+  const decodedBody = decodeURIComponent(atob(body ?? ''));
 
   const response = await fetch(decodedUrl, {
     method: method,
@@ -110,11 +114,12 @@ export async function PATCH(request: NextRequest) {
     body: decodedBody || null,
   });
 
-  const data: unknown = await response.json();
+  const option = !response.ok ? 'text' : 'json';
+  const data: unknown = await response[option]();
 
-  return new Response(JSON.stringify(data), {
+  return new Response(response.ok ? JSON.stringify(data) : null, {
     headers: {
-      'Content-Type': 'application/json; charset=UTF-8',
+      'Content-type': `${response.ok ? 'application/json' : 'text/html'}; charset=UTF-8`,
       ...response.headers,
       ...headersObject,
     },
@@ -138,7 +143,8 @@ export async function DELETE(request: NextRequest) {
     method: method,
   });
 
-  const data: unknown = await response.json();
+  const option = !response.ok ? 'text' : 'json';
+  const data: unknown = await response[option]();
 
   return new Response(JSON.stringify(data), {
     headers: {
