@@ -12,10 +12,7 @@ type RequestItem = {
   resSize: number;
   reqSize: number;
   duration: number;
-  timestamp: {
-    _nanoseconds: number;
-    _seconds: number;
-  };
+  timestamp: number;
   data: unknown;
   error: string | null;
   url: string;

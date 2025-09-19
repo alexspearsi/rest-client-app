@@ -47,7 +47,17 @@
     "title": "History",
     "emptyHeading": "You haven't executed any requests yet",
     "emptyDescription": "It's empty here. Try these options:",
-    "emptyLink": "REST Client"
+    "emptyLink": "REST Client",
+    "method": "Method",
+    "url": "Endpoint",
+    "status": "Status",
+    "duration": "Duration",
+    "reqSize": "Req Size",
+    "resSize": "Res Size",
+    "timestamp": "Timestamp",
+    "error": "Error",
+    "ms": "ms",
+    "byte": "byte"
   },
   "Signup": {
     "title": "Create Account",
