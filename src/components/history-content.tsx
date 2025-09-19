@@ -54,7 +54,7 @@ export default function HistoryContent({
       <Heading size="h2">{t('title')}</Heading>
 
       <div className="w-full overflow-x-auto">
-        <table className="mx-auto min-w-[800px] border text-sm">
+        <table className="mx-auto min-w-[800px] text-sm">
           <thead>
             <tr>
               <th className="p-2">{t('method')}</th>
@@ -74,7 +74,7 @@ export default function HistoryContent({
                 className="cursor-pointer transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
               >
                 <td className="p-2 text-center">{req.method.toUpperCase()}</td>
-                <td className="p-2">{req.url}</td>
+                <td className="text-blue-700">{req.url}</td>
                 <td
                   className={`p-2 text-center ${getStatusClass(req.statusCode)}`}
                 >
