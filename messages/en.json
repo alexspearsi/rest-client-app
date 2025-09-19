@@ -3,9 +3,10 @@
     "logo": "logo",
     "signin": "Sign In",
     "signup": "Sign Up",
-    "logout": "Log out",
     "mainPage": "Main",
-    "historyPage": "History"
+    "historyPage": "History",
+    "logoutTooltip": "Log Out",
+    "openMenuTooltip": "Open Menu"
   },
   "Footer": {
     "title": "Created by",
@@ -92,7 +93,11 @@
   "Theme": {
     "light": "Light",
     "dark": "Dark",
-    "system": "System"
+    "system": "System",
+    "switchThemeTooltip": "Switch Theme"
+  },
+  "Language": {
+    "switchLanguageTooltip": "Switch Language"
   },
   "Notification": {
     "loginSuccess": "You have successfully signed in",

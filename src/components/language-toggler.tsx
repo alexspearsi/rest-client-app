@@ -11,8 +11,11 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Globe } from 'lucide-react';
 import { usePathname, useRouter } from '@/i18n/navigation';
+import CustomTooltip from './ui/custom-tooltip';
+import { useTranslations } from 'next-intl';
 
 export function LanguageToggler() {
+  const t = useTranslations('Language');
   const router = useRouter();
   const pathname = usePathname();
 
@@ -22,12 +25,14 @@ export function LanguageToggler() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon">
-          <Globe className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-          <Globe className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-        </Button>
-      </DropdownMenuTrigger>
+      <CustomTooltip content={t('switchLanguageTooltip')}>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" size="icon">
+            <Globe className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+            <Globe className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+          </Button>
+        </DropdownMenuTrigger>
+      </CustomTooltip>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => toggleLanguage('en')}>
           EN

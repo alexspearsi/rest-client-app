@@ -3,9 +3,10 @@
     "logo": "лого",
     "signin": "Войти",
     "signup": "Зарегистрироваться",
-    "logout": "Выйти",
     "mainPage": "Главная",
-    "historyPage": "История"
+    "historyPage": "История",
+    "logoutTooltip": "Выйти",
+    "openMenuTooltip": "Открыть меню"
   },
   "Footer": {
     "title": "Создано командой",
@@ -92,7 +93,11 @@
   "Theme": {
     "light": "Светлая",
     "dark": "Темная",
-    "system": "Системная"
+    "system": "Системная",
+    "switchThemeTooltip": "Сменить тему"
+  },
+  "Language": {
+    "switchLanguageTooltip": "Сменить язык"
   },
   "Notification": {
     "loginSuccess": "Вы успешно вошли",
