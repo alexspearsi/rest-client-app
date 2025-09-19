@@ -4,10 +4,13 @@
     "signin": "Sign In",
     "signup": "Sign Up",
     "logout": "Log out",
-    "mainPage": "Main page"
+    "mainPage": "Main",
+    "historyPage": "History"
   },
   "Footer": {
-    "logo": "Course logo"
+    "title": "Created by",
+    "about": "Built with ❤️ and lots of ☕",
+    "course": "Course"
   },
   "HomePage": {
     "title": "Welcome",

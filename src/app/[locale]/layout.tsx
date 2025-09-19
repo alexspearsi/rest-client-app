@@ -31,7 +31,7 @@ export default async function RootLayout({ children, params }: Props) {
         >
           <NextIntlClientProvider locale={locale} messages={messages}>
             <Header />
-            <main className="flex-1">{children}</main>
+            <main>{children}</main>
             <Footer />
             <Toaster
               richColors

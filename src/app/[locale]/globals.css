@@ -3,14 +3,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
-html {
-  scrollbar-gutter: stable;
-}
-
 body {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 @theme inline {
