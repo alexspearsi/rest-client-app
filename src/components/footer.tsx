@@ -10,7 +10,7 @@ export default function Footer() {
   const t = useTranslations('Footer');
 
   return (
-    <footer className="bg-muted border-border border-t">
+    <footer className="bg-muted border-border mt-auto border-t">
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-3">
           <div className="flex flex-col items-center space-y-3 md:items-start">
