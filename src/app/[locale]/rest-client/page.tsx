@@ -1,17 +1,31 @@
-import RestClient from '@/components/rest-client/rest-client';
-import ProtectedRoute from '@/components/protected-route';
-import { Heading } from '@/components/ui/typography';
-import { useTranslations } from 'next-intl';
+'use client';
+
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '@/firebase';
+import { Loader } from '@/components/loader';
+import { useRouter } from '@/i18n/navigation';
+import dynamic from 'next/dynamic';
+
+const RestclientContent = dynamic(
+  () => import('@/components/restclient-component'),
+  {
+    ssr: false,
+    loading: () => <Loader />,
+  },
+);
 
 export default function Page() {
-  const t = useTranslations('RestClient');
+  const [user, loading] = useAuthState(auth);
+  const router = useRouter();
 
-  return (
-    <ProtectedRoute>
-      <div className="flex h-screen flex-col items-center justify-center gap-6 p-8">
-        <Heading size="h2">{t('title')}</Heading>
-        <RestClient />
-      </div>
-    </ProtectedRoute>
-  );
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (!user) {
+    router.replace('/');
+    return null;
+  }
+
+  return <RestclientContent />;
 }
