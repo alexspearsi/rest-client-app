@@ -7,7 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Loader } from './loader';
 
 type Props = {
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 export default function ProtectedRoute({ children }: Props) {

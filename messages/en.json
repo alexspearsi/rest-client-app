@@ -18,7 +18,27 @@
     "history": "History"
   },
   "RestClient": {
-    "title": "Rest client"
+    "title": "Rest client",
+    "headers": "Headers",
+    "body": "Body",
+    "response": "Response",
+    "code snippet": "Code Snippet",
+    "format": "Format",
+    "error": "Invalid JSON Input",
+    "status": "Status",
+    "size": "Size",
+    "time": "Time",
+    "byte": "byte",
+    "ms": "ms",
+    "url": "Enter url",
+    "send": "Send",
+    "sendTitle": "Send request",
+    "header": "header",
+    "value": "value",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "urlError": "Must be valid Url address",
+    "methodError": "Must be valid HTTP Method"
   },
   "Variables": {
     "title": "Variables"
