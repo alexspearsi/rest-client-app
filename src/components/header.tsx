@@ -12,7 +12,7 @@ import { ThemeToggler } from './theme-toggler';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from '@/i18n/navigation';
 import { toast } from 'sonner';
-import { Cat, EllipsisVertical, LogOut } from 'lucide-react';
+import { EllipsisVertical, LogOut } from 'lucide-react';
 import { Button } from './ui/button';
 import {
   DropdownMenu,
@@ -22,6 +22,7 @@ import {
 } from './ui/dropdown-menu';
 import CustomTooltip from './ui/custom-tooltip';
 import useScrolledState from '@/hooks/useScrolledState';
+import CatIcon from './ui/icons/cat';
 
 export default function Header() {
   const t = useTranslations('Header');
@@ -61,10 +62,10 @@ export default function Header() {
           <div>
             <Link className="flex items-center gap-3" href="/">
               <div
-                className={`${scrolled ? 'h-7 w-7' : 'h-8 w-8'} bg-primary flex items-center justify-center rounded-lg duration-200`}
+                className={`${scrolled ? 'h-8 w-8' : 'h-10 w-10'} bg-primary flex items-center justify-center rounded-lg duration-200`}
               >
-                <Cat
-                  className={`${scrolled ? 'w-4' : 'w-5'} text-primary-foreground duration-200`}
+                <CatIcon
+                  className={`${scrolled ? 'w-4' : 'w-5'} fill-primary-foreground duration-200`}
                 />
               </div>
               <span
