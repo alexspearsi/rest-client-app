@@ -12,44 +12,44 @@ import Image from 'next/image';
 import memberFirstSrc from '../../../public/alexspearsi.jpg';
 import memberSecondSrc from '../../../public/firstdayatwork.jpg';
 import memberThirdSrc from '../../../public/olydbd.jpg';
-
-const teamContent = [
-  {
-    title: 'Aliaksandr Strelchanka',
-    role: 'Team Lead Frontend Developer',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum nulla, consectetur non dolor quis, egestas rhoncus est. Suspendisse potenti.',
-    github: 'alexspearsi',
-    imageSrc: memberFirstSrc,
-  },
-  {
-    title: 'Mikhail Il`in',
-    role: 'Frontend Developer',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum nulla, consectetur non dolor quis, egestas rhoncus est. Suspendisse potenti.',
-    github: 'FirstDayAtWork',
-    imageSrc: memberSecondSrc,
-  },
-  {
-    title: 'Olga Dubodel',
-    role: 'Frontend Developer',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum nulla, consectetur non dolor quis, egestas rhoncus est. Suspendisse potenti.',
-    github: 'olydbd',
-    imageSrc: memberThirdSrc,
-  },
-];
+import { useTranslations } from 'next-intl';
 
 export default function TeamSection() {
+  const t = useTranslations('TeamSection');
+
+  const teamContent = [
+    {
+      title: t('members.alex.name'),
+      role: 'Team Lead Frontend Developer',
+      description: t('members.alex.description'),
+      github: 'alexspearsi',
+      imageSrc: memberFirstSrc,
+    },
+    {
+      title: t('members.mikhail.name'),
+      role: 'Frontend Developer',
+      description: t('members.mikhail.description'),
+      github: 'FirstDayAtWork',
+      imageSrc: memberSecondSrc,
+    },
+    {
+      title: t('members.olga.name'),
+      role: 'Frontend Developer',
+      description: t('members.olga.description'),
+      github: 'olydbd',
+      imageSrc: memberThirdSrc,
+    },
+  ];
+
   return (
     <section>
       <div className="container mx-auto px-6 py-16 lg:px-20">
         <div className="mb-12 text-center">
           <Heading size="h2" className="mb-4">
-            Meet Our Team
+            {t('title')}
           </Heading>
           <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-            Passionate developers building the future of API testing tools.
+            {t('description')}
           </p>
         </div>
         <div className="grid gap-8 md:grid-cols-3">

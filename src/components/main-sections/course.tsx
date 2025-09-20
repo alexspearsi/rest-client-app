@@ -1,6 +1,7 @@
 import { Code, Globe, Users } from 'lucide-react';
 import { Heading } from '../ui/typography';
 import { Badge } from '../ui/badge';
+import { useTranslations } from 'next-intl';
 
 const technologies = [
   'React',
@@ -11,24 +12,24 @@ const technologies = [
 ];
 
 export default function CourseSection() {
+  const t = useTranslations('CourseSection');
+
   return (
     <section>
       <div className="container mx-auto px-6 py-16 lg:px-20">
         <div className="mb-12 text-center">
           <Heading size="h2" className="mb-4">
-            Our Team Project
+            {t('title')}
           </Heading>
           <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-            REST Client is the final project of the RS School React 2025 Q3
-            course - a collaborative effort that brings together key concepts of
-            modern web development in a practical, real-world tool.
+            {t('description')}
           </p>
         </div>
 
         <div className="grid items-center gap-12 md:grid-cols-2">
           <div>
             <Heading size="h3" className="mb-6">
-              About RS School
+              {t('aboutSchoolTitle')}
             </Heading>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
@@ -37,12 +38,10 @@ export default function CourseSection() {
                 </div>
                 <div>
                   <Heading size="h4" className="mb-1">
-                    Open to everyone
+                    {t('items.openToEveryone.title')}
                   </Heading>
                   <p className="text-muted-foreground text-base">
-                    Free courses, no obligations, and no contracts. No age
-                    limit. Only students&apos; time and dedication are required.
-                    Students can repeatedly attend courses.
+                    {t('items.openToEveryone.description')}
                   </p>
                 </div>
               </div>
@@ -52,11 +51,10 @@ export default function CourseSection() {
                 </div>
                 <div>
                   <Heading size="h4" className="mb-1">
-                    Open source philosophy
+                    {t('items.openSource.title')}
                   </Heading>
                   <p className="text-muted-foreground text-base">
-                    Our Learning Management System platform and educational
-                    materials are publicly available on GitHub and YouTube.
+                    {t('items.openSource.description')}
                   </p>
                 </div>
               </div>
@@ -66,12 +64,10 @@ export default function CourseSection() {
                 </div>
                 <div>
                   <Heading size="h4" className="mb-1">
-                    &quot;Teach it forward&quot;
+                    {t('items.teachForward.title')}
                   </Heading>
                   <p className="text-muted-foreground text-base">
-                    Students study at school for free, but we request that they
-                    return as mentors to pass on their knowledge to the next
-                    generation of students.
+                    {t('items.teachForward.description')}
                   </p>
                 </div>
               </div>
@@ -80,7 +76,7 @@ export default function CourseSection() {
 
           <div className="bg-muted rounded-2xl p-8">
             <Heading size="h3" className="mb-4">
-              About the Project
+              {t('aboutProjectTitle')}
             </Heading>
 
             <div className="mb-4 flex flex-wrap gap-2">
@@ -93,19 +89,12 @@ export default function CourseSection() {
 
             <div>
               <p className="text-muted-foreground text-base">
-                Over an 3-week period, we built this REST client to apply core
-                concepts of modern web development - including React-based
-                architecture, API communication, state management and deployment
-                workflows.
+                {t('aboutProjectDescription')}
               </p>
             </div>
 
             <div className="border-border mt-6 border-t pt-6">
-              <p className="text-muted-foreground text-sm">
-                This project reflects our practical knowledge of the React
-                ecosystem and showcases everything we&apos;ve learned during the
-                RS School React 2025 Q3 course.
-              </p>
+              <p className="text-muted-foreground text-sm">{t('footerNote')}</p>
             </div>
           </div>
         </div>

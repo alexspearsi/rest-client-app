@@ -15,13 +15,84 @@
     "about": "Built with ❤️ by developers for developers",
     "course": "Course"
   },
-  "HomePage": {
-    "title": "Welcome",
-    "signin": "Sign In",
-    "signup": "Sign Up",
-    "restclient": "REST client",
+  "HeroSection": {
+    "badgeWelcome": "Welcome back",
+    "title": "REST Client",
+    "description": "A modern, intuitive REST API testing tool built by 200 OK team, RS School students. Streamline your API development workflow with our powerful client.",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "restClient": "REST Client",
     "variables": "Variables",
-    "history": "History"
+    "history": "History",
+    "liveStatus": "Live & Ready",
+    "secureTesting": "Secure Testing",
+    "lightningFast": "Lightning Fast",
+    "carouselAlt": "REST Client vibe",
+    "carouselTitle": "Coding Companions",
+    "carouselSubtitle": "Good vibes only :)"
+  },
+  "FeaturesSection": {
+    "title": "Why REST Client?",
+    "description": "Built with modern web technologies and designed for the best developer experience.",
+    "features": {
+      "lightningFast": {
+        "title": "Lightning Fast",
+        "description": "Optimized performance with instant response visualization and request history."
+      },
+      "secureReliable": {
+        "title": "Secure & Reliable",
+        "description": "Data security is fully guaranteed through the implementation of Firebase Authentication standards."
+      },
+      "modernWebTech": {
+        "title": "Modern Web Tech",
+        "description": "Built with Next.js, TypeScript and Tailwind CSS for the best performance and UX."
+      }
+    }
+  },
+  "TeamSection": {
+    "title": "Meet Our Team",
+    "description": "Passionate developers building the future of API testing tools.",
+    "members": {
+      "alex": {
+        "name": "Aliaksandr Strelchanka",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum nulla, consectetur non dolor quis, egestas rhoncus est. Suspendisse potenti."
+      },
+      "mikhail": {
+        "name": "Mikhail Il'in",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum nulla, consectetur non dolor quis, egestas rhoncus est. Suspendisse potenti."
+      },
+      "olga": {
+        "name": "Olga Dubodel",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum nulla, consectetur non dolor quis, egestas rhoncus est. Suspendisse potenti."
+      }
+    }
+  },
+  "CourseSection": {
+    "title": "Our Team Project",
+    "description": "REST Client is the final project of the RS School React 2025 Q3 course - a collaborative effort that brings together key concepts of modern web development in a practical, real-world tool.",
+    "aboutSchoolTitle": "About RS School",
+    "items": {
+      "openToEveryone": {
+        "title": "Open to everyone",
+        "description": "Free courses, no obligations, and no contracts. No age limit. Only students' time and dedication are required. Students can repeatedly attend courses."
+      },
+      "openSource": {
+        "title": "Open source philosophy",
+        "description": "Our Learning Management System platform and educational materials are publicly available on GitHub and YouTube."
+      },
+      "teachForward": {
+        "title": "Teach it forward",
+        "description": "Students study at school for free, but we request that they return as mentors to pass on their knowledge to the next generation of students."
+      }
+    },
+    "aboutProjectTitle": "About the Project",
+    "aboutProjectDescription": "Over an 3-week period, we built this REST client to apply core concepts of modern web development - including React-based architecture, API communication, state management and deployment workflows.",
+    "footerNote": "This project reflects our practical knowledge of the React ecosystem and showcases everything we've learned during the RS School React 2025 Q3 course."
+  },
+  "ActionSection": {
+    "title": "Ready to Try REST Client?",
+    "description": "Built with modern web technologies and designed for developers who need a reliable, fast, and intuitive API testing experience.",
+    "getStarted": "Get Started"
   },
   "RestClient": {
     "title": "Rest client",

@@ -77,7 +77,7 @@ export default function Header() {
           </div>
 
           <div className="flex items-center justify-center gap-1">
-            <NavigationMenu className="hidden sm:block">
+            <NavigationMenu className="hidden md:block">
               <NavigationMenuList>
                 {navLinks.map((link) => (
                   <NavigationMenuItem key={link.href}>
@@ -95,7 +95,7 @@ export default function Header() {
             <DropdownMenu>
               <CustomTooltip content={t('openMenuTooltip')}>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="sm:hidden">
+                  <Button variant="ghost" className="md:hidden">
                     <EllipsisVertical />
                   </Button>
                 </DropdownMenuTrigger>

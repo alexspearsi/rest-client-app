@@ -18,19 +18,23 @@ import {
 } from '../ui/carousel';
 import Image from 'next/image';
 import { Badge } from '../ui/badge';
+import { useTranslations } from 'next-intl';
+
+const images = [catFirstSrc, catSecondSrc, catThirdSrc];
 
 export default function HeroSection() {
+  const t = useTranslations('HeroSection');
   const [user] = useAuthState(auth);
 
   const links = user
     ? [
-        { href: '/rest-client', label: 'REST Client' },
-        { href: '/variables', label: 'Variables' },
-        { href: '/history', label: 'History' },
+        { href: '/rest-client', label: t('restClient') },
+        { href: '/variables', label: t('variables') },
+        { href: '/history', label: t('history') },
       ]
     : [
-        { href: '/authentication', label: 'Sign In' },
-        { href: '/registration', label: 'Sign Up' },
+        { href: '/authentication', label: t('signIn') },
+        { href: '/registration', label: t('signUp') },
       ];
 
   return (
@@ -41,14 +45,12 @@ export default function HeroSection() {
             <div className="space-y-6 text-center lg:text-start">
               {user && (
                 <Badge variant="secondary">
-                  Welcome back, {user.displayName}!
+                  {t('badgeWelcome')}, {user.displayName}!
                 </Badge>
               )}
-              <Heading size="h1">REST Client</Heading>
+              <Heading size="h1">{t('title')}</Heading>
               <p className="text-muted-foreground max-w-xl text-lg">
-                A modern, intuitive REST API testing tool built by 200 OK team,
-                RS School students. Streamline your API development workflow
-                with our powerful client.
+                {t('description')}
               </p>
             </div>
 
@@ -67,15 +69,15 @@ export default function HeroSection() {
             <div className="text-muted-foreground flex flex-wrap items-center justify-center gap-6 text-sm lg:justify-start">
               <div className="flex items-center gap-2">
                 <div className="bg-chart-2 h-2 w-2 rounded-full"></div>
-                <span>Live & Ready</span>
+                <span>{t('liveStatus')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Shield className="h-4 w-4" />
-                <span>Secure Testing</span>
+                <span>{t('secureTesting')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Zap className="h-4 w-4" />
-                <span>Lightning Fast</span>
+                <span>{t('lightningFast')}</span>
               </div>
             </div>
           </div>
@@ -90,20 +92,18 @@ export default function HeroSection() {
               </div>
               <Carousel className="w-full overflow-hidden rounded-2xl">
                 <CarouselContent>
-                  {[catFirstSrc, catSecondSrc, catThirdSrc].map(
-                    (item, index) => (
-                      <CarouselItem key={index}>
-                        <div className="bg-muted relative aspect-[4/3] overflow-hidden rounded-2xl">
-                          <Image
-                            priority
-                            className="h-full w-full"
-                            src={item}
-                            alt="REST CLient Interface"
-                          />
-                        </div>
-                      </CarouselItem>
-                    ),
-                  )}
+                  {images.map((item, index) => (
+                    <CarouselItem key={index}>
+                      <div className="bg-muted relative aspect-[4/3] overflow-hidden rounded-2xl">
+                        <Image
+                          priority
+                          className="h-full w-full"
+                          src={item}
+                          alt={t('carouselAlt')}
+                        />
+                      </div>
+                    </CarouselItem>
+                  ))}
                 </CarouselContent>
                 <CarouselPrevious className="left-4" />
                 <CarouselNext className="right-4" />
@@ -111,8 +111,10 @@ export default function HeroSection() {
             </div>
             <div className="mx-auto mt-4 flex max-w-md justify-end">
               <div className="text-end">
-                <p className="font-bold">Coding Companions</p>
-                <p className="text-muted-foreground text-sm">Good vibes only</p>
+                <p className="font-bold">{t('carouselTitle')}</p>
+                <p className="text-muted-foreground text-sm">
+                  {t('carouselSubtitle')}
+                </p>
               </div>
             </div>
           </div>

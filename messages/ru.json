@@ -15,13 +15,84 @@
     "about": "Сделано с ❤️ разработчиками для разработчиков",
     "course": "Курс"
   },
-  "HomePage": {
-    "title": "Добро пожаловать",
-    "signin": "Войти",
-    "signup": "Зарегистрироваться",
-    "restclient": "REST клиент",
+  "HeroSection": {
+    "badgeWelcome": "С возвращением",
+    "title": "REST Клиент",
+    "description": "Современный и интуитивно понятный инструмент для тестирования REST API, созданный командой 200 OK, студентами RS School. Упростите разработку API с помощью нашего мощного клиента.",
+    "signIn": "Войти",
+    "signUp": "Зарегистрироваться",
+    "restClient": "REST Клиент",
     "variables": "Переменные",
-    "history": "История запросов"
+    "history": "История запросов",
+    "liveStatus": "Онлайн & готов к работе",
+    "secureTesting": "Безопасное тестирование",
+    "lightningFast": "Молниеносная скорость",
+    "carouselAlt": "Атмосфера REST клиента",
+    "carouselTitle": "Партнёры по коду",
+    "carouselSubtitle": "Только позитив :)"
+  },
+  "FeaturesSection": {
+    "title": "Почему REST Клиент?",
+    "description": "Создан с использованием современных веб-технологий и ориентирован на лучший опыт разработчика.",
+    "features": {
+      "lightningFast": {
+        "title": "Молниеносная скорость",
+        "description": "Оптимизированная производительность с мгновенной визуализацией ответов и историей запросов."
+      },
+      "secureReliable": {
+        "title": "Безопасность и надёжность",
+        "description": "Безопасность данных полностью обеспечивается благодаря использованию стандартов Firebase Authentication."
+      },
+      "modernWebTech": {
+        "title": "Современные веб-технологии",
+        "description": "Создан с использованием Next.js, TypeScript и Tailwind CSS для наилучшей производительности и UX."
+      }
+    }
+  },
+  "TeamSection": {
+    "title": "Познакомьтесь с нашей командой",
+    "description": "Увлечённые разработчики, создающие будущее инструментов для тестирования API.",
+    "members": {
+      "alex": {
+        "name": "Александр Стрельченко",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum nulla, consectetur non dolor quis, egestas rhoncus est. Suspendisse potenti."
+      },
+      "mikhail": {
+        "name": "Михаил Ильин",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum nulla, consectetur non dolor quis, egestas rhoncus est. Suspendisse potenti."
+      },
+      "olga": {
+        "name": "Ольга Дубодел",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum nulla, consectetur non dolor quis, egestas rhoncus est. Suspendisse potenti."
+      }
+    }
+  },
+  "CourseSection": {
+    "title": "Наш командный проект",
+    "description": "REST Client - это финальный проект курса RS School React 2025 Q3 - совместная работа, объединяющая ключевые концепции современной веб-разработки в практичном, реальном инструменте.",
+    "aboutSchoolTitle": "О RS School",
+    "items": {
+      "openToEveryone": {
+        "title": "Открыт для всех",
+        "description": "Бесплатные курсы, без обязательств и контрактов. Нет возрастных ограничений. Требуются только время и усердие студентов. Курсы можно проходить неоднократно."
+      },
+      "openSource": {
+        "title": "Философия open source",
+        "description": "Наша платформа Learning Management System и учебные материалы находятся в открытом доступе на GitHub и YouTube."
+      },
+      "teachForward": {
+        "title": "Передай знания дальше",
+        "description": "Студенты учатся в школе бесплатно, но мы просим их вернуться в качестве наставников, чтобы передавать знания следующему поколению."
+      }
+    },
+    "aboutProjectTitle": "О проекте",
+    "aboutProjectDescription": "В течение 3 недель мы разрабатывали REST-клиент, чтобы применить ключевые концепции современной веб-разработки - архитектуру на базе React, работу с API, управление состоянием и процессы деплоя.",
+    "footerNote": "Этот проект отражает наши практические знания экосистемы React и демонстрирует всё, чему мы научились за время курса RS School React 2025 Q3."
+  },
+  "ActionSection": {
+    "title": "Готовы попробовать REST Клиент?",
+    "description": "Создан с использованием современных веб-технологий и предназначен для разработчиков, которым нужен надёжный, быстрый и интуитивно понятный инструмент для тестирования API.",
+    "getStarted": "Начать работу"
   },
   "RestClient": {
     "title": "Rest клиент",

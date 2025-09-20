@@ -1,39 +1,38 @@
 import { Globe, Shield, Zap } from 'lucide-react';
 import { Card, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Heading } from '../ui/typography';
-
-const content = [
-  {
-    title: 'Lightning Fast',
-    description:
-      'Optimized performance with instant response visualization and request history.',
-    icon: <Zap className="text-primary" />,
-  },
-  {
-    title: 'Secure & Reliable',
-    description:
-      'Data security is fully guaranteed through the implementation of Firebase Authentication standards.',
-    icon: <Shield className="text-primary" />,
-  },
-  {
-    title: 'Modern Web Tech',
-    description:
-      'Built with Next.js, TypeScript and Tailwind CSS for the best performance and UX.',
-    icon: <Globe className="text-primary" />,
-  },
-];
+import { useTranslations } from 'next-intl';
 
 export default function FeaturesSection() {
+  const t = useTranslations('FeaturesSection');
+
+  const content = [
+    {
+      title: t('features.lightningFast.title'),
+      description: t('features.lightningFast.description'),
+      icon: <Zap className="text-primary" />,
+    },
+    {
+      title: t('features.secureReliable.title'),
+      description: t('features.secureReliable.description'),
+      icon: <Shield className="text-primary" />,
+    },
+    {
+      title: t('features.modernWebTech.title'),
+      description: t('features.modernWebTech.description'),
+      icon: <Globe className="text-primary" />,
+    },
+  ];
+
   return (
     <section>
       <div className="container mx-auto px-6 py-16 lg:px-20">
         <div className="mb-12 text-center">
           <Heading size="h2" className="mb-4">
-            Why REST Client?
+            {t('title')}
           </Heading>
           <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-            Built with modern web technologies and designed for the best
-            developer experience.
+            {t('description')}
           </p>
         </div>
         <div className="grid gap-8 md:grid-cols-3">
