@@ -3,20 +3,7 @@ import { adminAuth, adminDb } from '@/firebaseAdmin';
 import { Loader } from '@/components/loader';
 import dynamic from 'next/dynamic';
 import { redirect } from 'next/navigation';
-
-type RequestItem = {
-  id: string;
-  statusCode: number;
-  statusText: string;
-  method: string;
-  resSize: number;
-  reqSize: number;
-  duration: number;
-  timestamp: number;
-  data: unknown;
-  error: string | null;
-  url: string;
-};
+import { RequestItem } from '@/types/types';
 
 const HistoryContent = dynamic(() => import('@/components/history-content'), {
   ssr: true,
