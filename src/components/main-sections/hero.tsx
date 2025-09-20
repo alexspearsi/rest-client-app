@@ -80,20 +80,20 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className="relative">
-            <div
-              className="pointer-events-none absolute inset-0 flex items-center justify-center"
-              aria-hidden="true"
-            >
-              <div className="bg-primary h-72 w-72 rounded-full opacity-50 blur-3xl sm:h-96 sm:w-96"></div>
-            </div>
+          <div>
             <div className="relative z-10 mx-auto max-w-md">
-              <Carousel className="w-full">
+              <div
+                className="pointer-events-none absolute inset-0 flex items-center justify-center"
+                aria-hidden="true"
+              >
+                <div className="bg-primary h-72 w-72 rounded-full opacity-50 blur-3xl sm:h-96 sm:w-96"></div>
+              </div>
+              <Carousel className="w-full overflow-hidden rounded-2xl">
                 <CarouselContent>
                   {[catFirstSrc, catSecondSrc, catThirdSrc].map(
                     (item, index) => (
                       <CarouselItem key={index}>
-                        <div className="bg-muted relative aspect-[4/3] overflow-hidden rounded-2xl border-2 shadow-2xl">
+                        <div className="bg-muted relative aspect-[4/3]">
                           <Image
                             priority
                             className="h-full w-full"
@@ -108,7 +108,9 @@ export default function HeroSection() {
                 <CarouselPrevious className="left-4" />
                 <CarouselNext className="right-4" />
               </Carousel>
-              <div className="mt-4 text-end">
+            </div>
+            <div className="mx-auto mt-4 flex max-w-md justify-end">
+              <div className="text-end">
                 <p className="font-bold">Coding Companions</p>
                 <p className="text-muted-foreground text-sm">Good vibes only</p>
               </div>
