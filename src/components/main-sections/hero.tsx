@@ -45,7 +45,9 @@ export default function HeroSection() {
             <div className="space-y-6 text-center lg:text-start">
               {user && (
                 <Badge variant="secondary">
-                  {t('badgeWelcome')}, {user.displayName}!
+                  <span className="max-w-[250px] truncate">
+                    {t('badgeWelcome')}, {user.displayName}!
+                  </span>
                 </Badge>
               )}
               <Heading size="h1">{t('title')}</Heading>
