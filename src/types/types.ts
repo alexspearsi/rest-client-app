@@ -10,4 +10,5 @@ export type RequestItem = {
   data: unknown;
   error: string | null;
   url: string;
+  link: string;
 };
