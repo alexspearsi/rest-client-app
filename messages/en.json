@@ -44,7 +44,20 @@
     "title": "Variables"
   },
   "History": {
-    "title": "History"
+    "title": "History",
+    "emptyHeading": "You haven't executed any requests yet",
+    "emptyDescription": "It's empty here. Try these options:",
+    "emptyLink": "REST Client",
+    "method": "Method",
+    "url": "Endpoint",
+    "status": "Status",
+    "duration": "Duration",
+    "reqSize": "Req Size",
+    "resSize": "Res Size",
+    "timestamp": "Timestamp",
+    "error": "Error",
+    "ms": "ms",
+    "byte": "byte"
   },
   "Signup": {
     "title": "Create Account",
@@ -101,6 +114,7 @@
     "fillAllFields": "Please fill in all fields",
     "fillEmailPassword": "Please fill in both email and password",
     "creatingAccount": "Account creation...",
-    "loggingIn": "Authentication..."
+    "loggingIn": "Authentication...",
+    "loggingOut": "Logging out..."
   }
 }
