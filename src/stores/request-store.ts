@@ -14,7 +14,7 @@ export type RequestItems = {
 
 export const useRequestStore = create<RequestStoreTypes>((set) => ({
   method: 'get',
-  url: '',
+  url: 'https://jsonplaceholder.typicode.com/posts/1',
   updateMethod: (newMethod) => set(() => ({ method: newMethod })),
   updateUrl: (newUrl) => set(() => ({ url: newUrl })),
 }));

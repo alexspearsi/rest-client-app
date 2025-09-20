@@ -23,13 +23,15 @@ export default function MethodSelector(): JSX.Element {
   const updateMethod = useRequestStore((state) => state.updateMethod);
 
   function handleSelection(val: string) {
-    updateMethod(val);
+    if (val) {
+      updateMethod(val);
+    }
   }
 
   return (
     <Select onValueChange={handleSelection} name="method" value={method}>
       <SelectTrigger className="w-[180px] rounded-none rounded-l-lg">
-        <SelectValue />
+        <SelectValue aria-label={method}>{method.toUpperCase()}</SelectValue>
       </SelectTrigger>
       <SelectContent>
         {methods.map((item) => (
