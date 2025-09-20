@@ -1,24 +1,17 @@
-import { RequestItems } from '@/stores/request-store';
 import { getSize } from './get-response-size';
+import { ResponseDataType } from '@/components/rest-client/types';
 
-export function setResponseData(
-  response: Response,
-  responseData: unknown,
-  time: number,
-  timestamp: number,
-  data: RequestItems,
-  bodyData: string,
-) {
+export function setResponseData(data: ResponseDataType) {
   return {
-    statusCode: response.status,
-    statusText: response.statusText,
+    statusCode: data.status,
+    statusText: data.statusText,
     method: data.method,
-    resSize: getSize(JSON.stringify(responseData)),
-    reqSize: getSize(JSON.stringify(bodyData)),
-    duration: time,
-    timestamp,
-    data: responseData,
-    error: response.status > 399 ? response.statusText : null,
+    resSize: getSize(JSON.stringify(data.responseData)),
+    reqSize: getSize(JSON.stringify(data.body)),
+    duration: data.time,
+    timestamp: data.start,
+    data: data.responseData,
+    error: data.status > 399 ? data.statusText : null,
     url: data.url,
   };
 }
