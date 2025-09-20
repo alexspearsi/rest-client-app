@@ -1,0 +1,99 @@
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '../ui/card';
+import { Heading } from '../ui/typography';
+import { Button } from '../ui/button';
+import GithubIcon from '../ui/icons/github';
+import Image from 'next/image';
+import memberFirstSrc from '../../../public/alexspearsi.jpg';
+import memberSecondSrc from '../../../public/cat-2.jpg';
+import memberThirdSrc from '../../../public/olydbd.jpg';
+
+const teamContent = [
+  {
+    title: 'Aliaksandr Strelchanka',
+    role: 'Team Lead Frontend Developer',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum nulla, consectetur non dolor quis, egestas rhoncus est. Suspendisse potenti.',
+    github: 'alexspearsi',
+    imageSrc: memberFirstSrc,
+  },
+  {
+    title: 'Mikhail Il`in',
+    role: 'Frontend Developer',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum nulla, consectetur non dolor quis, egestas rhoncus est. Suspendisse potenti.',
+    github: 'FirstDayAtWork',
+    imageSrc: memberSecondSrc,
+  },
+  {
+    title: 'Olga Dubodel',
+    role: 'Frontend Developer',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum nulla, consectetur non dolor quis, egestas rhoncus est. Suspendisse potenti.',
+    github: 'olydbd',
+    imageSrc: memberThirdSrc,
+  },
+];
+
+export default function TeamSection() {
+  return (
+    <section>
+      <div className="container mx-auto px-6 py-16 lg:px-20">
+        <div className="mb-12 text-center">
+          <Heading size="h2" className="mb-4">
+            Meet Our Team
+          </Heading>
+          <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
+            Passionate developers building the future of API testing tools.
+          </p>
+        </div>
+        <div className="grid gap-8 md:grid-cols-3">
+          {teamContent.map((item, index) => (
+            <Card
+              key={index}
+              className="hover:border-primary/20 text-center transition-all"
+            >
+              <CardHeader>
+                <div className="from-primary to-secondary mx-auto mb-4 flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br">
+                  <Image
+                    priority
+                    className="h-full w-full"
+                    src={item.imageSrc}
+                    alt="REST CLient Interface"
+                  />
+                </div>
+                <CardTitle>{item.title}</CardTitle>
+                <CardDescription>{item.role}</CardDescription>
+              </CardHeader>
+              <CardContent className="mt-auto">
+                <p className="text-muted-foreground mb-4 text-sm">
+                  {item.description}
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="gap-2 bg-transparent"
+                  asChild
+                >
+                  <a
+                    href={`https://github.com/${item.github}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-1"
+                  >
+                    <GithubIcon />@{item.github}
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

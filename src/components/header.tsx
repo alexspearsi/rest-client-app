@@ -34,6 +34,8 @@ export default function Header() {
   const navLinks = user
     ? [
         { href: '/', label: t('mainPage') },
+        { href: '/rest-client', label: t('restClientPage') },
+        { href: '/variables', label: t('variablesPage') },
         { href: '/history', label: t('historyPage') },
       ]
     : [
@@ -53,7 +55,7 @@ export default function Header() {
   return (
     <header className="bg-background border-border sticky top-0 z-50 border-b-2">
       <div
-        className={`container mx-auto px-6 ${scrolled ? 'py-2' : 'py-4'} duration-200`}
+        className={`container mx-auto px-6 lg:px-20 ${scrolled ? 'py-2' : 'py-4'} duration-200`}
       >
         <div className="flex items-center justify-between">
           <div>

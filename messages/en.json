@@ -4,13 +4,15 @@
     "signin": "Sign In",
     "signup": "Sign Up",
     "mainPage": "Main",
+    "restClientPage": "REST Client",
+    "variablesPage": "Variables",
     "historyPage": "History",
     "logoutTooltip": "Log Out",
     "openMenuTooltip": "Open Menu"
   },
   "Footer": {
     "title": "Created by",
-    "about": "Built with ❤️ and lots of ☕",
+    "about": "Built with ❤️ by developers for developers",
     "course": "Course"
   },
   "HomePage": {

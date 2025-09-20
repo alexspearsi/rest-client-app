@@ -2,13 +2,13 @@ import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
-const headingVariants = cva('font-bold tracking-tight', {
+const headingVariants = cva('tracking-tight', {
   variants: {
     size: {
-      h1: 'text-3xl md:text-4xl',
-      h2: 'text-2xl md:text-3xl',
-      h3: 'text-xl md:text-2xl',
-      h4: 'text-lg md:text-xl',
+      h1: 'text-4xl md:text-5xl font-bold',
+      h2: 'text-2xl md:text-3xl font-bold',
+      h3: 'text-xl md:text-2xl font-bold',
+      h4: 'text-lg md:text-xl font-semibold',
     },
   },
   defaultVariants: {

@@ -11,7 +11,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-muted border-border mt-auto border-t">
-      <div className="container mx-auto px-6 py-12">
+      <div className="container mx-auto px-6 py-12 lg:px-20">
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-3">
           <div className="flex flex-col items-center space-y-3 md:items-start">
             <a
@@ -51,8 +51,8 @@ export default function Footer() {
 
           <div className="flex flex-col items-center space-y-3 md:items-end">
             <div className="text-center md:text-right">
-              <div className="bg-accent/10 border-accent/20 inline-flex items-center space-x-2 rounded-lg border px-4 py-2">
-                <div className="bg-chart-2 h-2 w-2 animate-pulse rounded-full"></div>
+              <div className="bg-accent/10 border-accent/20 inline-flex items-center space-x-2 rounded-lg border">
+                <div className="bg-chart-2 h-2 w-2 animate-pulse rounded-full" />
                 <span className="text-accent-foreground text-base font-medium">
                   REST Client
                 </span>
