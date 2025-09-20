@@ -8,13 +8,25 @@ export function bodyToBase64(
     const parse = JSON.parse(data);
     const json = JSON.stringify(parse, null, 2);
     return [
-      `/${btoa(encodeURIComponent(json))}`,
+      `/${encodeData(json)}`,
       { 'Content-Type': 'application/json; charset=utf-8' },
     ];
   } catch {
     return [
-      `/${btoa(encodeURIComponent(data))}`,
+      `/${encodeData(data)}`,
       { 'Content-Type': 'text/html; charset=utf-8' },
     ];
   }
+}
+
+export function encodeData(data: string) {
+  return btoa(encodeURIComponent(data));
+}
+
+export function decodeData(data: string) {
+  if (typeof data === 'string') {
+    const string = data.replace(/%3D/g, '=');
+    return decodeURIComponent(atob(string));
+  }
+  return decodeURIComponent(atob(data));
 }
