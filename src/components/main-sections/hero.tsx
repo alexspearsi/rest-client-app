@@ -93,7 +93,7 @@ export default function HeroSection() {
                   {[catFirstSrc, catSecondSrc, catThirdSrc].map(
                     (item, index) => (
                       <CarouselItem key={index}>
-                        <div className="bg-muted relative aspect-[4/3]">
+                        <div className="bg-muted relative aspect-[4/3] overflow-hidden rounded-2xl">
                           <Image
                             priority
                             className="h-full w-full"

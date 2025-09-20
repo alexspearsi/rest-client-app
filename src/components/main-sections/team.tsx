@@ -10,7 +10,7 @@ import { Button } from '../ui/button';
 import GithubIcon from '../ui/icons/github';
 import Image from 'next/image';
 import memberFirstSrc from '../../../public/alexspearsi.jpg';
-import memberSecondSrc from '../../../public/cat-2.jpg';
+import memberSecondSrc from '../../../public/firstdayatwork.jpg';
 import memberThirdSrc from '../../../public/olydbd.jpg';
 
 const teamContent = [
