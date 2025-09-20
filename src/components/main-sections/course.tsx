@@ -93,7 +93,7 @@ export default function CourseSection() {
 
             <div>
               <p className="text-muted-foreground text-base">
-                Over an 8-week period, we built this REST client to apply core
+                Over an 3-week period, we built this REST client to apply core
                 concepts of modern web development - including React-based
                 architecture, API communication, state management and deployment
                 workflows.
