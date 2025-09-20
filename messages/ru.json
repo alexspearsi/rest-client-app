@@ -4,6 +4,8 @@
     "signin": "Войти",
     "signup": "Зарегистрироваться",
     "mainPage": "Главная",
+    "restClientPage": "REST Клиент",
+    "variablesPage": "Переменные",
     "historyPage": "История",
     "logoutTooltip": "Выйти",
     "openMenuTooltip": "Открыть меню"
@@ -19,7 +21,7 @@
     "signup": "Зарегистрироваться",
     "restclient": "REST клиент",
     "variables": "Переменные",
-    "history": "История поиска"
+    "history": "История запросов"
   },
   "RestClient": {
     "title": "Rest клиент",
@@ -53,6 +55,8 @@
   "Signup": {
     "title": "Создать аккаунт",
     "description": "Присоединяйтесь к REST Client и начните исследовать API",
+    "formTitle": "Регистрация",
+    "formDescription": "Создайте аккаунт, чтобы начать работу",
     "haveAccount": "Уже есть аккаунт?",
     "loginNow": "Войти"
   },
@@ -67,7 +71,9 @@
   },
   "Login": {
     "title": "С возвращением",
-    "description": "Войдите в свой аккаунт REST Client",
+    "description": "Введите свои учетные данные для доступа к аккаунту",
+    "formTitle": "Вход",
+    "formDescription": "Войдите в свой аккаунт, чтобы продолжить",
     "noAccount": "Нет аккаунта?",
     "registerNow": "Зарегистрируйтесь здесь"
   },

@@ -55,6 +55,8 @@
   "Signup": {
     "title": "Create Account",
     "description": "Join REST Client and start exploring APIs",
+    "formTitle": "Sign Up",
+    "formDescription": "Create your account to get started",
     "haveAccount": "Already have an account?",
     "loginNow": "Sign in"
   },
@@ -69,7 +71,9 @@
   },
   "Login": {
     "title": "Welcome Back",
-    "description": "Sign in to your REST Client account",
+    "description": "Enter your credentials to access your account",
+    "formTitle": "Sign In",
+    "formDescription": "Sign in to your account to continue",
     "noAccount": "Don't have an account?",
     "registerNow": "Sign up here"
   },

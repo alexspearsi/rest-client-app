@@ -57,7 +57,7 @@ export default function LoginForm() {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="relative pb-6">
+            <FormItem>
               <FormLabel>{t('emailLabel')} *</FormLabel>
               <FormControl>
                 <Input
@@ -66,11 +66,10 @@ export default function LoginForm() {
                   contentBefore={
                     <Mail className="text-muted-foreground h-4 w-4" />
                   }
-                  className="h-12"
                   {...field}
                 />
               </FormControl>
-              <FormMessage className="absolute bottom-0 left-0" />
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -79,7 +78,7 @@ export default function LoginForm() {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem className="relative pb-6">
+            <FormItem>
               <FormLabel>{t('passwordLabel')} *</FormLabel>
               <FormControl>
                 <Input
@@ -95,15 +94,14 @@ export default function LoginForm() {
                       className="text-muted-foreground h-4 w-4"
                     />
                   }
-                  className="h-12"
                   {...field}
                 />
               </FormControl>
-              <FormMessage className="absolute bottom-0 left-0" />
+              <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" className="h-12 w-full">
+        <Button type="submit" className="w-full">
           {t('login')}
         </Button>
       </form>
