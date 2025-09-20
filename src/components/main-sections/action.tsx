@@ -8,7 +8,7 @@ export default function ActionSection() {
 
   return (
     <section>
-      <div className="container mx-auto px-4 pt-16 pb-32 lg:px-20">
+      <div className="container mx-auto px-4 pt-8 pb-16 md:pt-16 md:pb-32 lg:px-20">
         <div className="mb-12 text-center">
           <Heading size="h2" className="mb-4">
             {t('title')}

@@ -39,10 +39,10 @@ export default function HeroSection() {
 
   return (
     <section className="flex items-center">
-      <div className="container mx-auto px-4 pt-32 pb-16 lg:px-20">
-        <div className="grid items-center justify-center gap-12 lg:grid-cols-2">
+      <div className="container mx-auto px-4 pt-16 pb-8 md:pt-32 md:pb-16 lg:px-20">
+        <div className="grid items-center justify-center gap-12 md:grid-cols-2">
           <div className="space-y-8">
-            <div className="space-y-6 text-center lg:text-start">
+            <div className="space-y-6 text-center md:text-start">
               {user && (
                 <Badge variant="secondary">
                   <span className="max-w-[250px] truncate">
@@ -56,7 +56,7 @@ export default function HeroSection() {
               </p>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-4 lg:justify-start">
+            <div className="flex flex-wrap justify-center gap-4 md:justify-start">
               {links.map((link, index) => (
                 <Button
                   key={link.label}
@@ -68,7 +68,7 @@ export default function HeroSection() {
               ))}
             </div>
 
-            <div className="text-muted-foreground flex flex-wrap items-center justify-center gap-6 text-sm lg:justify-start">
+            <div className="text-muted-foreground flex flex-wrap items-center justify-center gap-6 text-sm md:justify-start">
               <div className="flex items-center gap-2">
                 <div className="bg-chart-2 h-2 w-2 rounded-full"></div>
                 <span>{t('liveStatus')}</span>
