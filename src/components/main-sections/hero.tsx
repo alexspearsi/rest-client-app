@@ -39,7 +39,7 @@ export default function HeroSection() {
 
   return (
     <section className="flex items-center">
-      <div className="container mx-auto px-6 pt-32 pb-16 lg:px-20">
+      <div className="container mx-auto px-4 pt-32 pb-16 lg:px-20">
         <div className="grid items-center justify-center gap-12 lg:grid-cols-2">
           <div className="space-y-8">
             <div className="space-y-6 text-center lg:text-start">

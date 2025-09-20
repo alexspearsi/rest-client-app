@@ -34,9 +34,9 @@ export default function Page() {
   }
 
   return (
-    <div className="flex h-full items-center justify-center px-4 py-16">
-      <div className="w-full max-w-xs">
-        <div className="space-y-8">
+    <section>
+      <div className="container mx-auto px-4 py-16 lg:px-20">
+        <div className="mx-auto w-full max-w-xs space-y-8">
           <div className="space-y-2 text-center">
             <Heading size="h2">{t('title')}</Heading>
             <p className="text-muted-foreground">{t('description')}</p>
@@ -60,6 +60,6 @@ export default function Page() {
           </p>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

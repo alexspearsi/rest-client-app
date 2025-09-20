@@ -16,7 +16,7 @@ export default function CourseSection() {
 
   return (
     <section>
-      <div className="container mx-auto px-6 py-16 lg:px-20">
+      <div className="container mx-auto px-4 py-16 lg:px-20">
         <div className="mb-12 text-center">
           <Heading size="h2" className="mb-4">
             {t('title')}
