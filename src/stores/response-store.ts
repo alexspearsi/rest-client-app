@@ -16,6 +16,7 @@ export type ResponseStoreType = {
   data: unknown;
   error: string | null;
   url: string;
+  link?: string;
 };
 
 export const useResponseStore = create<ResponseStoreTypes>((set) => ({
@@ -30,6 +31,7 @@ export const useResponseStore = create<ResponseStoreTypes>((set) => ({
     data: '',
     error: null,
     url: '',
+    link: '',
   },
   updateResponse: (item): void => {
     set((state) => ({ responseData: { ...state.responseData, ...item } }));

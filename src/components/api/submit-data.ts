@@ -1,26 +1,20 @@
-import { RequestItems } from '@/stores/request-store';
-import { setResponseData } from '@/utils/set-response-data';
-
 type SubmitDataProps = {
-  data: RequestItems;
-  base64Url: string;
-  base64Body: [string | null, Record<string, string>];
-  queries: string;
-  bodyData: string;
+  method: string;
+  decodedUrl: string;
+  decodedBody: string;
+  headersObject: Record<string, string | undefined>;
 };
 
 export default async function submitData(props: SubmitDataProps) {
-  const { data, base64Url, base64Body, queries, bodyData } = props;
+  const { method, decodedUrl, decodedBody, headersObject } = props;
 
+  const start = Date.now();
   try {
-    const start = Date.now();
-
-    const response = await fetch(
-      `/api/${data.method}/${base64Url}${base64Body[0] ?? ''}${queries.length > 0 ? '?' + queries : ''}`,
-      {
-        method: data.method,
-      },
-    );
+    const response = await fetch(decodedUrl, {
+      method: method,
+      headers: { ...(headersObject as unknown as Record<string, string>) },
+      body: decodedBody || null,
+    });
 
     if (!response.ok) {
       const responseData: unknown = await response.text();
@@ -28,28 +22,49 @@ export default async function submitData(props: SubmitDataProps) {
       const end = Date.now();
       const time = end - start;
 
-      return setResponseData(
-        response,
+      return {
+        status: response.status,
+        statusText: response.statusText,
         responseData,
         time,
         start,
-        data,
-        bodyData,
-      );
+        url: decodedUrl,
+        body: decodedBody,
+        method,
+      };
     }
 
-    const option =
-      data.method === 'head' || data.method === 'options' ? 'text' : 'json';
+    const option = method === 'head' || method === 'options' ? 'text' : 'json';
 
     const responseData: unknown = await response[option]();
 
     const end = Date.now();
     const time = end - start;
 
-    return setResponseData(response, responseData, time, start, data, bodyData);
+    return {
+      status: response.status,
+      statusText: response.statusText,
+      responseData,
+      time,
+      start,
+      url: decodedUrl,
+      body: decodedBody,
+      method,
+    };
   } catch (error) {
     if (error instanceof Error) {
-      return error;
+      const end = Date.now();
+      const time = end - start;
+      return {
+        status: 500,
+        statusText: error.message,
+        responseData: null,
+        time,
+        start,
+        url: decodedUrl,
+        body: decodedBody,
+        method,
+      };
     }
   }
 }

@@ -9,14 +9,11 @@ import { Button } from '@/components/ui/button';
 import { createParams } from '@/utils/create-params';
 import { useHeadersStore } from '@/stores/headers-store';
 import { useBodyStore } from '@/stores/body-store';
-import { bodyToBase64 } from '@/utils/body-to-base64';
-import { useResponseStore } from '@/stores/response-store';
+import { bodyToBase64, encodeData } from '@/utils/body-to-base64';
 import { RequestItems, useRequestStore } from '@/stores/request-store';
-import { auth, saveUserRequest } from '@/firebase';
-import submitData from '@/components/api/submit-data';
-import { cloneItWithoutKeys } from '@/utils/clone-it-without-keys';
 import { useRestFormSchema } from '@/lib/schemas/use-rest-form-schema';
 import { validateForm } from './validate-form';
+import { useRouter } from '@/i18n/navigation';
 
 type RequestEditorTypes = {
   handleTabChange: (val: string) => void;
@@ -24,6 +21,7 @@ type RequestEditorTypes = {
 
 export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
   const { handleTabChange } = props;
+  const router = useRouter();
 
   const formReference = useRef<HTMLFormElement>(null);
   const restFormSchema = useRestFormSchema();
@@ -31,7 +29,7 @@ export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
 
   const headerItems = useHeadersStore((state) => state.headers);
   const bodyData = useBodyStore((state) => state.body);
-  const updateResponse = useResponseStore((state) => state.updateResponse);
+
   const requestUrl = useRequestStore((state) => state.url);
   const updateUrl = useRequestStore((state) => state.updateUrl);
 
@@ -49,30 +47,13 @@ export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
       const isParsed = validateForm(restFormSchema, data);
       if (!isParsed) return;
 
-      const base64Url = btoa(encodeURIComponent(data.url));
+      const base64Url = encodeData(data.url);
       const base64Body = bodyToBase64(bodyData);
       const queries = createParams(headerItems, base64Body[1]).toString();
-
-      const result = await submitData({
-        data,
-        base64Url,
-        base64Body,
-        queries,
-        bodyData,
-      });
+      const url = `/api/${data.method}/${base64Url}${base64Body[0] ?? ''}${queries.length > 0 ? '?' + queries : ''}`;
 
       handleTabChange('response');
-
-      if (result instanceof Error || !result) return;
-
-      updateResponse(result);
-
-      const clone = cloneItWithoutKeys(result, ['statusText', 'data']);
-
-      const id = auth.currentUser?.uid;
-      if (id) {
-        await saveUserRequest(id, clone);
-      }
+      router.push(url);
 
       return;
     }
