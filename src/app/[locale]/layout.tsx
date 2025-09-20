@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { ThemeProvider } from '@/components/contexts/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
+import { AuthProvider } from '../providers/auth-provider';
 
 type Props = {
   children: React.ReactNode;
@@ -30,6 +31,7 @@ export default async function RootLayout({ children, params }: Props) {
           disableTransitionOnChange
         >
           <NextIntlClientProvider locale={locale} messages={messages}>
+            <AuthProvider />
             <Header />
             <main>{children}</main>
             <Footer />
