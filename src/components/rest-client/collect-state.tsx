@@ -35,6 +35,7 @@ export function CollectState(props: CollectStateProps): JSX.Element {
     replaceHeader(headersObject);
 
     const clone = cloneItWithoutKeys(result, ['statusText', 'data']);
+    clone.method = clone.method.toUpperCase();
     clone.link = link;
 
     const id = auth.currentUser?.uid;
