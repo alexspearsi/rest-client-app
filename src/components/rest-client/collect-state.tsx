@@ -13,10 +13,11 @@ import { useHeadersStore } from '@/stores/headers-store';
 type CollectStateProps = {
   data: ResponseDataType;
   headersObject: Record<string, string | undefined>;
+  link: string;
 };
 
 export function CollectState(props: CollectStateProps): JSX.Element {
-  const { data, headersObject } = props;
+  const { data, headersObject, link } = props;
 
   const updateResponse = useResponseStore((state) => state.updateResponse);
   const updateUrl = useRequestStore((state) => state.updateUrl);
@@ -34,6 +35,7 @@ export function CollectState(props: CollectStateProps): JSX.Element {
     replaceHeader(headersObject);
 
     const clone = cloneItWithoutKeys(result, ['statusText', 'data']);
+    clone.link = link;
 
     const id = auth.currentUser?.uid;
     if (id) {
@@ -42,6 +44,7 @@ export function CollectState(props: CollectStateProps): JSX.Element {
   }, [
     data,
     headersObject,
+    link,
     replaceHeader,
     updateBody,
     updateMethod,
