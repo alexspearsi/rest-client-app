@@ -2,7 +2,7 @@ import { Link } from '@/i18n/navigation';
 import { Heading } from './ui/typography';
 import { useTranslations } from 'next-intl';
 import { RequestItem } from '../types/types';
-import { useCallback } from 'react';
+import { getStatusClass } from '@/utils/get-status-class';
 
 export default function HistoryContent({
   requests,
@@ -10,20 +10,6 @@ export default function HistoryContent({
   requests: RequestItem[];
 }) {
   const t = useTranslations('History');
-
-  const getStatusClass = useCallback((status: number) => {
-    if (status >= 500) {
-      return 'text-destructive font-medium';
-    }
-
-    if (status >= 400) {
-      return 'text-yellow-600 dark:text-yellow-400 font-medium';
-    }
-
-    if (status >= 200) {
-      return 'text-green-600 dark:text-green-400 font-medium';
-    }
-  }, []);
 
   if (requests.length === 0) {
     return (
