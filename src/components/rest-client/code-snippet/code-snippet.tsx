@@ -87,6 +87,7 @@ export default function CodeSnippet(): JSX.Element {
       )}
 
       <CodeMirror
+        data-testid="snippet"
         value={currentSnippetValue}
         height="250px"
         extensions={[currentLanguage()]}

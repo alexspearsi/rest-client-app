@@ -88,6 +88,7 @@ export default function BodyEditor(): JSX.Element {
       </Select>
 
       <CodeMirror
+        data-testid="code-editor"
         value={bodyData}
         height="250px"
         {...(selectedData !== 'text' ? { extensions: [json()] } : undefined)}
@@ -102,6 +103,7 @@ export default function BodyEditor(): JSX.Element {
               <span className="text-destructive text-sm">{t('error')}</span>
             )}
             <Button
+              data-testid="pretty-btn"
               className="ml-auto"
               type="button"
               onClick={handlePrettiness}

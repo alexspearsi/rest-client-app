@@ -27,7 +27,12 @@ export default function HeadersTable(): JSX.Element {
       {headerItems.map((item) => (
         <HeadersItem key={item.id} headerItemData={item} />
       ))}
-      <Button type="button" onClick={handleClick} size={'icon'}>
+      <Button
+        data-testid="add-header-btn"
+        type="button"
+        onClick={handleClick}
+        size={'icon'}
+      >
         <Plus />
       </Button>
     </div>

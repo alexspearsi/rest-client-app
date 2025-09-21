@@ -15,6 +15,7 @@ export default function ResponseViewer(): JSX.Element {
       <StatusBar responseData={responseData} />
 
       <CodeMirror
+        data-testid="response-code"
         value={JSON.stringify(responseData.data, null, 2)}
         height="250px"
         extensions={[json()]}

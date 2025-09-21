@@ -13,7 +13,12 @@ export type HeadersStoreTypes = {
 
 export const useHeadersStore = create<HeadersStoreTypes>((set) => ({
   headers: [
-    { id: crypto.randomUUID(), name: '', value: '', checked: false },
+    {
+      id: crypto.randomUUID(),
+      name: 'Custom-Header',
+      value: 'sample-value',
+      checked: false,
+    },
     { id: crypto.randomUUID(), name: '', value: '', checked: false },
     { id: crypto.randomUUID(), name: '', value: '', checked: false },
   ],
