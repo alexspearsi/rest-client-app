@@ -55,15 +55,15 @@
     "members": {
       "alex": {
         "name": "Aliaksandr Strelchanka",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum nulla, consectetur non dolor quis, egestas rhoncus est. Suspendisse potenti."
+        "description": "Aliaksandr is a responsible and thoughtful team member who always brings a calm and focused attitude to the work. His contributions helped keep the project on track and moving forward smoothly."
       },
       "mikhail": {
         "name": "Mikhail Il'in",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum nulla, consectetur non dolor quis, egestas rhoncus est. Suspendisse potenti."
+        "description": "Mikhail is a proactive and dedicated teammate with a strong sense of teamwork. He brings positive energy to the group and consistently supports the team's progress with great attention."
       },
       "olga": {
         "name": "Olga Dubodel",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum nulla, consectetur non dolor quis, egestas rhoncus est. Suspendisse potenti."
+        "description": "Olga is an attentive and creative member of the team. She approaches tasks with care and always brings a collaborative spirit, helping to maintain a friendly and productive team environment."
       }
     }
   },

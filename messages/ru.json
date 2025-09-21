@@ -54,16 +54,16 @@
     "description": "Увлечённые разработчики, создающие будущее инструментов для тестирования API.",
     "members": {
       "alex": {
-        "name": "Александр Стрельченко",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum nulla, consectetur non dolor quis, egestas rhoncus est. Suspendisse potenti."
+        "name": "Аляксандр Стрельчанка",
+        "description": "Аляксандр - ответственный и вдумчивый участник команды, который всегда сохраняет спокойный и сосредоточенный подход к работе. Его вклад помог проекту двигаться вперёд уверенно и без сбоев."
       },
       "mikhail": {
         "name": "Михаил Ильин",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum nulla, consectetur non dolor quis, egestas rhoncus est. Suspendisse potenti."
+        "description": "Михаил - инициативный и преданный своему делу участник, обладающий сильным командным духом. Он приносит в команду позитивную энергию и стабильно помогает достигать прогресса."
       },
       "olga": {
-        "name": "Ольга Дубодел",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum nulla, consectetur non dolor quis, egestas rhoncus est. Suspendisse potenti."
+        "name": "Ольга Дубодель",
+        "description": "Ольга - внимательный и креативный участник команды. Она подходит к задачам с заботой и всегда работает в духе сотрудничества, поддерживая дружелюбную и продуктивную атмосферу."
       }
     }
   },

@@ -51,13 +51,15 @@ export default function Footer() {
 
           <div className="flex flex-col items-center space-y-3 md:items-end">
             <div className="text-center md:text-right">
-              <div className="bg-accent/10 border-accent/20 inline-flex items-center space-x-2 rounded-lg border">
+              <div className="inline-flex items-center space-x-2">
                 <div className="bg-chart-2 h-2 w-2 animate-pulse rounded-full" />
                 <span className="text-accent-foreground text-base font-medium">
                   REST Client
                 </span>
               </div>
-              <p className="text-muted-foreground mt-2 text-sm">{t('about')}</p>
+              <p className="text-muted-foreground mt-2 max-w-[250px] text-sm">
+                {t('about')}
+              </p>
             </div>
           </div>
         </div>

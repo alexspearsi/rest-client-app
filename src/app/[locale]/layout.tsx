@@ -38,11 +38,9 @@ export default async function RootLayout({ children, params }: Props) {
             <Toaster
               richColors
               duration={1500}
-              position="top-left"
               toastOptions={{
                 style: {
                   maxWidth: '300px',
-                  width: 'auto',
                 },
               }}
             />
