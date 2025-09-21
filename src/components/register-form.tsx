@@ -48,7 +48,16 @@ export default function RegisterForm() {
       const id = toast.loading(tt('creatingAccount'));
 
       try {
-        await registerWithEmailAndPassword(name, email, password);
+        const user = await registerWithEmailAndPassword(name, email, password);
+
+        const token = await user.getIdToken();
+
+        await fetch('/api/session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token }),
+        });
+
         toast.success(tt('signupSuccess'), { id });
         router.replace('/');
       } catch {

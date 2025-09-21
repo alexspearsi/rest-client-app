@@ -1,17 +1,31 @@
-import ProtectedRoute from '@/components/protected-route';
-import { Heading } from '@/components/ui/typography';
-import Variables from '@/components/variables/variables';
-import { useTranslations } from 'next-intl';
+'use client';
+
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '@/firebase';
+import { Loader } from '@/components/loader';
+import { useRouter } from '@/i18n/navigation';
+import dynamic from 'next/dynamic';
+
+const VariablesContent = dynamic(
+  () => import('@/components/variables-content'),
+  {
+    ssr: false,
+    loading: () => <Loader />,
+  },
+);
 
 export default function Page() {
-  const t = useTranslations('Variables');
+  const [user, loading] = useAuthState(auth);
+  const router = useRouter();
 
-  return (
-    <ProtectedRoute>
-      <div className="flex h-screen flex-col items-center justify-center gap-6 p-8">
-        <Heading size="h2">{t('title')}</Heading>
-        <Variables />
-      </div>
-    </ProtectedRoute>
-  );
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (!user) {
+    router.replace('/');
+    return null;
+  }
+
+  return <VariablesContent />;
 }

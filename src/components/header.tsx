@@ -10,7 +10,7 @@ import { auth, logout } from '@/firebase';
 import { LanguageToggler } from './language-toggler';
 import { ThemeToggler } from './theme-toggler';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link } from '@/i18n/navigation';
+import { Link, useRouter } from '@/i18n/navigation';
 import { toast } from 'sonner';
 
 export default function Header() {
@@ -18,13 +18,20 @@ export default function Header() {
   const tt = useTranslations('Notification');
 
   const [user, loading] = useAuthState(auth);
+  const router = useRouter();
 
   async function handleLogout() {
+    const id = toast.loading(tt('loggingOut'));
+
     try {
       await logout();
-      toast.success(tt('logoutSuccess'));
+      await fetch('/api/session/logout', { method: 'POST' });
+
+      toast.success(tt('logoutSuccess'), { id });
+
+      router.replace('/');
     } catch {
-      toast.error(tt('logoutFailed'));
+      toast.error(tt('logoutFailed'), { id });
     }
   }
 

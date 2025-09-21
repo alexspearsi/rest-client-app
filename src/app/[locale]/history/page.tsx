@@ -1,29 +1,43 @@
-'use client';
+import { cookies } from 'next/headers';
+import { adminAuth, adminDb } from '@/firebaseAdmin';
+import { Loader } from '@/components/loader';
+import dynamic from 'next/dynamic';
+import { redirect } from 'next/navigation';
+import { RequestItem } from '@/types/types';
 
-import ProtectedRoute from '@/components/protected-route';
-import { Heading } from '@/components/ui/typography';
-import { auth, getUserRequests } from '@/firebase';
-import { ResponseStoreType } from '@/stores/response-store';
-import { useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
+const HistoryContent = dynamic(() => import('@/components/history-content'), {
+  ssr: true,
+  loading: () => <Loader />,
+});
 
-export default function Page() {
-  const t = useTranslations('History');
-  const [requests, setRequests] = useState<ResponseStoreType[]>([]);
+export default async function Page() {
+  const token = (await cookies()).get('token')?.value;
 
-  useEffect(() => {
-    (async () => {
-      const data = await getUserRequests(auth.currentUser?.uid ?? '');
-      setRequests(data);
-    })();
-  }, []);
+  if (!token) {
+    redirect('/');
+  }
 
-  return (
-    <ProtectedRoute>
-      <div className="flex h-screen flex-col items-center justify-center gap-6 p-8">
-        <Heading size="h2">{t('title')}</Heading>
-        {requests.toString()}
-      </div>
-    </ProtectedRoute>
-  );
+  const decoded = await adminAuth.verifyIdToken(token).catch(() => {
+    return null;
+  });
+
+  if (!decoded) {
+    redirect('/');
+  }
+
+  const { uid } = decoded;
+
+  const snapshot = await adminDb
+    .collection('users')
+    .doc(uid)
+    .collection('requests')
+    .orderBy('timestamp', 'desc')
+    .get();
+
+  const requests: RequestItem[] = snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...(doc.data() as Omit<RequestItem, 'id'>),
+  }));
+
+  return <HistoryContent requests={requests} />;
 }
