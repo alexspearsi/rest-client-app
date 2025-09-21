@@ -1,20 +1,36 @@
-import RestClient from '@/components/rest-client/rest-client';
-import { Heading } from '@/components/ui/typography';
-import { useTranslations } from 'next-intl';
 import type { ReactNode } from 'react';
+import { cookies } from 'next/headers';
+import { adminAuth } from '@/firebaseAdmin';
+import dynamic from 'next/dynamic';
+import { redirect } from 'next/navigation';
+import { Loader } from '@/components/loader';
 
-export default function RestClientLayout({
+const RestclientComponent = dynamic(
+  () => import('@/components/restclient-component'),
+  {
+    ssr: true,
+    loading: () => <Loader />,
+  },
+);
+
+export default async function RestClientLayout({
   children,
 }: {
   children: ReactNode;
 }) {
-  const t = useTranslations('RestClient');
+  const token = (await cookies()).get('token')?.value;
 
-  return (
-    <div className="flex h-screen flex-col items-center justify-center gap-6 p-8">
-      <Heading size="h2">{t('title')}</Heading>
-      <RestClient />
-      {children}
-    </div>
-  );
+  if (!token) {
+    redirect('/');
+  }
+
+  const decoded = await adminAuth.verifyIdToken(token).catch(() => {
+    return null;
+  });
+
+  if (!decoded) {
+    redirect('/');
+  }
+
+  return <RestclientComponent>{children}</RestclientComponent>;
 }

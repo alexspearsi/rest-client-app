@@ -11,9 +11,10 @@ import { useHeadersStore } from '@/stores/headers-store';
 import { useBodyStore } from '@/stores/body-store';
 import { bodyToBase64, encodeData } from '@/utils/body-to-base64';
 import { RequestItems, useRequestStore } from '@/stores/request-store';
-import { useRestFormSchema } from '@/lib/schemas/use-rest-form-schema';
-import { validateForm } from './validate-form';
 import { useRouter } from '@/i18n/navigation';
+import { parseVariable } from '@/utils/parse-variable';
+import { useVariablesStore } from '@/stores/variables-store';
+import { useTrueValuesStore } from '@/stores/true-values-store';
 
 type RequestEditorTypes = {
   handleTabChange: (val: string) => void;
@@ -24,7 +25,6 @@ export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
   const router = useRouter();
 
   const formReference = useRef<HTMLFormElement>(null);
-  const restFormSchema = useRestFormSchema();
   const t = useTranslations('RestClient');
 
   const headerItems = useHeadersStore((state) => state.headers);
@@ -32,6 +32,9 @@ export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
 
   const requestUrl = useRequestStore((state) => state.url);
   const updateUrl = useRequestStore((state) => state.updateUrl);
+
+  const setTrueValues = useTrueValuesStore((state) => state.setValue);
+  const variables = useVariablesStore((state) => state.variables);
 
   function handleValueChange(event: ChangeEvent<HTMLInputElement>): void {
     updateUrl(event.target.value);
@@ -44,12 +47,20 @@ export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
       const formData = new FormData(formReference.current);
       const data = Object.fromEntries(formData) as unknown as RequestItems;
 
-      const isParsed = validateForm(restFormSchema, data);
-      if (!isParsed) return;
+      setTrueValues({
+        url: data.url,
+        headers: headerItems,
+        body: bodyData,
+      });
 
-      const base64Url = encodeData(data.url);
-      const base64Body = bodyToBase64(bodyData);
-      const queries = createParams(headerItems, base64Body[1]).toString();
+      const base64Url = encodeData(parseVariable(data.url, variables));
+      const base64Body = bodyToBase64(parseVariable(bodyData, variables));
+      const queries = createParams(
+        headerItems,
+        base64Body[1],
+        variables,
+      ).toString();
+
       const url = `/api/${data.method}/${base64Url}${base64Body[0] ?? ''}${queries.length > 0 ? '?' + queries : ''}`;
 
       handleTabChange('response');

@@ -3,6 +3,8 @@ import { CollectState } from '@/components/rest-client/collect-state';
 import { ResponseDataType } from '@/components/rest-client/types';
 import { decodeData } from '@/utils/body-to-base64';
 import { createLink } from '@/utils/createLink';
+import { methods } from '@/utils/methods';
+import { notFound } from 'next/navigation';
 
 import { type JSX } from 'react';
 
@@ -18,7 +20,12 @@ export default async function Page({
   const { url } = await params;
   const headersObject = await searchParams;
 
-  const [, method, urlLink, body] = url;
+  const [api, method, urlLink, body] = url;
+
+  if (api !== 'api' || !methods.some((item) => item === method)) {
+    return notFound();
+  }
+
   const link = createLink(url, headersObject);
 
   const decodedUrl = decodeData(urlLink ?? '');

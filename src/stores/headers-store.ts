@@ -6,7 +6,9 @@ export type HeadersStoreTypes = {
   addHeader: (item: HeadersItems) => void;
   removeHeader: (id: string) => void;
   updateHeader: (item: HeadersItems) => void;
-  replaceHeader: (item: Record<string, string | undefined>) => void;
+  replaceHeader: (
+    item: Record<string, string | undefined> | HeadersItems[],
+  ) => void;
 };
 
 export const useHeadersStore = create<HeadersStoreTypes>((set) => ({
@@ -32,6 +34,10 @@ export const useHeadersStore = create<HeadersStoreTypes>((set) => ({
   },
   replaceHeader: (item): void => {
     set(() => {
+      if (Array.isArray(item)) {
+        return { headers: [...item] };
+      }
+
       const newHeaders: HeadersItems[] = [];
 
       Object.entries(item).forEach(([name, value]) => {
@@ -43,7 +49,7 @@ export const useHeadersStore = create<HeadersStoreTypes>((set) => ({
         });
       });
 
-      return { headers: newHeaders };
+      return { headers: [...newHeaders] };
     });
   },
 }));
