@@ -7,7 +7,7 @@ import { java } from '@codemirror/lang-java';
 import { go } from '@codemirror/lang-go';
 import { python } from '@codemirror/lang-python';
 import { csharp } from '@replit/codemirror-lang-csharp';
-import { vscodeDark } from '@uiw/codemirror-theme-vscode';
+import { vscodeDark, vscodeLight } from '@uiw/codemirror-theme-vscode';
 import { useRequestStore } from '@/stores/request-store';
 import { useHeadersStore } from '@/stores/headers-store';
 import { useBodyStore } from '@/stores/body-store';
@@ -23,6 +23,7 @@ import {
 } from '@/components/ui/select';
 import { CopyButton } from '../../copy-button';
 import { Label } from '@/components/ui/label';
+import { useTheme } from 'next-themes';
 
 const languages = [csharp, go, java, javascript, python];
 
@@ -34,6 +35,7 @@ export type RequestData = {
 };
 
 export default function CodeSnippet(): JSX.Element {
+  const { theme } = useTheme();
   const url = useRequestStore((state) => state.url);
   const method = useRequestStore((state) => state.method);
   const headerItems = useHeadersStore((state) => state.headers);
@@ -88,12 +90,12 @@ export default function CodeSnippet(): JSX.Element {
           </div>
         )}
       </div>
-      <div className="w-full">
+      <div className="overflow-hidden rounded-lg border">
         <CodeMirror
           value={currentSnippetValue}
           height="250px"
           extensions={[currentLanguage()]}
-          theme={vscodeDark}
+          theme={theme === 'dark' ? vscodeDark : vscodeLight}
         />
       </div>
     </div>

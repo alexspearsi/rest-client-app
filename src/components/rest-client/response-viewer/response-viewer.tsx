@@ -3,13 +3,15 @@
 import { type JSX } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { json } from '@codemirror/lang-json';
-import { vscodeDark } from '@uiw/codemirror-theme-vscode';
+import { vscodeLight, vscodeDark } from '@uiw/codemirror-theme-vscode';
 import { useResponseStore } from '@/stores/response-store';
 import StatusBar from './status-bar';
 import { Label } from '@/components/ui/label';
+import { useTheme } from 'next-themes';
 
 export default function ResponseViewer(): JSX.Element {
   const responseData = useResponseStore((state) => state.responseData);
+  const { theme } = useTheme();
 
   return (
     <div className="space-y-4">
@@ -18,13 +20,15 @@ export default function ResponseViewer(): JSX.Element {
         <StatusBar responseData={responseData} />
       </div>
       <div className="flex w-full flex-col gap-2">
-        <CodeMirror
-          value={JSON.stringify(responseData.data, null, 2)}
-          height="450px"
-          extensions={[json()]}
-          theme={vscodeDark}
-          readOnly
-        />
+        <div className="overflow-hidden rounded-lg border">
+          <CodeMirror
+            value={JSON.stringify(responseData.data, null, 2)}
+            height="450px"
+            extensions={[json()]}
+            theme={theme === 'dark' ? vscodeDark : vscodeLight}
+            readOnly
+          />
+        </div>
       </div>
     </div>
   );

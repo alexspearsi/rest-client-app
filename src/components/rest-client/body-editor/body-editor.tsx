@@ -4,7 +4,7 @@ import { useCallback, useState } from 'react';
 import type { JSX } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { json } from '@codemirror/lang-json';
-import { vscodeDark } from '@uiw/codemirror-theme-vscode';
+import { vscodeDark, vscodeLight } from '@uiw/codemirror-theme-vscode';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -18,6 +18,7 @@ import { useTranslations } from 'next-intl';
 import { Label } from '@/components/ui/label';
 import CustomTooltip from '@/components/ui/custom-tooltip';
 import { Sparkles } from 'lucide-react';
+import { useTheme } from 'next-themes';
 
 const bodyEditorVariants = ['json', 'text'] as const;
 
@@ -30,6 +31,7 @@ export type HeadersItems = {
 
 export default function BodyEditor(): JSX.Element {
   const t = useTranslations('RestClient');
+  const { theme } = useTheme();
   const bodyData = useBodyStore((state) => state.body);
   const selectedData = useBodyStore((state) => state.selectedData);
   const updateSelectedData = useBodyStore((state) => state.updateSelectedData);
@@ -106,13 +108,17 @@ export default function BodyEditor(): JSX.Element {
         </div>
       </div>
       <div className="flex w-full flex-col gap-2">
-        <CodeMirror
-          value={bodyData}
-          height="250px"
-          {...(selectedData !== 'text' ? { extensions: [json()] } : undefined)}
-          theme={vscodeDark}
-          onChange={handleValueChange}
-        />
+        <div className="overflow-hidden rounded-lg border">
+          <CodeMirror
+            value={bodyData}
+            height="250px"
+            {...(selectedData !== 'text'
+              ? { extensions: [json()] }
+              : undefined)}
+            theme={theme === 'dark' ? vscodeDark : vscodeLight}
+            onChange={handleValueChange}
+          />
+        </div>
 
         <div>
           {selectedData !== 'text' && (
