@@ -4,11 +4,9 @@ import { Loader } from '@/components/loader';
 import dynamic from 'next/dynamic';
 import { redirect } from 'next/navigation';
 import { RequestItem } from '@/types/types';
-import { Heading } from '@/components/ui/typography';
-import MobileHistoryContent from '@/components/history/mobile-history-content';
 
-const HistoryContent = dynamic(
-  () => import('@/components/history/history-content'),
+const HistoryComponent = dynamic(
+  () => import('@/components/history-component'),
   {
     ssr: true,
     loading: () => <Loader />,
@@ -44,27 +42,5 @@ export default async function Page() {
     ...(doc.data() as Omit<RequestItem, 'id'>),
   }));
 
-  return (
-    <section>
-      <div className="container mx-auto px-4 py-16 lg:px-20">
-        <div className="space-y-12">
-          <div className="space-y-2 text-center">
-            <Heading size="h2">History</Heading>
-            <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-              View your API request history and performance metrics
-            </p>
-          </div>
-          <div className="bg-background overflow-hidden rounded-lg border shadow-sm">
-            <div className="bg-secondary border-b px-6 py-4">
-              <p className="text-foreground text-lg font-semibold">
-                Request History
-              </p>
-            </div>
-            <HistoryContent requests={requests} />
-            <MobileHistoryContent requests={requests} />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  return <HistoryComponent requests={requests} />;
 }

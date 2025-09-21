@@ -22,7 +22,7 @@ export default function MobileHistoryContent({
             <p className="text-muted-foreground">{t('emptyDescription')}</p>
           </div>
           <Button asChild className="gap-2">
-            <Link href="/rest-client" className="text-blue-500">
+            <Link href="/rest-client">
               <Send className="h-5 w-5" /> {t('emptyLink')}
             </Link>
           </Button>

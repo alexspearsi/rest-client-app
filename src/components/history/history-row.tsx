@@ -12,6 +12,8 @@ export default function HistoryRow({ req }: { req: RequestItem }) {
   const router = useRouter();
   const t = useTranslations('History');
 
+  const sizes = [t('b'), t('kb'), t('mb')];
+
   return (
     <tr
       onClick={() => router.push(req.link)}
@@ -61,11 +63,11 @@ export default function HistoryRow({ req }: { req: RequestItem }) {
         <div className="space-y-1 text-sm">
           <div className="flex items-center gap-1">
             <span className="text-muted-foreground">↑</span>
-            <span>{formatBytes(req.reqSize)}</span>
+            <span>{formatBytes(req.reqSize, sizes)}</span>
           </div>
           <div className="flex items-center gap-1">
             <span className="text-muted-foreground">↓</span>
-            <span>{formatBytes(req.resSize)}</span>
+            <span>{formatBytes(req.resSize, sizes)}</span>
           </div>
         </div>
       </td>

@@ -22,7 +22,7 @@ export default function HistoryContent({
             <p className="text-muted-foreground">{t('emptyDescription')}</p>
           </div>
           <Button asChild className="gap-2">
-            <Link href="/rest-client" className="text-blue-500">
+            <Link href="/rest-client">
               <Send className="h-5 w-5" /> {t('emptyLink')}
             </Link>
           </Button>
@@ -37,22 +37,22 @@ export default function HistoryContent({
         <thead className="bg-secondary sticky top-0 border-b">
           <tr>
             <th className="px-4 py-3 text-left text-sm font-semibold tracking-wider uppercase">
-              Method
+              {t('method')}
             </th>
             <th className="px-4 py-3 text-left text-sm font-semibold tracking-wider uppercase">
-              Endpoint
+              {t('url')}
             </th>
             <th className="px-4 py-3 text-left text-sm font-semibold tracking-wider uppercase">
-              Status
+              {t('status')}
             </th>
             <th className="px-4 py-3 text-left text-sm font-semibold tracking-wider uppercase">
-              Duration
+              {t('duration')}
             </th>
             <th className="min-w-[80px] px-4 py-3 text-left text-sm font-semibold tracking-wider uppercase">
-              Size
+              {t('size')}
             </th>
             <th className="px-4 py-3 text-left text-sm font-semibold tracking-wider uppercase">
-              Time
+              {t('time')}
             </th>
           </tr>
         </thead>

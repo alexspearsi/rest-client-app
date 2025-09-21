@@ -12,6 +12,8 @@ export default function HistoryCard({ req }: { req: RequestItem }) {
   const router = useRouter();
   const t = useTranslations('History');
 
+  const sizes = [t('b'), t('kb'), t('mb')];
+
   return (
     <div
       onClick={() => router.push(req.link)}
@@ -46,8 +48,8 @@ export default function HistoryCard({ req }: { req: RequestItem }) {
 
       <div className="text-muted-foreground flex items-center justify-between text-sm">
         <div className="flex items-center gap-3">
-          <span>↑ {formatBytes(req.reqSize)}</span>
-          <span>↓ {formatBytes(req.resSize)}</span>
+          <span>↑ {formatBytes(req.reqSize, sizes)}</span>
+          <span>↓ {formatBytes(req.resSize, sizes)}</span>
         </div>
         <span>{new Date(req.timestamp).toLocaleString()}</span>
       </div>
