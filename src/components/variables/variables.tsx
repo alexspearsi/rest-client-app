@@ -46,7 +46,12 @@ export default function Variables(): JSX.Element {
       <div className="flex items-center justify-between">
         <Label className="text-lg font-semibold">{t('subtitle')}</Label>
         <CustomTooltip content={t('addTooltip')}>
-          <Button variant="outline" size="icon" onClick={handleClick}>
+          <Button
+            data-testid="add-var-btn"
+            variant="outline"
+            size="icon"
+            onClick={handleClick}
+          >
             <Plus className="h-4 w-4" />
           </Button>
         </CustomTooltip>
@@ -61,7 +66,7 @@ export default function Variables(): JSX.Element {
             <TableHead className="w-[36px]">{''}</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody data-testid="table-body">
           {variables.map((item) => (
             <Cell variable={item} key={item.id} />
           ))}
