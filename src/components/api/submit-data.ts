@@ -1,4 +1,4 @@
-type SubmitDataProps = {
+export type SubmitDataProps = {
   method: string;
   decodedUrl: string;
   decodedBody: string;
