@@ -8,9 +8,10 @@ html {
 }
 
 body {
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  height: 100vh;
 }
 
 @theme inline {
@@ -52,6 +53,30 @@ body {
   --color-danger: var(--danger);
   --color-warning: var(--warning);
   --color-success: var(--success);
+
+  --color-status-success: var(--status-success);
+  --color-status-success-foreground: var(--status-success-foreground);
+  --color-status-info: var(--status-info);
+  --color-status-info-foreground: var(--status-info-foreground);
+  --color-status-redirect: var(--status-redirect);
+  --color-status-redirect-foreground: var(--status-redirect-foreground);
+  --color-status-error: var(--status-error);
+  --color-status-error-foreground: var(--status-error-foreground);
+  --color-status-server-error: var(--status-server-error);
+  --color-status-server-error-foreground: var(--status-server-error-foreground);
+
+  --color-method-get: var(--method-get);
+  --color-method-get-foreground: var(--method-get-foreground);
+  --color-method-post: var(--method-post);
+  --color-method-post-foreground: var(--method-post-foreground);
+  --color-method-put: var(--method-put);
+  --color-method-put-foreground: var(--method-put-foreground);
+  --color-method-delete: var(--method-delete);
+  --color-method-delete-foreground: var(--method-delete-foreground);
+  --color-method-patch: var(--method-patch);
+  --color-method-patch-foreground: var(--method-patch-foreground);
+  --color-method-default: var(--method-default);
+  --color-method-default-foreground: var(--method-default-foreground);
 }
 
 :root {
@@ -87,9 +112,33 @@ body {
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --danger: oklch(0.5 0.19 30);
-  --warning: oklch(0.5 0.19 100);
-  --success: oklch(0.5 0.19 160);
+  --danger: oklch(0.577 0.245 27.325);
+  --warning: oklch(68.485% 0.17014 54.694);
+  --success: oklch(80.969% 0.26587 140.937);
+
+  --status-success: #dcfce7;
+  --status-success-foreground: #166534;
+  --status-info: #dbeafe;
+  --status-info-foreground: #1e40af;
+  --status-redirect: #fed7aa;
+  --status-redirect-foreground: #c2410c;
+  --status-error: #fecaca;
+  --status-error-foreground: #dc2626;
+  --status-server-error: #fecaca;
+  --status-server-error-foreground: #dc2626;
+
+  --method-get: #dcfce7;
+  --method-get-foreground: #166534;
+  --method-post: #dbeafe;
+  --method-post-foreground: #1e40af;
+  --method-put: #fed7aa;
+  --method-put-foreground: #c2410c;
+  --method-delete: #fecaca;
+  --method-delete-foreground: #dc2626;
+  --method-patch: #f3e8ff;
+  --method-patch-foreground: #7c3aed;
+  --method-default: #f1f5f9;
+  --method-default-foreground: #475569;
 }
 
 .dark {
@@ -124,9 +173,33 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-  --danger: oklch(0.7 0.19 30);
-  --warning: oklch(0.7 0.19 100);
-  --success: oklch(0.7 0.19 160);
+  --danger: oklch(0.704 0.191 22.216);
+  --warning: oklch(78.529% 0.13781 49.882);
+  --success: oklch(89.048% 0.20739 148.254);
+
+  --status-success: #14532d;
+  --status-success-foreground: #bbf7d0;
+  --status-info: #1e3a8a;
+  --status-info-foreground: #bfdbfe;
+  --status-redirect: #9a3412;
+  --status-redirect-foreground: #fed7aa;
+  --status-error: #991b1b;
+  --status-error-foreground: #fecaca;
+  --status-server-error: #991b1b;
+  --status-server-error-foreground: #fecaca;
+
+  --method-get: #14532d;
+  --method-get-foreground: #bbf7d0;
+  --method-post: #1e3a8a;
+  --method-post-foreground: #bfdbfe;
+  --method-put: #9a3412;
+  --method-put-foreground: #fed7aa;
+  --method-delete: #991b1b;
+  --method-delete-foreground: #fecaca;
+  --method-patch: #581c87;
+  --method-patch-foreground: #e9d5ff;
+  --method-default: #475569;
+  --method-default-foreground: #e2e8f0;
 }
 
 @layer base {

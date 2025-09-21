@@ -16,12 +16,7 @@ import { parseVariable } from '@/utils/parse-variable';
 import { useVariablesStore } from '@/stores/variables-store';
 import { useTrueValuesStore } from '@/stores/true-values-store';
 
-type RequestEditorTypes = {
-  handleTabChange: (val: string) => void;
-};
-
-export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
-  const { handleTabChange } = props;
+export default function RequestEditor(): JSX.Element {
   const router = useRouter();
 
   const formReference = useRef<HTMLFormElement>(null);
@@ -63,7 +58,6 @@ export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
 
       const url = `/api/${data.method}/${base64Url}${base64Body[0] ?? ''}${queries.length > 0 ? '?' + queries : ''}`;
 
-      handleTabChange('response');
       router.push(url);
 
       return;
@@ -82,7 +76,7 @@ export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
         <MethodSelector />
 
         <Input
-          className="w-full rounded-none border-r-0 border-l-0"
+          className="h-10 w-full rounded-none border-x-0"
           type="text"
           placeholder={t('url')}
           name="url"
@@ -92,7 +86,8 @@ export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
         />
 
         <Button
-          className="w-24 rounded-none rounded-r-lg"
+          className="h-10 rounded-none rounded-r-lg"
+          size="lg"
           type="submit"
           title={t('sendTitle')}
         >

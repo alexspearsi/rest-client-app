@@ -5,10 +5,13 @@ import dynamic from 'next/dynamic';
 import { redirect } from 'next/navigation';
 import { RequestItem } from '@/types/types';
 
-const HistoryContent = dynamic(() => import('@/components/history-content'), {
-  ssr: true,
-  loading: () => <Loader />,
-});
+const HistoryComponent = dynamic(
+  () => import('@/components/history-component'),
+  {
+    ssr: true,
+    loading: () => <Loader />,
+  },
+);
 
 export default async function Page() {
   const token = (await cookies()).get('token')?.value;
@@ -39,5 +42,5 @@ export default async function Page() {
     ...(doc.data() as Omit<RequestItem, 'id'>),
   }));
 
-  return <HistoryContent requests={requests} />;
+  return <HistoryComponent requests={requests} />;
 }

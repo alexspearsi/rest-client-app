@@ -11,6 +11,6 @@ test('Footer renders', () => {
     </NextIntlClientProvider>,
   );
 
-  const githubLink = screen.getByText('Github');
+  const githubLink = screen.getByText('REST Client');
   expect(githubLink).toBeTruthy();
 });

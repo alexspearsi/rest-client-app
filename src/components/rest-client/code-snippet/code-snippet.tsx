@@ -7,7 +7,7 @@ import { java } from '@codemirror/lang-java';
 import { go } from '@codemirror/lang-go';
 import { python } from '@codemirror/lang-python';
 import { csharp } from '@replit/codemirror-lang-csharp';
-import { vscodeDark } from '@uiw/codemirror-theme-vscode';
+import { vscodeDark, vscodeLight } from '@uiw/codemirror-theme-vscode';
 import { useRequestStore } from '@/stores/request-store';
 import { useHeadersStore } from '@/stores/headers-store';
 import { useBodyStore } from '@/stores/body-store';
@@ -22,6 +22,9 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { CopyButton } from '../../copy-button';
+import { Label } from '@/components/ui/label';
+import { useTheme } from 'next-themes';
+import { useTranslations } from 'next-intl';
 
 const languages = [csharp, go, java, javascript, python];
 
@@ -33,6 +36,8 @@ export type RequestData = {
 };
 
 export default function CodeSnippet(): JSX.Element {
+  const t = useTranslations('RestClient');
+  const { theme } = useTheme();
   const url = useRequestStore((state) => state.url);
   const method = useRequestStore((state) => state.method);
   const headerItems = useHeadersStore((state) => state.headers);
@@ -62,37 +67,39 @@ export default function CodeSnippet(): JSX.Element {
   const currentSnippetValue = currentSnippet.fn(requestData, selectedData);
 
   return (
-    <div className="flex min-h-[338px] w-full max-w-3xl flex-col gap-2">
-      {snippets.length > 0 && (
-        <div className="flex">
-          <Select
-            onValueChange={handleValueChange}
-            name="method"
-            value={currentSnippet.name}
-          >
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Choose Snippet..." />
-            </SelectTrigger>
-            <SelectContent>
-              {snippets.map((item) => (
-                <SelectItem key={item.name} value={item.name}>
-                  {item.name.replace(/[A-Z]/, (x) => '-' + x).toUpperCase()}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-
-          <CopyButton currentValue={currentSnippetValue} delay={1500} />
-        </div>
-      )}
-
-      <CodeMirror
-        data-testid="snippet"
-        value={currentSnippetValue}
-        height="250px"
-        extensions={[currentLanguage()]}
-        theme={vscodeDark}
-      ></CodeMirror>
+    <div className="space-y-4">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <Label className="text-lg font-semibold">{t('codeSnippetTitle')}</Label>
+        {snippets.length > 0 && (
+          <div className="flex items-center justify-center gap-3">
+            <CopyButton currentValue={currentSnippetValue} delay={1500} />
+            <Select
+              onValueChange={handleValueChange}
+              name="method"
+              value={currentSnippet.name}
+            >
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Choose Snippet..." />
+              </SelectTrigger>
+              <SelectContent>
+                {snippets.map((item) => (
+                  <SelectItem key={item.name} value={item.name}>
+                    {item.name.replace(/[A-Z]/, (x) => '-' + x).toUpperCase()}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        )}
+      </div>
+      <div className="overflow-hidden rounded-lg border">
+        <CodeMirror
+          value={currentSnippetValue}
+          height="317px"
+          extensions={[currentLanguage()]}
+          theme={theme === 'dark' ? vscodeDark : vscodeLight}
+        />
+      </div>
     </div>
   );
 }
