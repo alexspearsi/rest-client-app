@@ -16,7 +16,7 @@
     "course": "Course"
   },
   "HeroSection": {
-    "badgeWelcome": "Welcome back",
+    "badgeWelcome": "Welcome",
     "title": "REST Client",
     "description": "A modern, intuitive REST API testing tool built by 200 OK team, RS School students. Streamline your API development workflow with our powerful client.",
     "signIn": "Sign In",
