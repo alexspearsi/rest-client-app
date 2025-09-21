@@ -1,30 +1,30 @@
-'use client';
-
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '@/firebase';
+import { cookies } from 'next/headers';
+import { adminAuth } from '@/firebaseAdmin';
 import { Loader } from '@/components/loader';
-import { useRouter } from '@/i18n/navigation';
 import dynamic from 'next/dynamic';
+import { redirect } from 'next/navigation';
 
 const VariablesContent = dynamic(
   () => import('@/components/variables-content'),
   {
-    ssr: false,
+    ssr: true,
     loading: () => <Loader />,
   },
 );
 
-export default function Page() {
-  const [user, loading] = useAuthState(auth);
-  const router = useRouter();
+export default async function Page() {
+  const token = (await cookies()).get('token')?.value;
 
-  if (loading) {
-    return <Loader />;
+  if (!token) {
+    redirect('/');
   }
 
-  if (!user) {
-    router.replace('/');
+  const decoded = await adminAuth.verifyIdToken(token).catch(() => {
     return null;
+  });
+
+  if (!decoded) {
+    redirect('/');
   }
 
   return <VariablesContent />;

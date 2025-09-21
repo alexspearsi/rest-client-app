@@ -1,4 +1,4 @@
-import { methods } from '@/components/rest-client/request-editor/method-selector/method-selector';
+import { methods } from '@/utils/methods';
 import { useTranslations } from 'next-intl';
 import z from 'zod';
 

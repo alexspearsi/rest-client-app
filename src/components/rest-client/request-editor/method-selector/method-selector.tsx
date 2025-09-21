@@ -1,4 +1,5 @@
 import type { JSX } from 'react';
+import { methods } from '@/utils/methods';
 import {
   Select,
   SelectContent,
@@ -7,16 +8,6 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useRequestStore } from '@/stores/request-store';
-
-export const methods = [
-  'get',
-  'post',
-  'put',
-  'patch',
-  'delete',
-  'head',
-  'options',
-] as const;
 
 export default function MethodSelector(): JSX.Element {
   const method = useRequestStore((state) => state.method);

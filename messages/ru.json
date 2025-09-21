@@ -118,7 +118,9 @@
     "methodError": "Должен быть валидный HTTP метод"
   },
   "Variables": {
-    "title": "Переменные"
+    "title": "Переменные",
+    "variable": "Переменная",
+    "value": "Значение"
   },
   "History": {
     "title": "История",
