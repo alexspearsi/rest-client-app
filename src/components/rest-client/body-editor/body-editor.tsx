@@ -75,9 +75,16 @@ export default function BodyEditor(): JSX.Element {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <Label className="text-lg font-semibold">Request Body</Label>
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <Label className="text-lg font-semibold">{t('bodyTitle')}</Label>
         <div className="flex items-center justify-center gap-3">
+          {selectedData !== 'text' && (
+            <div className="flex items-center">
+              {isError && (
+                <span className="text-destructive text-sm">{t('error')}</span>
+              )}
+            </div>
+          )}
           <CustomTooltip content={t('format')}>
             <Button
               type="button"
@@ -118,16 +125,6 @@ export default function BodyEditor(): JSX.Element {
             theme={theme === 'dark' ? vscodeDark : vscodeLight}
             onChange={handleValueChange}
           />
-        </div>
-
-        <div>
-          {selectedData !== 'text' && (
-            <div className="flex items-center">
-              {isError && (
-                <span className="text-destructive text-sm">{t('error')}</span>
-              )}
-            </div>
-          )}
         </div>
       </div>
     </div>

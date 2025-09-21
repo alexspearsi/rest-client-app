@@ -17,7 +17,7 @@ export default function RestclientComponent({
           <div className="space-y-2 text-center">
             <Heading size="h2">{t('title')}</Heading>
             <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-              Test and debug your APIs with our powerful REST client interface
+              {t('description')}
             </p>
           </div>
           <RestClient />

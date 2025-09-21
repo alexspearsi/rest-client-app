@@ -24,6 +24,7 @@ import {
 import { CopyButton } from '../../copy-button';
 import { Label } from '@/components/ui/label';
 import { useTheme } from 'next-themes';
+import { useTranslations } from 'next-intl';
 
 const languages = [csharp, go, java, javascript, python];
 
@@ -35,6 +36,7 @@ export type RequestData = {
 };
 
 export default function CodeSnippet(): JSX.Element {
+  const t = useTranslations('RestClient');
   const { theme } = useTheme();
   const url = useRequestStore((state) => state.url);
   const method = useRequestStore((state) => state.method);
@@ -67,7 +69,7 @@ export default function CodeSnippet(): JSX.Element {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <Label className="text-lg font-semibold">Code Snippet</Label>
+        <Label className="text-lg font-semibold">{t('codeSnippetTitle')}</Label>
         {snippets.length > 0 && (
           <div className="flex items-center justify-center gap-3">
             <CopyButton currentValue={currentSnippetValue} delay={1500} />

@@ -8,15 +8,17 @@ import { useResponseStore } from '@/stores/response-store';
 import StatusBar from './status-bar';
 import { Label } from '@/components/ui/label';
 import { useTheme } from 'next-themes';
+import { useTranslations } from 'next-intl';
 
 export default function ResponseViewer(): JSX.Element {
+  const t = useTranslations('RestClient');
   const responseData = useResponseStore((state) => state.responseData);
   const { theme } = useTheme();
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <Label className="text-lg font-semibold">Response</Label>
+        <Label className="text-lg font-semibold">{t('responseTitle')}</Label>
         <StatusBar responseData={responseData} />
       </div>
       <div className="flex w-full flex-col gap-2">

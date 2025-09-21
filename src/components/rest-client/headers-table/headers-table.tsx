@@ -9,8 +9,10 @@ import { useHeadersStore } from '@/stores/headers-store';
 import { Label } from '@/components/ui/label';
 import CustomTooltip from '@/components/ui/custom-tooltip';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { useTranslations } from 'next-intl';
 
 export default function HeadersTable(): JSX.Element {
+  const t = useTranslations('RestClient');
   const headerItems = useHeadersStore((state) => state.headers);
   const addHeader = useHeadersStore((state) => state.addHeader);
 
@@ -28,8 +30,8 @@ export default function HeadersTable(): JSX.Element {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <Label className="text-lg font-semibold">Request Headers</Label>
-        <CustomTooltip content="Add Header">
+        <Label className="text-lg font-semibold">{t('headersTitle')}</Label>
+        <CustomTooltip content={t('addHeaderTooltip')}>
           <Button variant="outline" size="icon" onClick={handleClick}>
             <Plus className="h-4 w-4" />
           </Button>
