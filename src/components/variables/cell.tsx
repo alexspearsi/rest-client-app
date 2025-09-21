@@ -28,7 +28,7 @@ export function Cell(props: CellProps): JSX.Element {
 
   function handleValueChange(event: ChangeEvent<HTMLInputElement>): void {
     const targetName = event.target.name.replace('variable-', '');
-    const targetValue = event.target.value.trim();
+    const targetValue = event.target.value;
 
     const item = {
       ...variable,

@@ -32,7 +32,7 @@ export function CollectState(props: CollectStateProps): JSX.Element {
 
   useEffect(() => {
     const result = setResponseData(data);
-    console.log('RESULT', result);
+
     updateMethod(data.method);
     updateResponse(result);
     updateUrl(trueValues.url || data.url);
