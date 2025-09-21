@@ -15,6 +15,8 @@ import { useVariablesStore } from '@/stores/variables-store';
 import { Button } from '../ui/button';
 import { Plus } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { Label } from '../ui/label';
+import CustomTooltip from '../ui/custom-tooltip';
 
 export type VariablesLS = {
   id: string;
@@ -40,7 +42,15 @@ export default function Variables(): JSX.Element {
   }
 
   return (
-    <div className="flex w-full max-w-[768px] flex-col justify-center">
+    <div className="space-y-4 p-4">
+      <div className="flex items-center justify-between">
+        <Label className="text-lg font-semibold">Variables</Label>
+        <CustomTooltip content="Add Variable">
+          <Button variant="outline" size="icon" onClick={handleClick}>
+            <Plus className="h-4 w-4" />
+          </Button>
+        </CustomTooltip>
+      </div>
       <Table>
         <TableCaption></TableCaption>
         <TableHeader>
@@ -57,9 +67,6 @@ export default function Variables(): JSX.Element {
           ))}
         </TableBody>
       </Table>
-      <Button type="button" onClick={handleClick} size={'icon'}>
-        <Plus />
-      </Button>
     </div>
   );
 }
