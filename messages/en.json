@@ -41,7 +41,9 @@
     "methodError": "Must be valid HTTP Method"
   },
   "Variables": {
-    "title": "Variables"
+    "title": "Variables",
+    "variable": "Variable",
+    "value": "Value"
   },
   "History": {
     "title": "History"
