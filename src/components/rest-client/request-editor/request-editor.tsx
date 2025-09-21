@@ -11,8 +11,6 @@ import { useHeadersStore } from '@/stores/headers-store';
 import { useBodyStore } from '@/stores/body-store';
 import { bodyToBase64, encodeData } from '@/utils/body-to-base64';
 import { RequestItems, useRequestStore } from '@/stores/request-store';
-import { useRestFormSchema } from '@/lib/schemas/use-rest-form-schema';
-import { validateForm } from './validate-form';
 import { useRouter } from '@/i18n/navigation';
 import { parseVariable } from '@/utils/parse-variable';
 import { useVariablesStore } from '@/stores/variables-store';
@@ -27,7 +25,6 @@ export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
   const router = useRouter();
 
   const formReference = useRef<HTMLFormElement>(null);
-  const restFormSchema = useRestFormSchema();
   const t = useTranslations('RestClient');
 
   const headerItems = useHeadersStore((state) => state.headers);
@@ -49,9 +46,6 @@ export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
     if (formReference.current instanceof HTMLFormElement) {
       const formData = new FormData(formReference.current);
       const data = Object.fromEntries(formData) as unknown as RequestItems;
-
-      const isParsed = validateForm(restFormSchema, data);
-      if (!isParsed) return;
 
       setTrueValues({
         url: data.url,
