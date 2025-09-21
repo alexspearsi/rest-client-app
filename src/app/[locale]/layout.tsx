@@ -8,11 +8,17 @@ import { routing } from '@/i18n/routing';
 import { ThemeProvider } from '@/components/contexts/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
 import { AuthProvider } from '../providers/auth-provider';
+import { Metadata } from 'next';
 
 type Props = {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 };
+
+export const metadata: Metadata = {
+  title: 'REST Client',
+};
+
 export default async function RootLayout({ children, params }: Props) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
