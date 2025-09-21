@@ -65,7 +65,7 @@ export default function CodeSnippet(): JSX.Element {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <Label className="text-sm font-medium">Code Snippet</Label>
+        <Label className="text-lg font-semibold">Code Snippet</Label>
         {snippets.length > 0 && (
           <div className="flex items-center justify-center gap-3">
             <CopyButton currentValue={currentSnippetValue} delay={1500} />

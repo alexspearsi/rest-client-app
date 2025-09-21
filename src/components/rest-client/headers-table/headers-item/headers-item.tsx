@@ -45,7 +45,7 @@ export default function HeadersItem(props: HeaderItemProps): JSX.Element {
   return (
     <div className="flex items-center space-x-2">
       <Checkbox
-        className="h-6 w-6"
+        className="h-5 w-5"
         onCheckedChange={handleCheckbox}
         name="header-checkbox"
         checked={headerItemData.checked}

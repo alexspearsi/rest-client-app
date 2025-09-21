@@ -74,11 +74,10 @@ export default function BodyEditor(): JSX.Element {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <Label className="text-sm font-medium">Request Body</Label>
+        <Label className="text-lg font-semibold">Request Body</Label>
         <div className="flex items-center justify-center gap-3">
           <CustomTooltip content={t('format')}>
             <Button
-              className="ml-auto"
               type="button"
               onClick={handlePrettiness}
               variant="outline"

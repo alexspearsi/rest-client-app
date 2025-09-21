@@ -14,15 +14,13 @@ export default function ResponseViewer(): JSX.Element {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <Label className="text-sm font-medium">Response</Label>
+        <Label className="text-lg font-semibold">Response</Label>
         <StatusBar responseData={responseData} />
       </div>
       <div className="flex w-full flex-col gap-2">
-        {/* <StatusBar responseData={responseData} /> */}
-
         <CodeMirror
           value={JSON.stringify(responseData.data, null, 2)}
-          height="250px"
+          height="450px"
           extensions={[json()]}
           theme={vscodeDark}
           readOnly
