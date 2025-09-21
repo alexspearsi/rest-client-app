@@ -66,7 +66,7 @@ export default function CodeSnippet(): JSX.Element {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <Label className="text-lg font-semibold">Code Snippet</Label>
         {snippets.length > 0 && (
           <div className="flex items-center justify-center gap-3">
@@ -93,7 +93,7 @@ export default function CodeSnippet(): JSX.Element {
       <div className="overflow-hidden rounded-lg border">
         <CodeMirror
           value={currentSnippetValue}
-          height="250px"
+          height="317px"
           extensions={[currentLanguage()]}
           theme={theme === 'dark' ? vscodeDark : vscodeLight}
         />

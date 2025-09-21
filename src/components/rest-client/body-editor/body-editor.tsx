@@ -111,7 +111,7 @@ export default function BodyEditor(): JSX.Element {
         <div className="overflow-hidden rounded-lg border">
           <CodeMirror
             value={bodyData}
-            height="250px"
+            height="317px"
             {...(selectedData !== 'text'
               ? { extensions: [json()] }
               : undefined)}

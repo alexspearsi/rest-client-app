@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { Button } from '../ui/button';
 import { Heading } from '../ui/typography';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -19,6 +18,7 @@ import {
 import Image from 'next/image';
 import { Badge } from '../ui/badge';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 
 const images = [catFirstSrc, catSecondSrc, catThirdSrc];
 

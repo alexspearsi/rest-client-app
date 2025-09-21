@@ -35,7 +35,7 @@ export default function HeadersTable(): JSX.Element {
           </Button>
         </CustomTooltip>
       </div>
-      <ScrollArea className="h-[250px] rounded-lg border">
+      <ScrollArea className="h-[317px] rounded-lg border">
         <div className="flex w-full flex-col gap-2 p-4">
           {headerItems.map((item) => (
             <HeadersItem key={item.id} headerItemData={item} />

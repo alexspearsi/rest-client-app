@@ -64,6 +64,19 @@ body {
   --color-status-error-foreground: var(--status-error-foreground);
   --color-status-server-error: var(--status-server-error);
   --color-status-server-error-foreground: var(--status-server-error-foreground);
+
+  --color-method-get: var(--method-get);
+  --color-method-get-foreground: var(--method-get-foreground);
+  --color-method-post: var(--method-post);
+  --color-method-post-foreground: var(--method-post-foreground);
+  --color-method-put: var(--method-put);
+  --color-method-put-foreground: var(--method-put-foreground);
+  --color-method-delete: var(--method-delete);
+  --color-method-delete-foreground: var(--method-delete-foreground);
+  --color-method-patch: var(--method-patch);
+  --color-method-patch-foreground: var(--method-patch-foreground);
+  --color-method-default: var(--method-default);
+  --color-method-default-foreground: var(--method-default-foreground);
 }
 
 :root {
@@ -113,6 +126,19 @@ body {
   --status-error-foreground: #dc2626;
   --status-server-error: #fecaca;
   --status-server-error-foreground: #dc2626;
+
+  --method-get: #dcfce7;
+  --method-get-foreground: #166534;
+  --method-post: #dbeafe;
+  --method-post-foreground: #1e40af;
+  --method-put: #fed7aa;
+  --method-put-foreground: #c2410c;
+  --method-delete: #fecaca;
+  --method-delete-foreground: #dc2626;
+  --method-patch: #f3e8ff;
+  --method-patch-foreground: #7c3aed;
+  --method-default: #f1f5f9;
+  --method-default-foreground: #475569;
 }
 
 .dark {
@@ -161,6 +187,19 @@ body {
   --status-error-foreground: #fecaca;
   --status-server-error: #991b1b;
   --status-server-error-foreground: #fecaca;
+
+  --method-get: #14532d;
+  --method-get-foreground: #bbf7d0;
+  --method-post: #1e3a8a;
+  --method-post-foreground: #bfdbfe;
+  --method-put: #9a3412;
+  --method-put-foreground: #fed7aa;
+  --method-delete: #991b1b;
+  --method-delete-foreground: #fecaca;
+  --method-patch: #581c87;
+  --method-patch-foreground: #e9d5ff;
+  --method-default: #475569;
+  --method-default-foreground: #e2e8f0;
 }
 
 @layer base {

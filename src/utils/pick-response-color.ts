@@ -3,8 +3,10 @@ export function pickStatusColor(status: number): string {
     return 'text-status-success-foreground bg-status-success';
   if (status >= 300 && status < 400)
     return 'text-status-redirect-foreground bg-status-redirect';
-  if (status >= 400 && status < 600)
+  if (status >= 400 && status < 500)
     return 'text-status-error-foreground bg-status-error';
+  if (status >= 500)
+    return 'text-status-server-error-foreground bg-status-server-error';
   return '';
 }
 
