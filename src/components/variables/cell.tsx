@@ -42,7 +42,7 @@ export function Cell(props: CellProps): JSX.Element {
     <TableRow>
       <TableCell>
         <Checkbox
-          className="h-6 w-6"
+          className="h-5 w-5"
           onCheckedChange={handleCheckbox}
           name="variable-checkbox"
           checked={variable.checked}

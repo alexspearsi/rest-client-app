@@ -13,7 +13,7 @@ export default function VariablesContent() {
           <div className="space-y-2 text-center">
             <Heading size="h2">{t('title')}</Heading>
             <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-              Manage variables for your API requests
+              {t('description')}
             </p>
           </div>
           <div>

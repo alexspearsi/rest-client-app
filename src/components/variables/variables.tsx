@@ -44,8 +44,8 @@ export default function Variables(): JSX.Element {
   return (
     <div className="space-y-4 p-4">
       <div className="flex items-center justify-between">
-        <Label className="text-lg font-semibold">Variables</Label>
-        <CustomTooltip content="Add Variable">
+        <Label className="text-lg font-semibold">{t('subtitle')}</Label>
+        <CustomTooltip content={t('addTooltip')}>
           <Button variant="outline" size="icon" onClick={handleClick}>
             <Plus className="h-4 w-4" />
           </Button>

@@ -119,8 +119,11 @@
   },
   "Variables": {
     "title": "Variables",
+    "subtitle": "Variables",
+    "description": "Manage variables for your API requests",
     "variable": "Variable",
-    "value": "Value"
+    "value": "Value",
+    "addTooltip": "Add Variable"
   },
   "History": {
     "title": "History",
