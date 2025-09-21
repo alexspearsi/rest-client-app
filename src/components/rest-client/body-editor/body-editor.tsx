@@ -87,6 +87,7 @@ export default function BodyEditor(): JSX.Element {
           )}
           <CustomTooltip content={t('format')}>
             <Button
+              data-testid="pretty-btn"
               type="button"
               onClick={handlePrettiness}
               variant="outline"
@@ -117,6 +118,7 @@ export default function BodyEditor(): JSX.Element {
       <div className="flex w-full flex-col gap-2">
         <div className="overflow-hidden rounded-lg border">
           <CodeMirror
+            data-testid="code-editor"
             value={bodyData}
             height="317px"
             {...(selectedData !== 'text'

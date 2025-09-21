@@ -94,6 +94,7 @@ export default function CodeSnippet(): JSX.Element {
       </div>
       <div className="overflow-hidden rounded-lg border">
         <CodeMirror
+          data-testid="snippet"
           value={currentSnippetValue}
           height="317px"
           extensions={[currentLanguage()]}
