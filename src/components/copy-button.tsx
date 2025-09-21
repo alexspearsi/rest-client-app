@@ -8,6 +8,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
 import { copyToClipBoard } from '@/utils/copy-to-clipboard';
+import { Copy } from 'lucide-react';
 
 type CopyButtonProps = {
   currentValue: string;
@@ -38,13 +39,14 @@ export function CopyButton(props: CopyButtonProps): JSX.Element {
         <Button
           className="ml-auto"
           type="button"
-          variant={'secondary'}
+          variant="outline"
+          size="icon"
           onClick={copyValue}
         >
-          {t('copy')}
+          <Copy />
         </Button>
       </TooltipTrigger>
-      <TooltipContent side="left">
+      <TooltipContent>
         <p>{t('copied')}</p>
       </TooltipContent>
     </Tooltip>

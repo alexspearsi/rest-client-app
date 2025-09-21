@@ -30,7 +30,7 @@ export default function MethodSelector(): JSX.Element {
 
   return (
     <Select onValueChange={handleSelection} name="method" value={method}>
-      <SelectTrigger className="w-[180px] rounded-none rounded-l-lg">
+      <SelectTrigger className="!h-10 w-[180px] rounded-none rounded-l-lg">
         <SelectValue aria-label={method}>{method.toUpperCase()}</SelectValue>
       </SelectTrigger>
       <SelectContent>

@@ -39,7 +39,7 @@ export default function Page() {
         <div className="mx-auto w-full max-w-xs space-y-8">
           <div className="space-y-2 text-center">
             <Heading size="h2">{t('title')}</Heading>
-            <p className="text-muted-foreground">{t('description')}</p>
+            <p className="text-muted-foreground text-lg">{t('description')}</p>
           </div>
           <Card>
             <CardHeader>

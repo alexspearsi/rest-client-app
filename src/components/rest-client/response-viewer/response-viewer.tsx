@@ -6,21 +6,28 @@ import { json } from '@codemirror/lang-json';
 import { vscodeDark } from '@uiw/codemirror-theme-vscode';
 import { useResponseStore } from '@/stores/response-store';
 import StatusBar from './status-bar';
+import { Label } from '@/components/ui/label';
 
 export default function ResponseViewer(): JSX.Element {
   const responseData = useResponseStore((state) => state.responseData);
 
   return (
-    <div className="flex min-h-[338px] w-full max-w-3xl flex-col gap-2">
-      <StatusBar responseData={responseData} />
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <Label className="text-sm font-medium">Response</Label>
+        <StatusBar responseData={responseData} />
+      </div>
+      <div className="flex w-full flex-col gap-2">
+        {/* <StatusBar responseData={responseData} /> */}
 
-      <CodeMirror
-        value={JSON.stringify(responseData.data, null, 2)}
-        height="250px"
-        extensions={[json()]}
-        theme={vscodeDark}
-        readOnly
-      />
+        <CodeMirror
+          value={JSON.stringify(responseData.data, null, 2)}
+          height="250px"
+          extensions={[json()]}
+          theme={vscodeDark}
+          readOnly
+        />
+      </div>
     </div>
   );
 }

@@ -118,7 +118,7 @@ export default function Header() {
 
             {user && (
               <CustomTooltip content={t('logoutTooltip')}>
-                <Button variant="outline" onClick={handleLogout}>
+                <Button variant="outline" size="icon" onClick={handleLogout}>
                   <LogOut />
                 </Button>
               </CustomTooltip>

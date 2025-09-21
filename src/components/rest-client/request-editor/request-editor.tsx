@@ -71,7 +71,7 @@ export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
         <MethodSelector />
 
         <Input
-          className="w-full rounded-none border-r-0 border-l-0"
+          className="h-10 w-full rounded-none rounded-r-lg border-l-0"
           type="text"
           placeholder={t('url')}
           name="url"
@@ -80,11 +80,7 @@ export default function RequestEditor(props: RequestEditorTypes): JSX.Element {
           required
         />
 
-        <Button
-          className="w-24 rounded-none rounded-r-lg"
-          type="submit"
-          title={t('sendTitle')}
-        >
+        <Button className="ml-3" size="lg" type="submit" title={t('sendTitle')}>
           {t('send')}
         </Button>
       </form>

@@ -6,7 +6,6 @@ import RequestEditor from './request-editor/request-editor';
 import HeadersTable from './headers-table/headers-table';
 import BodyEditor from './body-editor/body-editor';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Separator } from '@/components/ui/separator';
 import ResponseViewer from './response-viewer/response-viewer';
 import CodeSnippet from './code-snippet/code-snippet';
 import { useTranslations } from 'next-intl';
@@ -31,18 +30,26 @@ export default function RestClient(): JSX.Element {
   }
 
   return (
-    <div className="flex w-full max-w-3xl flex-col gap-5">
+    <div className="space-y-6">
       <RequestEditor handleTabChange={handleTabChange} />
 
-      <Tabs value={currentTab} onValueChange={handleTabChange}>
-        <TabsList className="flex w-full max-w-3xl justify-center">
+      <Tabs
+        value={currentTab}
+        onValueChange={handleTabChange}
+        defaultValue="explore"
+        className="gap-6"
+      >
+        <TabsList className="bg-background rounded-none border-b p-0">
           {tabs.map((tab) => (
-            <TabsTrigger key={tab} value={tab} className="capitalize">
+            <TabsTrigger
+              key={tab}
+              value={tab}
+              className="bg-background data-[state=active]:border-primary dark:data-[state=active]:border-primary h-full rounded-none border-0 border-b-2 border-transparent data-[state=active]:shadow-none"
+            >
               {t(tab)}
             </TabsTrigger>
           ))}
         </TabsList>
-        <Separator className="my-1" />
         {components.map((Tab, index) => (
           <TabsContent key={tabs[index] + '.'} value={tabs[index]}>
             <Tab />

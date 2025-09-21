@@ -22,6 +22,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { CopyButton } from '../../copy-button';
+import { Label } from '@/components/ui/label';
 
 const languages = [csharp, go, java, javascript, python];
 
@@ -62,36 +63,39 @@ export default function CodeSnippet(): JSX.Element {
   const currentSnippetValue = currentSnippet.fn(requestData, selectedData);
 
   return (
-    <div className="flex min-h-[338px] w-full max-w-3xl flex-col gap-2">
-      {snippets.length > 0 && (
-        <div className="flex">
-          <Select
-            onValueChange={handleValueChange}
-            name="method"
-            value={currentSnippet.name}
-          >
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Choose Snippet..." />
-            </SelectTrigger>
-            <SelectContent>
-              {snippets.map((item) => (
-                <SelectItem key={item.name} value={item.name}>
-                  {item.name.replace(/[A-Z]/, (x) => '-' + x).toUpperCase()}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-
-          <CopyButton currentValue={currentSnippetValue} delay={1500} />
-        </div>
-      )}
-
-      <CodeMirror
-        value={currentSnippetValue}
-        height="250px"
-        extensions={[currentLanguage()]}
-        theme={vscodeDark}
-      ></CodeMirror>
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <Label className="text-sm font-medium">Code Snippet</Label>
+        {snippets.length > 0 && (
+          <div className="flex items-center justify-center gap-3">
+            <CopyButton currentValue={currentSnippetValue} delay={1500} />
+            <Select
+              onValueChange={handleValueChange}
+              name="method"
+              value={currentSnippet.name}
+            >
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Choose Snippet..." />
+              </SelectTrigger>
+              <SelectContent>
+                {snippets.map((item) => (
+                  <SelectItem key={item.name} value={item.name}>
+                    {item.name.replace(/[A-Z]/, (x) => '-' + x).toUpperCase()}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        )}
+      </div>
+      <div className="w-full">
+        <CodeMirror
+          value={currentSnippetValue}
+          height="250px"
+          extensions={[currentLanguage()]}
+          theme={vscodeDark}
+        />
+      </div>
     </div>
   );
 }

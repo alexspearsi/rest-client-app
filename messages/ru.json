@@ -95,7 +95,7 @@
     "getStarted": "Начать работу"
   },
   "RestClient": {
-    "title": "Rest клиент",
+    "title": "REST клиент",
     "headers": "Заголовки",
     "body": "Тело",
     "response": "Ответ",

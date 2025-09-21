@@ -15,6 +15,9 @@ import {
 } from '@/components/ui/select';
 import { useBodyStore } from '@/stores/body-store';
 import { useTranslations } from 'next-intl';
+import { Label } from '@/components/ui/label';
+import CustomTooltip from '@/components/ui/custom-tooltip';
+import { Sparkles } from 'lucide-react';
 
 const bodyEditorVariants = ['json', 'text'] as const;
 
@@ -69,49 +72,58 @@ export default function BodyEditor(): JSX.Element {
   }
 
   return (
-    <div className="flex w-full max-w-3xl flex-col gap-2">
-      <Select
-        name="method"
-        value={selectedData}
-        onValueChange={handleSelectedValueChange}
-      >
-        <SelectTrigger className="w-[100px] uppercase">
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent>
-          {bodyEditorVariants.map((item) => (
-            <SelectItem key={item} value={item} className="uppercase">
-              {item}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-
-      <CodeMirror
-        value={bodyData}
-        height="250px"
-        {...(selectedData !== 'text' ? { extensions: [json()] } : undefined)}
-        theme={vscodeDark}
-        onChange={handleValueChange}
-      />
-
-      <div className="h-[36px]">
-        {selectedData !== 'text' && (
-          <div className="flex items-center">
-            {isError && (
-              <span className="text-destructive text-sm">{t('error')}</span>
-            )}
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <Label className="text-sm font-medium">Request Body</Label>
+        <div className="flex items-center justify-center gap-3">
+          <CustomTooltip content={t('format')}>
             <Button
               className="ml-auto"
               type="button"
               onClick={handlePrettiness}
-              variant="ghost"
+              variant="outline"
+              size="icon"
               disabled={isError}
             >
-              {t('format')}
+              <Sparkles className="h-4 w-4" />
             </Button>
-          </div>
-        )}
+          </CustomTooltip>
+          <Select
+            name="method"
+            value={selectedData}
+            onValueChange={handleSelectedValueChange}
+          >
+            <SelectTrigger className="uppercase">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {bodyEditorVariants.map((item) => (
+                <SelectItem key={item} value={item} className="uppercase">
+                  {item}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+      <div className="flex w-full flex-col gap-2">
+        <CodeMirror
+          value={bodyData}
+          height="250px"
+          {...(selectedData !== 'text' ? { extensions: [json()] } : undefined)}
+          theme={vscodeDark}
+          onChange={handleValueChange}
+        />
+
+        <div>
+          {selectedData !== 'text' && (
+            <div className="flex items-center">
+              {isError && (
+                <span className="text-destructive text-sm">{t('error')}</span>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -95,7 +95,7 @@
     "getStarted": "Get Started"
   },
   "RestClient": {
-    "title": "Rest client",
+    "title": "REST client",
     "headers": "Headers",
     "body": "Body",
     "response": "Response",
