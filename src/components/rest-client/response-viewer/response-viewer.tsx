@@ -24,6 +24,7 @@ export default function ResponseViewer(): JSX.Element {
       <div className="flex w-full flex-col gap-2">
         <div className="overflow-hidden rounded-lg border">
           <CodeMirror
+            data-testid="response-code"
             value={JSON.stringify(responseData.data, null, 2)}
             height="450px"
             extensions={[json()]}

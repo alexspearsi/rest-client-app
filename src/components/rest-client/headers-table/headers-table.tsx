@@ -32,7 +32,12 @@ export default function HeadersTable(): JSX.Element {
       <div className="flex items-center justify-between">
         <Label className="text-lg font-semibold">{t('headersTitle')}</Label>
         <CustomTooltip content={t('addHeaderTooltip')}>
-          <Button variant="outline" size="icon" onClick={handleClick}>
+          <Button
+            data-testid="add-header-btn"
+            variant="outline"
+            size="icon"
+            onClick={handleClick}
+          >
             <Plus className="h-4 w-4" />
           </Button>
         </CustomTooltip>
