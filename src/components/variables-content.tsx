@@ -35,9 +35,10 @@ export default function VariablesContent() {
                 <div className="flex h-[400px] w-full items-end justify-center">
                   <Image
                     priority
-                    className="h-[250px] w-[250px] md:h-[300px] md:w-[300px]"
                     src={imageSrc}
                     alt="REST CLient Interface"
+                    width={280}
+                    height={280}
                   />
                 </div>
               </ResizablePanel>
