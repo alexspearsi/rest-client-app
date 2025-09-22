@@ -129,7 +129,8 @@
     "description": "Manage variables for your API requests",
     "variable": "Variable",
     "value": "Value",
-    "addTooltip": "Add Variable"
+    "addTooltip": "Add Variable",
+    "pullDown": "Pull Down"
   },
   "History": {
     "title": "History",
