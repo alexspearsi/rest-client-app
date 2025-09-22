@@ -1,6 +1,5 @@
 'use client';
 
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Heading } from '@/components/ui/typography';
 import { AlertTriangle } from 'lucide-react';
@@ -21,9 +20,6 @@ export default function Error({
         <div className="bg-destructive/20 mx-auto flex h-24 w-24 items-center justify-center rounded-full">
           <AlertTriangle className="text-destructive h-12 w-12" />
         </div>
-        <Badge variant="destructive">
-          {error.name}: {error.message}
-        </Badge>
         <div className="space-y-6">
           <Heading size="h2">{t('title')}</Heading>
           <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
@@ -33,6 +29,11 @@ export default function Error({
         <Button variant="default" onClick={reset}>
           {t('tryAgain')}
         </Button>
+        <div className="bg-destructive/50 mx-auto max-w-sm rounded-lg p-4">
+          <p className="font-medium break-all">
+            <span className="font-bold">{error.name}</span>: {error.message}
+          </p>
+        </div>
       </div>
     </section>
   );
