@@ -31,7 +31,7 @@ export default function VariablesContent() {
               direction="vertical"
               className="min-h-[450px] rounded-lg border"
             >
-              <ResizablePanel defaultSize={20}>
+              <ResizablePanel defaultSize={15}>
                 <div className="flex h-[400px] w-full items-end justify-center">
                   <Image
                     priority
@@ -43,7 +43,10 @@ export default function VariablesContent() {
                 </div>
               </ResizablePanel>
               <ResizableHandle withHandle />
-              <ResizablePanel defaultSize={80} className="text-center">
+              <ResizablePanel
+                defaultSize={85}
+                className="bg-secondary text-center"
+              >
                 <p className="text-muted-foreground p-4">{t('pullDown')}</p>
               </ResizablePanel>
             </ResizablePanelGroup>

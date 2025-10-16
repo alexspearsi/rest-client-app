@@ -42,8 +42,8 @@ export default function Variables(): JSX.Element {
   }
 
   return (
-    <div className="space-y-4 p-4">
-      <div className="flex items-center justify-between">
+    <div className="relative space-y-4">
+      <div className="bg-secondary sticky top-0 left-0 z-10 flex items-center justify-between border-b p-4">
         <Label className="text-lg font-semibold">{t('subtitle')}</Label>
         <CustomTooltip content={t('addTooltip')}>
           <Button
@@ -56,22 +56,24 @@ export default function Variables(): JSX.Element {
           </Button>
         </CustomTooltip>
       </div>
-      <Table>
-        <TableCaption></TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[36px]"></TableHead>
-            <TableHead>{t('variable')}</TableHead>
-            <TableHead>{t('value')}</TableHead>
-            <TableHead className="w-[36px]">{''}</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody data-testid="table-body">
-          {variables.map((item) => (
-            <Cell variable={item} key={item.id} />
-          ))}
-        </TableBody>
-      </Table>
+      <div className="px-4">
+        <Table>
+          <TableCaption></TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[36px]"></TableHead>
+              <TableHead>{t('variable')}</TableHead>
+              <TableHead>{t('value')}</TableHead>
+              <TableHead className="w-[36px]">{''}</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody data-testid="table-body">
+            {variables.map((item) => (
+              <Cell variable={item} key={item.id} />
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 }
