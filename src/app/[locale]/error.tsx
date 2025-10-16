@@ -17,9 +17,7 @@ export default function Error({
   return (
     <section className="flex min-h-screen items-center justify-center">
       <div className="container mx-auto space-y-8 px-6 text-center lg:px-20">
-        <div className="bg-destructive/20 mx-auto flex h-24 w-24 items-center justify-center rounded-full">
-          <AlertTriangle className="text-destructive h-12 w-12" />
-        </div>
+        <AlertTriangle className="text-destructive mx-auto h-16 w-16" />
         <div className="space-y-6">
           <Heading size="h2">{t('title')}</Heading>
           <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
@@ -29,8 +27,8 @@ export default function Error({
         <Button variant="default" onClick={reset}>
           {t('tryAgain')}
         </Button>
-        <div className="bg-destructive/50 mx-auto max-w-sm rounded-lg p-4">
-          <p className="font-medium break-all">
+        <div className="bg-destructive/20 mx-auto flex max-w-md items-center justify-center rounded-lg p-3">
+          <p className="text-destructive text-start text-sm">
             <span className="font-bold">{error.name}</span>: {error.message}
           </p>
         </div>
