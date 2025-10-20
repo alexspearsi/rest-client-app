@@ -43,7 +43,7 @@ export default function Variables(): JSX.Element {
 
   return (
     <div className="relative space-y-3">
-      <div className="bg-secondary sticky top-0 left-0 z-10 flex items-center justify-between border-b p-4">
+      <div className="bg-secondary sticky top-0 left-0 z-10 flex items-center justify-between border-b px-6 py-4">
         <Label className="text-lg font-semibold">{t('subtitle')}</Label>
         <CustomTooltip content={t('addTooltip')}>
           <Button
