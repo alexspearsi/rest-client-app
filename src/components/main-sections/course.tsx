@@ -1,4 +1,4 @@
-import { Code, Globe, Users } from 'lucide-react';
+import { HeartHandshake, LockKeyholeOpen, Sprout } from 'lucide-react';
 import { Heading } from '../ui/typography';
 import { Badge } from '../ui/badge';
 import { useTranslations } from 'next-intl';
@@ -34,7 +34,7 @@ export default function CourseSection() {
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <div className="bg-secondary flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg">
-                  <Code className="text-primary h-4 w-4" />
+                  <HeartHandshake className="text-primary h-4 w-4" />
                 </div>
                 <div>
                   <Heading size="h4" className="mb-1">
@@ -47,7 +47,7 @@ export default function CourseSection() {
               </div>
               <div className="flex items-start gap-3">
                 <div className="bg-secondary flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg">
-                  <Users className="text-primary h-4 w-4" />
+                  <LockKeyholeOpen className="text-primary h-4 w-4" />
                 </div>
                 <div>
                   <Heading size="h4" className="mb-1">
@@ -60,7 +60,7 @@ export default function CourseSection() {
               </div>
               <div className="flex items-start gap-3">
                 <div className="bg-secondary flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg">
-                  <Globe className="text-primary h-4 w-4" />
+                  <Sprout className="text-primary h-4 w-4" />
                 </div>
                 <div>
                   <Heading size="h4" className="mb-1">

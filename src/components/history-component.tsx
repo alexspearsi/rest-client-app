@@ -21,7 +21,7 @@ export default function HistoryComponent({
               {t('description')}
             </p>
           </div>
-          <div className="bg-background overflow-hidden rounded-lg border shadow-sm">
+          <div className="bg-background overflow-hidden rounded-lg border">
             <div className="bg-secondary border-b px-6 py-4">
               <p className="text-foreground text-lg font-semibold">
                 {t('requestHistoryTitle')}
