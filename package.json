@@ -9,7 +9,7 @@
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
     "lint": "eslint \"src/**/*.{ts,tsx}\" --fix",
-    "format-fix": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "format:fix": "prettier --write \"src/**/*.{ts,tsx}\" \"*.md\"",
     "prepare": "husky"
   },
   "dependencies": {
