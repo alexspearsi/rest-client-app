@@ -30,16 +30,16 @@ Users can:
 
 ## Tech Stack
 
-| Technology                | Badge                                                                                                |
-| ------------------------- | ---------------------------------------------------------------------------------------------------- |
-| **Next.js**               | ![Next.js](https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white)                 |
-| **React**                 | ![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)           |
-| **TypeScript**            | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)        |
-| **Firebase**              | ![Firebase](https://img.shields.io/badge/Firebase-a08021?logo=firebase&logoColor=ffcd34)             |
-| **Tailwind CSS**          | ![Tailwind](https://img.shields.io/badge/TailwindCSS-38B2AC?logo=tailwind-css&logoColor=white)       |
-| **shadcn/ui**             | ![shadcn/ui](https://img.shields.io/badge/shadcn/ui-000000?logoColor=white)                          |
-| **Vitest**                | ![Vitest](https://img.shields.io/badge/Vitest-252529?logo=vitest&logoColor=FCC72B)                   |
-| **React Testing Library** | ![RTL](https://img.shields.io/badge/ReactTestingLibrary-E33332?logo=testing-library&logoColor=white) |
+| Technology                | Badge                                                                                                                                |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| **Next.js**               | [![Next.js](https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white)](https://nextjs.org/)                          |
+| **React**                 | [![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://react.dev/)                     |
+| **TypeScript**            | [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)     |
+| **Firebase**              | [![Firebase](https://img.shields.io/badge/Firebase-a08021?logo=firebase&logoColor=ffcd34)](https://firebase.google.com/)             |
+| **Tailwind CSS**          | [![Tailwind](https://img.shields.io/badge/TailwindCSS-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)           |
+| **shadcn/ui**             | [![shadcn/ui](https://img.shields.io/badge/shadcn/ui-000000?logoColor=white)](https://ui.shadcn.com/)                                |
+| **Vitest**                | [![Vitest](https://img.shields.io/badge/Vitest-252529?logo=vitest&logoColor=FCC72B)](https://vitest.dev/)                            |
+| **React Testing Library** | [![RTL](https://img.shields.io/badge/ReactTestingLibrary-E33332?logo=testing-library&logoColor=white)](https://testing-library.com/) |
 
 ## Getting Started
 
