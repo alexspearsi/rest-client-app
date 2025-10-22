@@ -1,5 +1,7 @@
 # REST Client
 
+<img width="1919" height="1335" alt="rest-client" src="https://github.com/user-attachments/assets/a777ea0a-c3da-4cfd-8353-1767b378c719" />
+
 A lightweight **REST Client** inspired by Postman – a web application that allows users to send HTTP requests, view responses, manage variables and review request history. Built with **Next.js**, **TypeScript** and **Firebase** for authentication and data storage.
 
 💡 Developed as a **team project** during the [**RS School React course**](https://rs.school/courses/reactjs).
