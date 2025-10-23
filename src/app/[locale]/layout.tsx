@@ -1,0 +1,58 @@
+import './globals.css';
+
+import Header from '@/components/header';
+import Footer from '@/components/footer';
+import { NextIntlClientProvider, hasLocale } from 'next-intl';
+import { notFound } from 'next/navigation';
+import { routing } from '@/i18n/routing';
+import { ThemeProvider } from '@/components/contexts/theme-provider';
+import { Toaster } from '@/components/ui/sonner';
+import { AuthProvider } from '../providers/auth-provider';
+import { Metadata } from 'next';
+
+type Props = {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+};
+
+export const metadata: Metadata = {
+  title: 'REST Client',
+};
+
+export default async function RootLayout({ children, params }: Props) {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
+  const messages = (await import(`../../../messages/${locale}.json`)).default;
+
+  return (
+    <html lang={locale} suppressHydrationWarning>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <AuthProvider />
+            <Header />
+            <main>{children}</main>
+            <Footer />
+            <Toaster
+              richColors
+              duration={1500}
+              toastOptions={{
+                style: {
+                  maxWidth: '300px',
+                },
+              }}
+            />
+          </NextIntlClientProvider>
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
